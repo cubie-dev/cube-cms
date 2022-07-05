@@ -1,0 +1,26 @@
+@use "utilities/variables";
+@use "reset";
+@use "utilities/typography";
+@use "utilities/icons";
+@use "utilities/images";
+
+// Components
+@use "components/avatars";
+@use "components/logos";
+@use "components/speech-bubbles";
+@use "components/cards";
+@use "components/forms";
+@use "components/buttons";
+@use "components/messages";
+@use "components/lists";
+
+// Layouts
+@use "layouts/header";
+@use "layouts/breadcrumbs";
+@use "layouts/shadows";
+@use "layouts/pages";
+
+body {
+    background: url("../images/bg.png");
+    background-size: cover;
+}

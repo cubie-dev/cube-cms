@@ -1,0 +1,87 @@
+@use "sass:math";
+
+.form-label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+
+    &.form-group-invalid .form-control-container {
+        border-color: var(--danger-color);
+    }
+}
+
+.form-control-container {
+    display: flex;
+    border: solid 1px var(--default-border-color);
+    border-radius: var(--border-radius);
+    padding: 0.5rem 1rem;
+    align-items: center;
+    cursor: text;
+    background: #fff;
+    position: relative;
+
+    &.has-focus {
+        border-color: var(--primary-color);
+    }
+
+    &.invalid {
+        border-color: var(--danger-color);
+    }
+
+    .form-control-container-append {
+        pointer-events: auto;
+        margin-left: 0.75rem;
+    }
+}
+
+.form-control {
+    padding: 0.5rem 0;
+    border-radius: var(--border-radius);
+    pointer-events: auto;
+    background: none;
+    border: none;
+    font-size: 1rem;
+
+    &.has-icon {
+        padding-left: 1rem;
+    }
+
+    &:not(.w-auto) {
+        width: 100%;
+    }
+
+    &:focus {
+        outline: none;
+    }
+
+    &.form-control-loading {
+        cursor: wait;
+
+        &:after {
+            animation: loading 1s infinite;
+            border-radius: var(--primary-color);
+            content: '';
+            display: block;
+            height: 4px;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 100%;
+        }
+    }
+}
+
+
+.form-message {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--comment-color);
+
+    &.form-message-invalid {
+        color: var(--danger-color);
+    }
+}

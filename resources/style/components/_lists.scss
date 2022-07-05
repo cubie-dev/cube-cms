@@ -1,0 +1,18 @@
+.list {
+    display: flex;
+    flex-direction: column;
+
+    .list-item {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+
+        &:not(.no-padding) {
+            padding: 1.5rem;
+        }
+
+        &:nth-child(odd) {
+            background: var(--light-background);
+        }
+    }
+}

@@ -31,7 +31,8 @@
         "types": [
             "react",
             "react-dom",
-            "vite/client"
+            "vite/client",
+            "node"
         ],
         "baseUrl": "./resources/js"
     }

@@ -8,20 +8,28 @@
     },
     "devDependencies": {
         "@babel/preset-react": "^7.17.12",
+        "@types/node": "^17.0.42",
         "@types/react": "^18.0.10",
         "@types/react-dom": "^18.0.5",
         "@vitejs/plugin-react": "^1.3.2",
+        "autoprefixer": "^10.4.7",
         "axios": "^0.25",
         "laravel-vite-plugin": "^0.2.4",
         "lodash": "^4.17.19",
+        "postcss": "^8.4.14",
         "sass": "^1.53.0",
-        "tailwindcss": "^3.0.24",
+        "tailwindcss": "^3.1.4",
         "vite": "^2.9.13"
     },
     "dependencies": {
+        "@fortawesome/fontawesome-svg-core": "^6.1.1",
+        "@fortawesome/pro-regular-svg-icons": "^6.1.1",
+        "@fortawesome/react-fontawesome": "^0.2.0",
         "@inertiajs/inertia": "^0.11.0",
         "@inertiajs/inertia-react": "^0.8.0",
+        "clsx": "^1.1.1",
         "react": "^18.1.0",
-        "react-dom": "^18.1.0"
+        "react-dom": "^18.1.0",
+        "react-intl": "^6.0.4"
     }
 }

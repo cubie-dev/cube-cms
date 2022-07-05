@@ -1,0 +1,30 @@
+.speech-bubble {
+    padding: 1rem;
+    background: #fff;
+    border-radius: var(--border-radius);
+    position: relative;
+
+    &.arrow-left:before {
+        content: '';
+        border: 10px solid transparent;
+        border-right-color: #fff;
+        border-left: 0;
+        position: absolute;
+        margin-left: -10px;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+    }
+
+    &.arrow-right:before {
+        content: '';
+        border: 10px solid transparent;
+        border-left-color: #fff;
+        border-right: 0;
+        position: absolute;
+        margin-right: -10px;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+    }
+}

@@ -1,0 +1,95 @@
+@use "../layouts/shadows";
+
+.card {
+    background: #fff;
+    border-radius: var(--border-radius);
+    @extend .shadow-1;
+
+    .card-header {
+        display: flex;
+        flex-direction: column;
+        border-top-left-radius: var(--border-radius);
+        border-top-right-radius: var(--border-radius);
+        border-bottom: solid 1px var(--default-border-color);
+        overflow: hidden;
+
+        &.card-header-right-image {
+            background-position: center right;
+            background-repeat: no-repeat;
+            &.moving {
+                background-image: url('../images/global/moving.png');
+            }
+        }
+
+        .card-header-image {
+            height: 75px;
+            border-top-left-radius: var(--border-radius);
+            border-top-right-radius: var(--border-radius);
+            background-position: center center;
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            color: #fff;
+        }
+
+        .card-header-title-container {
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+
+            .card-header-titles {
+                .card-header-title {
+                    font-weight: 600;
+                    font-size: 1.1rem;
+                    color: var(--card-title-color);
+                }
+
+                .card-header-subtitle {
+                    color: var(--card-subtitle-color);
+                }
+            }
+
+            .card-header-actions {
+                margin-left: auto;
+            }
+        }
+
+        .card-header-icon-container {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            border-radius: var(--border-radius);
+        }
+    }
+
+    .card-image {
+        display: flex;
+        align-items: center;
+        padding: 1rem;
+        height: 100px;
+
+        &.card-image-top {
+            border-top-left-radius: var(--border-radius);
+            border-top-right-radius: var(--border-radius);
+        }
+    }
+
+    .card-content {
+        &:not(.no-spacing) {
+            padding: 1.5rem;
+        }
+
+        &.border-top {
+            border-top: 1px solid var(--default-border-color);
+        }
+
+        &.footer {
+            padding: 4rem 1rem;
+            display: flex;
+            justify-content: center;
+        }
+    }
+}

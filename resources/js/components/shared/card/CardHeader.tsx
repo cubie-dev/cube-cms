@@ -1,0 +1,54 @@
+import { FC, HTMLAttributes, PropsWithChildren } from 'react';
+import clsx from 'clsx';
+
+export interface CardHeaderProps extends PropsWithChildren<HTMLAttributes<HTMLDivElement>> {
+    title?: string;
+    subTitle?: string;
+    color?: any; //@todo
+    iconClass?: string;
+}
+
+export const CardHeader: FC<CardHeaderProps> = ({
+    children,
+    className,
+    color,
+    iconClass,
+    title,
+    subTitle
+}) => {
+    return (
+        <div
+            className={clsx(
+                'card-header',
+                className
+            )}
+        >
+            <div className="card-header-title-container">
+                {iconClass && (
+                    <div
+                        className={clsx(
+                            'card-header-icon-container',
+                            color && `bg-${color}`
+                        )}
+                    >
+                        <div className={clsx(
+                            'header-icon',
+                            iconClass
+                        )}></div>
+                    </div>
+                )}
+                {title && (
+                    <div className="card-header-titles">
+                        <h2 className="card-header-title">{ title }</h2>
+                        {subTitle && (
+                            <span className="card-header-subtitle">{ subTitle }</span>
+                        )}
+                    </div>
+                )}
+            </div>
+            <div className="card-header-actions">
+                {children}
+            </div>
+        </div>
+    );
+}

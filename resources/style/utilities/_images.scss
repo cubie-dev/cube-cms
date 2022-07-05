@@ -1,0 +1,23 @@
+$images: (
+    ('name': 'support'),
+    ('name': 'forum3', 'position': center right),
+);
+
+@each $image in $images {
+    .image-#{map-get($image, 'name')} {
+        background-image: url('../images/#{map-get($image, 'name')}.png');
+        image-rendering: pixelated;
+
+        @if (map-has-key($image, 'width')) {
+            width: map-get($image, 'width');
+        }
+
+        @if (map-has-key($image, 'height')) {
+            height: map-get($image, 'height');
+        }
+
+        @if (map-has-key($image, 'position')) {
+            background-position: map-get($image, 'position');
+        }
+    }
+}

@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use Diglactic\Breadcrumbs\Breadcrumbs;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
@@ -27,6 +28,11 @@ class HandleInertiaRequests extends Middleware
         return parent::version($request);
     }
 
+    private function getSharedMessages(Request $request): array
+    {
+        return $request->session()->get('messages', []);
+    }
+
     /**
      * Defines the props that are shared by default.
      *
@@ -37,7 +43,11 @@ class HandleInertiaRequests extends Middleware
     public function share(Request $request): array
     {
         return array_merge(parent::share($request), [
-            //
+            'locale' => fn () => app()->getLocale(),
+            'localeMessages' => fn () => translations(app()->getLocale()),
+            'flash' => [
+                'messages' => fn () => $this->getSharedMessages($request),
+            ]
         ]);
     }
 }

@@ -1,0 +1,41 @@
+@use "../layouts/shadows";
+
+.message-container {
+    margin-bottom: 1rem;
+
+    .message {
+        padding: 1rem;
+        background: #fff;
+        border-radius: var(--border-radius);
+        border: solid 1px var(--default-border-color);
+        display: flex;
+
+        .message-icon {
+            margin-right: 1rem;
+        }
+
+        &.message-danger {
+            border-color: var(--danger-color);
+
+            .message-title, .message-icon {
+                color: var(--danger-color);
+            }
+        }
+
+        &.message-info {
+            border-color: var(--info-color);
+
+            .message-title, .message-icon {
+                color: var(--info-color);
+            }
+        }
+
+        &.message-success {
+            border-color: var(--success-color);
+
+            .message-title, .message-icon {
+                color: var(--success-color);
+            }
+        }
+    }
+}
