@@ -20,4 +20,11 @@ class UserRepository extends Repository
             ->limit($limit)
             ->get();
     }
+
+    public function getUsersRegisteredOnIp(string $ip): Collection
+    {
+        return $this->getModel()
+            ->where('ip_register', $ip)
+            ->get();
+    }
 }

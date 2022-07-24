@@ -5,7 +5,7 @@ import { Grid } from '../../components/shared/grid';
 import { FormGroup, FormLabel, FormInput, FormMessage } from '../../components/shared/forms';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { useForm, usePage } from '@inertiajs/inertia-react';
-import { useCallback } from 'react';
+import { FormEvent, useCallback } from 'react';
 import { Button } from '../../components/shared/button';
 import { Message, MessageProps } from '../../components/shared/message/Message';
 import { useFlashMessages } from '../../hooks/useFlashMessages';
@@ -22,17 +22,19 @@ export interface LoginPageProps {
 
 export default function Login() {
     const intl = useIntl();
-    const { data, setData, post, errors } = useForm({
+    const { data, setData, put, errors, clearErrors } = useForm({
         username: '',
         password: ''
     });
 
     const { props: { newestUsers } } = usePage<IPage<SharedProps & LoginPageProps>>();
 
-    const onSubmit = useCallback((event: React.FormEvent) => {
+    const onSubmit = useCallback((event: FormEvent) => {
         event.preventDefault();
 
-        post('/login', {
+        clearErrors();
+
+        put('/login', {
             preserveScroll: true
         });
     }, [data.username, data.password]);
@@ -41,6 +43,14 @@ export default function Login() {
 
     return (
         <Page>
+            <div className="message-container">
+                {flashMessages.map((message: MessageProps, index) => (
+                    <Message
+                        key={index}
+                        {...message}
+                    />
+                ))}
+            </div>
             <Grid cols={1} gap={8} smCols={3}>
                 <Card>
                     <CardHeader
@@ -48,14 +58,6 @@ export default function Login() {
                         subTitle={intl.formatMessage({ id: 'login.form_card_header_subtitle'})}
                     />
                     <CardContent>
-                        <div className="message-container">
-                            {flashMessages.map((message: MessageProps, index) => (
-                                <Message
-                                    key={index}
-                                    {...message}
-                                />
-                            ))}
-                        </div>
                         <form onSubmit={onSubmit}>
                             <FormGroup invalid={!!errors.username}>
                                 <FormLabel htmlFor="username">

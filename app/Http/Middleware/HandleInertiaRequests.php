@@ -44,9 +44,9 @@ class HandleInertiaRequests extends Middleware
     {
         return array_merge(parent::share($request), [
             'locale' => fn () => app()->getLocale(),
-            'localeMessages' => fn () => translations(app()->getLocale()),
+            'localeMessages' => fn () => translations(locale: app()->getLocale()),
             'flash' => [
-                'messages' => fn () => $this->getSharedMessages($request),
+                'messages' => fn () => $this->getSharedMessages(request: $request),
             ]
         ]);
     }

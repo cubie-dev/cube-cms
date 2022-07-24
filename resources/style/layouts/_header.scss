@@ -11,8 +11,12 @@
 
     .header-inner {
         display: flex;
-        justify-content: space-between;
+        flex-direction: column;
         align-items: center;
+
+        .register-button-container {
+            margin-top: 1.5rem;
+        }
     }
 
     .logo-container {
@@ -64,5 +68,16 @@
 @screen md {
     .main-header {
         background: url('../images/header/hotel.png') calc(50% + 150px) bottom, url("../images/header/background.png") 0;
+
+        .header-inner {
+            justify-content: space-between;
+            align-items: center;
+            flex-direction: row;
+
+            .register-button-container {
+                margin-left: auto;
+                margin-top: 0;
+            }
+        }
     }
 }

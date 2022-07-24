@@ -35,10 +35,20 @@ use Laravel\Sanctum\HasApiTokens;
  * @property string $ip_current Have your CMS update this IP. If you do not do this IP banning won't work!
  * @property string $machine_id
  * @property int $home_room
+ * @property string $user_agent_register
+ * @property string $user_agent_current
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property-read \App\Models\Ban $ban
+ * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
+ * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
+ * @method static \Illuminate\Database\Query\Builder|User onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|User query()
+ * @method static \Illuminate\Database\Query\Builder|User withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|User withoutTrashed()
+ * @mixin \Eloquent
  */
 class User extends Authenticatable
 {
@@ -65,6 +75,8 @@ class User extends Authenticatable
         'auth_ticket',
         'ip_register',
         'ip_current',
+        'user_agent_current',
+        'user_agent_register'
     ];
 
     protected $hidden = [

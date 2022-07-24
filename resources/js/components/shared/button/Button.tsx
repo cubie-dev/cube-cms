@@ -1,6 +1,7 @@
-import { ButtonHTMLAttributes, FC, PropsWithChildren } from 'react';
+import { ButtonHTMLAttributes, createElement, FC, PropsWithChildren, ReactNode } from 'react';
 import { Variant } from '../../../interfaces/Variant';
 import clsx from 'clsx';
+import { Link } from '@inertiajs/inertia-react';
 
 export interface ButtonProps extends PropsWithChildren<ButtonHTMLAttributes<HTMLButtonElement>> {
     variant?: Variant;
@@ -8,28 +9,49 @@ export interface ButtonProps extends PropsWithChildren<ButtonHTMLAttributes<HTML
     fw?: boolean;
     small?: boolean;
     huge?: boolean;
+    iconLeft?: ReactNode;
+    href?: string;
 }
 
 export const Button: FC<ButtonProps> = ({
-  children,
+    children,
     loading,
     variant = 'primary',
     huge,
     small,
-    fw
+    fw,
+    className,
+    iconLeft,
+    href
 }) => {
-    return (
-        <button
-            className={clsx(
+
+    return createElement(href ? Link : 'button',
+        {
+            className: clsx(
                 'btn',
                 `btn-${variant}`,
                 loading && 'btn-loading',
                 huge && 'btn-huge',
                 small && 'btn-small',
                 fw && 'btn-fw',
+                className
+            ),
+            href: href || ''
+        },
+        <>
+            {!!iconLeft && (
+                <div className="icon-container-left">
+                    {iconLeft}
+                </div>
             )}
-        >
-            {children}
-        </button>
+            <span>{children}</span>
+        </>
     );
+    // return (
+    //     <button
+
+    //     >
+
+    //     </button>
+    // );
 }

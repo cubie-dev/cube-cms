@@ -3,6 +3,7 @@ import { IBreadcrumbs } from '../../../interfaces/IBreadcrumbs';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome } from '@fortawesome/pro-regular-svg-icons';
 import clsx from 'clsx';
+import { Link } from '@inertiajs/inertia-react';
 
 export interface BreadcrumbsProps {
     breadcrumbs: IBreadcrumbs;
@@ -14,7 +15,7 @@ export const Breadcrumbs: FC<BreadcrumbsProps> = ({
     const items = useMemo(() => {
         return breadcrumbs.map((item, index) => {
             return (
-                <a
+                <Link
                     href={item.url}
                     key={index}
                     className={clsx(
@@ -23,7 +24,7 @@ export const Breadcrumbs: FC<BreadcrumbsProps> = ({
                     )}
                 >
                     {item.home ? <FontAwesomeIcon icon={faHome} /> : item.title}
-                </a>
+                </Link>
             );
         });
     }, [JSON.stringify(breadcrumbs)]);

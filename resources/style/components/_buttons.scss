@@ -1,3 +1,5 @@
+@use "../utilities/colors";
+
 .btn {
     background: none;
     border: solid 1px;
@@ -17,6 +19,9 @@
     text-align: center;
     position: relative;
     transition: all 0.1s ease-in-out;
+    align-items: center;
+    color: inherit;
+    text-decoration: none;
 
     &.btn-primary {
         border-color: var(--primary-color);
@@ -31,6 +36,93 @@
         &:active {
             border-color: var(--primary-color-active);
             background-color: var(--primary-color-active);
+        }
+    }
+
+    &.btn-light {
+        border-color: transparent;
+
+        &:hover {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        &:active {
+            background: rgba(0, 0, 0, 0.2);
+        }
+    }
+
+    &.btn-fw {
+        width: 100%;
+    }
+
+    .icon-container-left {
+        margin-right: 0.5rem;
+    }
+
+    &.btn-register {
+        background: colors.get('amber', 600);
+        border: solid 3px colors.get('amber', 200);
+        filter: drop-shadow(-1px 4px 0 rgba(0,0,0,0.3));
+        color: #000;
+        text-transform: uppercase;
+        text-decoration: none;
+        position: relative;
+        height: 46px;
+        display: flex;
+        align-items: center;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        border-right: none;
+        padding: 1rem 2rem;
+        margin-right: 23px;
+
+        &:before, &:after {
+            border-style: solid;
+            position: absolute;
+            display: block;
+            content: '';
+        }
+
+        &:before {
+            border-width: 23px;
+            top: -3px;
+            border-color: transparent transparent transparent colors.get('amber', 200);
+            right: -46px;
+            transition: all 0.1s ease-in-out;
+        }
+
+        &:after {
+            border-width: 20px;
+            top: 0;
+            border-color: transparent transparent transparent colors.get('amber', 600);
+            right: -40px;
+            transition: all 0.1s ease-in-out;
+        }
+
+        &:hover {
+            background: colors.get('amber', 700);
+            border-color: colors.get('amber', 300);
+
+            &:before {
+                border-left-color: colors.get('amber', 300);
+            }
+
+            &:after {
+                border-left-color: colors.get('amber', 700);
+            }
+        }
+
+        &:active {
+            background: colors.get('amber', 800);
+            border-color: colors.get('amber', 400);
+
+            &:before {
+                border-left-color: colors.get('amber', 400);
+            }
+
+            &:after {
+                border-left-color: colors.get('amber', 800);
+            }
         }
     }
 }

@@ -16,9 +16,7 @@
         &.card-header-right-image {
             background-position: center right;
             background-repeat: no-repeat;
-            &.moving {
-                background-image: url('../images/global/moving.png');
-            }
+            image-rendering: pixelated;
         }
 
         .card-header-image {
@@ -90,6 +88,16 @@
             padding: 4rem 1rem;
             display: flex;
             justify-content: center;
+        }
+    }
+}
+
+@screen sm {
+    .card {
+        .card-header.card-header-right-image {
+            &.moving {
+                background-image: url('../images/global/moving.png');
+            }
         }
     }
 }

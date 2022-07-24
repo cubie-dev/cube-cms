@@ -1,9 +1,9 @@
-import { FC, HTMLAttributes, PropsWithChildren } from 'react';
+import { FC, HTMLAttributes, PropsWithChildren, ReactNode } from 'react';
 import clsx from 'clsx';
 
-export interface CardHeaderProps extends PropsWithChildren<HTMLAttributes<HTMLDivElement>> {
-    title?: string;
-    subTitle?: string;
+export interface CardHeaderProps extends PropsWithChildren<Omit<HTMLAttributes<HTMLDivElement>, 'title'>> {
+    title?: ReactNode;
+    subTitle?: ReactNode;
     color?: any; //@todo
     iconClass?: string;
 }

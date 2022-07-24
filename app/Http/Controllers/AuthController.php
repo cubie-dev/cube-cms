@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Dto\LoginDto;
+use App\Dto\NewUserDto;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Http\Requests\Auth\RegisterRequest;
 use App\Http\Resources\UserResource;
 use App\Repositories\UserRepository;
 use App\Services\AuthService;
@@ -21,18 +24,57 @@ class AuthController extends Controller
 
     public function showLogin(): Response
     {
-        return inertia('auth/Login', [
-            'breadcrumbs' => fn () => Breadcrumbs::generate('auth.login'),
-            'newestUsers' => UserResource::collection($this->userRepository->getLastUsers(3)),
-        ]);
+        return inertia(
+            component: 'auth/Login',
+            props: [
+                'breadcrumbs' => fn () => Breadcrumbs::generate('auth.login'),
+                'newestUsers' => UserResource::collection($this->userRepository->getLastUsers()),
+            ]
+        );
     }
 
     public function postLogin(LoginRequest $request): RedirectResponse
     {
-        if ($this->authService->login($request->get('username'), $request->get('password'))) {
+        if (
+            $this->authService->login(
+                loginDto: new LoginDto(
+                    username: $request->get('username'),
+                    password: $request->get('password'),
+                    ip: $request->getClientIp(),
+                    userAgent: $request->userAgent(),
+                )
+            )
+        ) {
             return Redirect::route('user.home');
         }
 
         return Redirect::route('auth.login');
+    }
+
+    public function showRegister(): Response
+    {
+        return inertia(
+            component: 'auth/Register',
+            props: [
+                'breadcrumbs' => fn () => Breadcrumbs::generate('auth.register'),
+            ]
+        );
+    }
+
+    public function postRegister(RegisterRequest $request): RedirectResponse
+    {
+        if ($this->authService->register(
+            newUser: new NewUserDto(
+                username: $request->get('username'),
+                email: $request->get('email'),
+                password: $request->get('password'),
+                ip: $request->ip(),
+                userAgent: $request->userAgent(),
+            ))
+        ) {
+            return Redirect::route('user.home');
+        }
+
+        return Redirect::route('auth.register');
     }
 }

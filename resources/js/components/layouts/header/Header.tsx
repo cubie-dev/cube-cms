@@ -4,16 +4,14 @@ import { Logo } from '../../shared/logo';
 import { Breadcrumbs } from '../breadcrumbs';
 import { useAuth } from '../../../hooks/useAuth';
 import { Toolbar } from './Toolbar';
-import { usePage } from '@inertiajs/inertia-react';
+import { Link, usePage } from '@inertiajs/inertia-react';
 import { Page } from '@inertiajs/inertia';
 import { SharedProps } from '../../../SharedProps';
 import { Avatar } from '../../shared/avatar';
 import { SpeechBubble } from '../../shared/speech-bubble/SpeechBubble';
 import { FormattedMessage } from 'react-intl';
 
-const Header: FC<PropsWithChildren> = ({
-    children
-}) => {
+const Header: FC = () => {
     const { user } = useAuth();
     const { props: { breadcrumbs } } = usePage<Page<SharedProps>>();
 
@@ -28,7 +26,13 @@ const Header: FC<PropsWithChildren> = ({
                                 <strong>0</strong> <FormattedMessage id="header_online" />
                             </SpeechBubble>
                         </div>
-                        {children}
+                        {!user && window.location.pathname.endsWith('login') && (
+                            <div className="register-button-container">
+                                <Link href="/register" className="btn btn-register">
+                                    <FormattedMessage id="login.register_now_button" />
+                                </Link>
+                            </div>
+                        )}
                     </div>
                 </Container>
             </header>
@@ -37,9 +41,7 @@ const Header: FC<PropsWithChildren> = ({
                     <Breadcrumbs breadcrumbs={breadcrumbs} />
                 </div>
                 <div className="user-info">
-                    <SpeechBubble arrowPosition="right" shadow={1}>
-                        <FormattedMessage id="header_welcome_speech_bubble" />
-                    </SpeechBubble>
+
                     <div className="platform">
                         <Avatar
                             figure={user ? user.look : 'hr-831-36.sh-3275-1328.lg-3058-82.ch-3185-110.he-3274-94.hd-190-2'}
