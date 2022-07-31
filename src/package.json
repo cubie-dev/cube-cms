@@ -2,7 +2,7 @@
     "private": true,
     "scripts": {
         "dev": "npm run development",
-        "development": "vite",
+        "development": "vite --host 0.0.0.0",
         "prod": "npm run production",
         "production": "vite build"
     },

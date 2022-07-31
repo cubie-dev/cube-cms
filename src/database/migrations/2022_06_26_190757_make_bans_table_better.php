@@ -35,6 +35,11 @@ return new class extends Migration
     public function down()
     {
         Schema::table('bans', function (Blueprint $table) {
+            $table->dropForeign(['user_id']);
+            $table->dropForeign(['user_staff_id']);
+        });
+
+        Schema::table('bans', function (Blueprint $table) {
             $table->id()->change();
             $table->integer('user_id')->change();
             $table->string('ip', 50)->nullable(false)->change();
@@ -42,9 +47,6 @@ return new class extends Migration
             $table->integer('user_staff_id')->change();
             $table->integer('timestamp')->change();
             $table->integer('ban_expire')->change();
-
-            $table->dropForeign(['user_id']);
-            $table->dropForeign(['user_staff_id']);
         });
     }
 };

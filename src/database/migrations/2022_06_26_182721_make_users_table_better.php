@@ -15,8 +15,6 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->id()->change();
-            $table->dropUnique('id_2');
-            $table->dropUnique('id_3');
             $table->unsignedInteger('account_created')->change();
             $table->dropColumn('account_day_of_birth');
             $table->unsignedInteger('last_login')->nullable()->change();
@@ -26,6 +24,8 @@ return new class extends Migration
             $table->unsignedInteger('pixels')->change();
             $table->unsignedInteger('points')->change();
             $table->string('auth_ticket')->nullable()->change();
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -49,8 +49,8 @@ return new class extends Migration
             $table->integer('pixels')->change();
             $table->integer('points')->change();
             $table->string('auth_ticket', 255)->nullable(false)->change();
-            $table->timestamps();
-            $table->softDeletes();
+            $table->dropTimestamps();
+            $table->dropSoftDeletes();
         });
     }
 };
