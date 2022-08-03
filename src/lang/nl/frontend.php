@@ -31,5 +31,8 @@ return [
     'register.gender_label' => 'Geslacht',
     'register.gender_m_label' => 'Ik ben een jongen',
     'register.gender_f_label' => 'Ik ben een meisje',
-    'register.submit_button' => 'Klaar! Registreer mijn account'
+    'register.submit_button' => 'Klaar! Registreer mijn account',
+    'footer_copyright' => 'Copyright © 2022 <strong>Habme</strong>. Alle rechten voorbehouden aan de rechtmatige eigena(a)r(en).
+          Habme is niet gelieerd aan, onderschreven, gesponsord of specifiek goedgekeurd door Sulake Corporation Oy of haar gelieerde ondernemingen.',
+    'footer_powered' => '<strong>Habme</strong> wordt aangedreven door CubeCMS, ontwikkeld door Eran.'
 ];
