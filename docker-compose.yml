@@ -25,7 +25,7 @@ services:
         restart: unless-stopped
         volumes:
             - ./docker/config/mysql/my.cnf:/etc/mysql/my.cnf
-            - ./docker/mysql:/var/lib/mysql
+            - db:/var/lib/mysql
         environment:
             MYSQL_ROOT_PASSWORD: "db"
             MYSQL_DATABASE: "cube"
@@ -35,6 +35,9 @@ services:
             - "3306:3306"
         networks:
             - app-network
+
+volumes:
+    db:
 
 networks:
     app-network:
