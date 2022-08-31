@@ -12,6 +12,7 @@
     .card.clouds-background {
         background-image: url("../images/global/header_bg_clouds2.png");
         background-position: left bottom;
+        image-rendering: pixelated;
     }
 
     .footer-content {
