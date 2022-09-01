@@ -27,7 +27,11 @@ COPY --from=composer /usr/bin/composer /usr/bin/composer
 
 # Copy required files
 COPY --chown=www:www src /var/www
-COPY docker/config/supervisor/supervisord.conf /etc/supervisor/conf.d/
+COPY docker/config/supervisor/supervisord.conf /etc/supervisor
+RUN touch /var/log/supervisor/supervisord.log \
+    && touch /var/run/supervisord.pid \
+    && chown www:www /var/log/supervisor/supervisord.log \
+    && chown www:www /var/run/supervisord.pid
 
 ## Set up cron
 COPY ./docker/cron/scheduler-cron /etc/cron.d/scheduler-cron
@@ -41,5 +45,7 @@ RUN chmod +x /usr/local/bin/start-container
 
 # Set working directory
 WORKDIR /var/www
+
+USER www
 
 ENTRYPOINT ["sh", "/usr/local/bin/start-container"]

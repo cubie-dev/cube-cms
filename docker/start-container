@@ -3,10 +3,6 @@
 role=${CONTAINER_ROLE:-app}
 env=${APP_ENV:-production}
 
-php() {
-  su www -c "php $*"
-}
-
 if [ "$env" = "local" ]; then
     cd /var/www && php artisan config:cache && php artisan route:cache && php artisan view:cache
 fi
@@ -18,5 +14,5 @@ if [ "$role" = "app" ]; then
     cron
     echo "Cron started!"
     echo "Starting app..."
-    exec /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf
+    exec /usr/bin/supervisord -c /etc/supervisor/supervisord.conf
 fi
