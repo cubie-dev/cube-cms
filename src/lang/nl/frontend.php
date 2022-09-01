@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'hotel_name' => 'CubeCMS',
     'header_welcome_speech_bubble' => 'Registreer of log in. We wachten op je!',
     'header_online' => 'gasten online',
     'login.title' => 'Inloggen',

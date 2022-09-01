@@ -1,4 +1,4 @@
-import { FC, ReactElement } from 'react';
+import { FC, Fragment, ReactElement } from 'react';
 import { IntlProvider } from 'react-intl';
 import { SetupOptions } from '@inertiajs/inertia-react';
 import { SharedProps } from '../SharedProps';
@@ -16,7 +16,7 @@ export const AppContainer: FC<AppContainerProps> = ({
         <IntlProvider
             locale={appProps.initialPage.props.locale}
             messages={appProps.initialPage.props.localeMessages}
-            textComponent="span"
+            textComponent={Fragment}
         >
             {appElement}
         </IntlProvider>

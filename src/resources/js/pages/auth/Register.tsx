@@ -36,7 +36,7 @@ export default function Register() {
     }, [data.username, data.email, data.password, data.password_confirmation, data.gender]);
 
     return (
-        <Page>
+        <Page title="register.title">
             <div className="message-container">
                 {flashMessages.map((message: MessageProps, index) => (
                     <Message
