@@ -16,6 +16,7 @@ RUN apt-get update && apt-get install -y \
     # Install PHP extensions
     && docker-php-ext-install pdo_mysql mbstring exif pcntl sockets \
     && pecl install swoole && docker-php-ext-enable swoole \
+    && pecl install inotify && docker-php-ext-enable inotify \
     # Install node
     && curl -sL https://deb.nodesource.com/setup_16.x | bash - \
     && apt-get update && apt-get install -y nodejs \
@@ -32,12 +33,6 @@ RUN touch /var/log/supervisor/supervisord.log \
     && touch /var/run/supervisord.pid \
     && chown www:www /var/log/supervisor/supervisord.log \
     && chown www:www /var/run/supervisord.pid
-
-## Set up cron
-COPY ./docker/cron/scheduler-cron /etc/cron.d/scheduler-cron
-RUN crontab /etc/cron.d/scheduler-cron \
-    && chmod u+s /usr/sbin/cron \
-    && touch /var/log/cron.log
 
 COPY ./docker/start-container /usr/local/bin/start-container
 

@@ -10,9 +10,6 @@ fi
 # @TODO start horizon
 
 if [ "$role" = "app" ]; then
-    echo "Starting cron..."
-    cron
-    echo "Cron started!"
     echo "Starting app..."
     exec /usr/bin/supervisord -c /etc/supervisor/supervisord.conf
 fi
