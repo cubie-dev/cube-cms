@@ -66,12 +66,19 @@
     .card-image {
         display: flex;
         align-items: center;
-        padding: 1rem;
+        padding: 1.5rem;
         height: 100px;
 
         &.card-image-top {
             border-top-left-radius: var(--border-radius);
             border-top-right-radius: var(--border-radius);
+        }
+
+        &.discussion-image {
+            height: 125px;
+            background-repeat: no-repeat;
+            background-position: right;
+            image-rendering: pixelated;
         }
     }
 

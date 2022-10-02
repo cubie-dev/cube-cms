@@ -8,8 +8,6 @@ services:
             - ./src:/var/www
         networks:
             - app-network
-        ports:
-            - "3000:3000"
     webserver:
         image: nginx:alpine
         restart: unless-stopped
@@ -20,6 +18,16 @@ services:
             - "80:80"
         networks:
             - app-network
+    vite:
+        image: node:16-alpine
+        restart: unless-stopped
+        volumes:
+            - ./src:/var/www
+        ports:
+            - "3000:3000"
+        networks:
+            - app-network
+        command: sh -c "cd /var/www && npm run dev"
     db:
         image: percona:latest
         restart: unless-stopped

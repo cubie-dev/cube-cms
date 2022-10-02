@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardImage } from '../../components/share
 import { Grid } from '../../components/shared/grid';
 import { FormGroup, FormLabel, FormInput, FormMessage } from '../../components/shared/forms';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { Head, useForm, usePage } from '@inertiajs/inertia-react';
+import { useForm, usePage } from '@inertiajs/inertia-react';
 import { FormEvent, useCallback } from 'react';
 import { Button } from '../../components/shared/button';
 import { Message, MessageProps } from '../../components/shared/message/Message';
@@ -15,7 +15,6 @@ import '../../../style/layouts/_login.scss'
 import { SharedProps } from '../../SharedProps';
 import { IUser } from '../../interfaces/IUser';
 import { IDataObject } from '../../interfaces/IDataObject';
-import { useTitle } from '../../hooks/useTitle';
 
 export interface LoginPageProps {
     newestUsers: IDataObject<IUser[]>;
@@ -117,9 +116,9 @@ export default function Login() {
 
                     </CardHeader>
                     <CardContent spacing={false}>
-                        <List>
+                        <List rowed>
                             {newestUsers.data.map((user: IUser) => (
-                                <ListItem spacing={false} key={user.id}>
+                                <ListItem key={user.id}>
                                     <div className="new-user-container">
                                         <div className="avatar">
                                             <Avatar

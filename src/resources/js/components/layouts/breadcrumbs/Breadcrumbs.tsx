@@ -15,16 +15,22 @@ export const Breadcrumbs: FC<BreadcrumbsProps> = ({
     const items = useMemo(() => {
         return breadcrumbs.map((item, index) => {
             return (
-                <Link
-                    href={item.url}
-                    key={index}
-                    className={clsx(
-                        'breadcrumb',
-                        item.home && 'home'
-                    )}
-                >
-                    {item.home ? <FontAwesomeIcon icon={faHome} /> : item.title}
-                </Link>
+                <>
+                    <Link
+                        href={item.url}
+                        key={index}
+                        className={clsx(
+                            'breadcrumb',
+                            item.home && 'home'
+                        )}
+                    >
+                        {item.home ? <FontAwesomeIcon icon={faHome} /> : item.title}
+                    </Link>
+                    {index !== 0
+                        && index < breadcrumbs.length - 1
+                        && <span className="breadcrumb-divider">{'>'}</span>
+                    }
+                </>
             );
         });
     }, [JSON.stringify(breadcrumbs)]);

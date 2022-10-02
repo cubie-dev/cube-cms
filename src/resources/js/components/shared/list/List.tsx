@@ -1,8 +1,21 @@
-import { FC, PropsWithChildren } from 'react';
+import { FC, HTMLAttributes, PropsWithChildren } from 'react';
+import clsx from 'clsx';
 
-export const List: FC<PropsWithChildren> = ({ children }) => {
+export interface ListProps extends PropsWithChildren<HTMLAttributes<HTMLDivElement>> {
+    rowed?: boolean;
+}
+
+export const List: FC<ListProps> = ({
+    children,
+    className,
+    rowed = false
+}) => {
     return (
-        <ul className="list">
+        <ul className={clsx(
+            'list',
+            rowed && 'list--rowed',
+            className
+        )}>
             {children}
         </ul>
     );

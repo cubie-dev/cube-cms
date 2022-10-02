@@ -32,7 +32,8 @@
             "react",
             "react-dom",
             "vite/client",
-            "node"
+            "node",
+            "ziggy-js"
         ],
         "baseUrl": "./resources/js"
     }

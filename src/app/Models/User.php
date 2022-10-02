@@ -117,4 +117,14 @@ class User extends Authenticatable
     {
         return $this->motto;
     }
+
+    public function getLook(): string
+    {
+        return $this->look;
+    }
+
+    public function isOnline(): bool
+    {
+        return $this->online === '1';
+    }
 }

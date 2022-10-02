@@ -2,9 +2,9 @@
 
 namespace App\Http\Middleware;
 
-use Diglactic\Breadcrumbs\Breadcrumbs;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
+use Symfony\Component\HttpFoundation\Response;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -49,5 +49,10 @@ class HandleInertiaRequests extends Middleware
                 'messages' => fn () => $this->getSharedMessages(request: $request),
             ]
         ]);
+    }
+
+    public function onEmptyResponse(Request $request, Response $response): Response
+    {
+        return $response;
     }
 }

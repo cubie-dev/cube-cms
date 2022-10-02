@@ -5,6 +5,8 @@ module.exports = {
     safelist: [
         'sm:grid-cols-3',
         'grid-cols-1',
+        'grid-cols-4',
+        'md:grid-cols-4',
         'gap-8'
     ],
     theme: {

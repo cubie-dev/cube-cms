@@ -30,8 +30,13 @@ $router->middleware('guest')->group(function (RouteRegistrar | Router $guestRout
     $guestRouter->put('register', [\App\Http\Controllers\AuthController::class, 'postRegister'])->name('auth.register');
 });
 
-$router->middleware('auth:web')->group(function (RouteRegistrar | Router $authRouter) {
-    $authRouter->get('me', function () {
+$router->middleware('auth:web')->group(function (RouteRegistrar | Router $router) {
+    $router->get('me', function () {
         return 'me'; //@TODO
     })->name('user.home');
+
+    $router->prefix('community')->group(function (RouteRegistrar | Router $community) {
+        $community->get('news/recent/{limit?}', [\App\Http\Controllers\NewsController::class, 'getRecentArticles'])->name('community.news.recent');
+        $community->get('news/{slug}', [\App\Http\Controllers\NewsController::class, 'showArticle'])->name('community.news.article');
+    });
 });

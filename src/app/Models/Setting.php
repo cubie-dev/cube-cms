@@ -29,10 +29,6 @@ class Setting extends Model
 
     public function getArrayValue(): array
     {
-        if (str_contains(',', $this->value)) {
-            return explode(',', $this->value);
-        }
-
-        return [$this->value];
+        return explode(',', $this->value);
     }
 }

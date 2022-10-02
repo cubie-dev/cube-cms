@@ -13,3 +13,8 @@ if [ "$role" = "app" ]; then
     echo "Starting app..."
     exec /usr/bin/supervisord -c /etc/supervisor/supervisord.conf
 fi
+
+if [ "$role" = "vite" && "$env" = "develop" ]; then
+    echo "Starting vite..."
+    cd /var/www && npm run dev
+fi
