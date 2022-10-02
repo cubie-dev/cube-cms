@@ -5,6 +5,7 @@ import { IResponse } from '../../../interfaces/IResponse';
 import { List, ListItem } from '../../../components/shared/list';
 import { useIntl } from 'react-intl';
 import { localeFormat } from '../../../support/localeFormat';
+import route from 'ziggy-js';
 
 export const RecentNews = () => {
     // null is not loaded yet

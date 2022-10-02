@@ -28,13 +28,6 @@
         "forceConsistentCasingInFileNames": true,
         "resolveJsonModule": true,
         "useDefineForClassFields": true,
-        "types": [
-            "react",
-            "react-dom",
-            "vite/client",
-            "node",
-            "ziggy-js"
-        ],
         "baseUrl": "./resources/js"
     }
 }
