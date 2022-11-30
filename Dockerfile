@@ -1,46 +1,36 @@
-FROM php:8.1
+FROM php:8.1-alpine as php-builder
 
-RUN apt-get update && apt-get install -y \
-    git \
-    curl \
-    supervisor \
-    libpng-dev \
-    libonig-dev \
-    libxml2-dev \
-    zip \
-    unzip \
-    cron \
-    procps \
-    # Clear cache
-    && apt-get clean && rm -rf /var/lib/apt/lists/* \
-    # Install PHP extensions
-    && docker-php-ext-install pdo_mysql mbstring exif pcntl sockets \
-    && pecl install swoole && docker-php-ext-enable swoole \
-    && pecl install inotify && docker-php-ext-enable inotify \
-    # Install node
-    && curl -sL https://deb.nodesource.com/setup_16.x | bash - \
-    && apt-get update && apt-get install -y nodejs \
-    # create user
-    && useradd -ms /bin/bash www
+# Install php extensions
+ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 
-# Install composer from the official image
+RUN chmod +x /usr/local/bin/install-php-extensions &&  \
+    chmod +x /usr/local/bin/docker-php-ext-enable &&  \
+    apk --no-cache add pcre-dev ${PHPIZE_DEPS} && \
+    install-php-extensions pdo_mysql mbstring exif pcntl sockets && \
+    pecl install swoole && docker-php-ext-enable swoole && \
+    pecl install inotify && docker-php-ext-enable inotify && \
+    apk del pcre-dev ${PHPIZE_DEPS}
+
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 
-# Copy required files
-COPY --chown=www:www src /var/www
-COPY docker/config/supervisor/supervisord.conf /etc/supervisor
-RUN touch /var/log/supervisor/supervisord.log \
-    && touch /var/run/supervisord.pid \
-    && chown www:www /var/log/supervisor/supervisord.log \
-    && chown www:www /var/run/supervisord.pid
+COPY --chown=www-data:www-data . /var/www
 
-COPY ./docker/start-container /usr/local/bin/start-container
+# Install supervisor
+RUN apk add --no-cache supervisor
 
-RUN chmod +x /usr/local/bin/start-container
+RUN mkdir -p /var/log/supervisor && \
+    mkdir -p /var/run && \
+    touch /var/log/supervisor/supervisord.log && \
+    touch /var/run/supervisord.pid && \
+    chown www-data:www-data /var/log/supervisor/supervisord.log &&\
+    chown www-data:www-data /var/run/supervisord.pid
 
-# Set working directory
+COPY docker/config/supervisor/supervisord.conf /etc/supervisor/supervisord.conf
+
+COPY --chmod=755 ./docker/entrypoint.sh /usr/local/bin/entrypoint.sh
+
+USER www-data
+
 WORKDIR /var/www
 
-USER www
-
-ENTRYPOINT ["sh", "/usr/local/bin/start-container"]
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
