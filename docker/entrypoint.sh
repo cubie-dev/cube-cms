@@ -11,10 +11,10 @@ fi
 
 if [ "$role" = "app" ]; then
     echo "Starting app..."
-    exec /usr/bin/supervisord -c /etc/supervisor/supervisord.conf
+    php-fpm
 fi
 
-if [ "$role" = "vite" && "$env" = "develop" ]; then
+if [ "$role" = "vite" ] && [ "$env" = "develop" ]; then
     echo "Starting vite..."
     cd /var/www && npm install && npm run dev
 fi

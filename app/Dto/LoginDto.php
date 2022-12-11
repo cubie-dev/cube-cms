@@ -2,13 +2,13 @@
 
 namespace App\Dto;
 
-class LoginDto
+readonly class LoginDto
 {
     public function __construct(
-        private readonly string $username,
-        private readonly string $password,
-        private readonly string $ip,
-        private readonly ?string $userAgent = null
+        private string $username,
+        private string $password,
+        private string $ip,
+        private ?string $userAgent = null
     ) {
     }
 

@@ -2,14 +2,14 @@
 
 namespace App\Dto;
 
-class NewUserDto
+readonly class NewUserDto
 {
     public function __construct(
-        private readonly string $username,
-        private readonly string $email,
-        private readonly string $password,
-        private readonly string $ip,
-        private readonly string $userAgent,
+        private string $username,
+        private string $email,
+        private string $password,
+        private string $ip,
+        private string $userAgent,
     ) {}
 
     public function getUsername(): string
