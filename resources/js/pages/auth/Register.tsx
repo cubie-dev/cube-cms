@@ -15,7 +15,7 @@ import { Message, MessageProps } from '../../components/shared/message/Message';
 
 export default function Register() {
     const intl = useIntl();
-    const { data, setData, put, errors, clearErrors } = useForm({
+    const { data, setData, post, errors, clearErrors } = useForm({
         username: '',
         email: '',
         password: '',
@@ -30,7 +30,7 @@ export default function Register() {
 
         clearErrors();
 
-        put('/register', {
+        post('/register', {
             preserveScroll: true
         });
     }, [data.username, data.email, data.password, data.password_confirmation, data.gender]);

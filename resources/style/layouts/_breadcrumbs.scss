@@ -4,7 +4,7 @@
     height: 60px;
     background-position: right;
     background-repeat: no-repeat;
-    display: flex;
+    display: none;
     margin-right: 1rem;
 
     .breadcrumbs {
@@ -46,6 +46,6 @@
 
 @screen md {
     .breadcrumbs-container {
-
+        display: flex;
     }
 }

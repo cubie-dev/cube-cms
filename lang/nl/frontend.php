@@ -35,6 +35,9 @@ return [
     'register.gender_m_label' => 'Ik ben een jongen',
     'register.gender_f_label' => 'Ik ben een meisje',
     'register.submit_button' => 'Klaar! Registreer mijn account',
+    // navigation
+    'navigation.logout' => 'Uitloggen',
+
     'community.title' => 'Community',
     'community.news.title' => 'Artikel',
     'community.news.written_on' => 'Geschreven op {date}',

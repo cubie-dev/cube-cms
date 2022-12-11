@@ -27,13 +27,11 @@ $router->middleware('guest')->group(function (RouteRegistrar | Router $guestRout
     $guestRouter->get('login', [\App\Http\Controllers\AuthController::class, 'showLogin'])->name('auth.login');
     $guestRouter->put('login', [\App\Http\Controllers\AuthController::class, 'postLogin']);
     $guestRouter->get('register', [\App\Http\Controllers\AuthController::class, 'showRegister'])->name('auth.register');
-    $guestRouter->put('register', [\App\Http\Controllers\AuthController::class, 'postRegister'])->name('auth.register');
+    $guestRouter->post('register', [\App\Http\Controllers\AuthController::class, 'postRegister'])->name('auth.register');
 });
 
 $router->middleware('auth:web')->group(function (RouteRegistrar | Router $router) {
-    $router->get('me', function () {
-        return 'me'; //@TODO
-    })->name('user.home');
+    $router->get('me', [\App\Http\Controllers\UserController::class, 'showMe'])->name('user.me');
 
     $router->prefix('community')->group(function (RouteRegistrar | Router $community) {
         $community->get('news/recent/{limit?}', [\App\Http\Controllers\NewsController::class, 'getRecentArticles'])->name('community.news.recent');

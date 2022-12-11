@@ -10,6 +10,7 @@
 <body>
 @inertia
 
+<div class="panel-root"></div>
 @vite(['resources/js/app.tsx'])
 </body>
 </html>

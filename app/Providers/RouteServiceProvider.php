@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 
 class RouteServiceProvider extends ServiceProvider
 {
-    public const HOME_ROUTE = 'user.home';
+    public const HOME_ROUTE = 'user.me';
     public const LOGIN_ROUTE = 'auth.login';
 
     /**

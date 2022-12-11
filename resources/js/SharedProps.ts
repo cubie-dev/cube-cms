@@ -2,9 +2,10 @@ import { IUser } from './interfaces/IUser';
 import { IBreadcrumbs } from './interfaces/IBreadcrumbs';
 import { ResolvedIntlConfig } from 'react-intl';
 import { MessageProps } from './components/shared/message/Message';
+import { IDataObject } from './interfaces/IDataObject';
 
 export interface SharedProps {
-    user?: IUser;
+    user?: IDataObject<IUser>;
     breadcrumbs: IBreadcrumbs;
     locale: string;
     localeMessages: ResolvedIntlConfig['messages'];

@@ -11,6 +11,7 @@ use App\Repositories\UserRepository;
 use App\Services\AuthService;
 use Diglactic\Breadcrumbs\Breadcrumbs;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Response;
 
@@ -45,7 +46,7 @@ class AuthController extends Controller
                 )
             )
         ) {
-            return Redirect::route('user.home');
+            return Redirect::route('user.me');
         }
 
         return Redirect::route('auth.login');
@@ -72,7 +73,7 @@ class AuthController extends Controller
                 userAgent: $request->userAgent(),
             ))
         ) {
-            return Redirect::route('user.home');
+            return Redirect::route('user.me');
         }
 
         return Redirect::route('auth.register');

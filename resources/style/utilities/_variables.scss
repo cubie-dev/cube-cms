@@ -25,7 +25,7 @@
     --success-color: #{colors.get('green', 600)};
 
     ///success
-    warning: #{colors.get('amber', 600)};
+    --warning-color: #{colors.get('amber', 600)};
 
     ///utils
     --comment-color: #{colors.get('gray', 600)};
@@ -37,4 +37,7 @@
     // cards
     --card-title-color: #{colors.get('gray', 700)};
     --card-subtitle-color: #{transparentize(colors.get('gray', 700), .25)};
+
+    // navigation
+    --navigation-background: #{colors.get('blue-gray', 900)};
 }

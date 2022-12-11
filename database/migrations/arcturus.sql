@@ -4835,12 +4835,3 @@ CREATE TABLE IF NOT EXISTS `youtube_playlists` (
     `order` int(11) NOT NULL,
     UNIQUE KEY `item_id` (`item_id`,`playlist_id`,`order`) USING BTREE
     ) ENGINE=MyISAM DEFAULT CHARSET=latin1 ROW_FORMAT=FIXED;
-
--- Dumping data for table test.youtube_playlists: 0 rows
-/*!40000 ALTER TABLE `youtube_playlists` DISABLE KEYS */;
-/*!40000 ALTER TABLE `youtube_playlists` ENABLE KEYS */;
-
-/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
-/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;

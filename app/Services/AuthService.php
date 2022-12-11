@@ -11,6 +11,7 @@ use App\Exceptions\Auth\TooMuchAccountsOnIpException;
 use App\Models\User;
 use App\Repositories\SettingsRepository;
 use App\Repositories\UserRepository;
+use Illuminate\Support\Facades\Auth;
 
 class AuthService
 {

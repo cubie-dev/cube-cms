@@ -39,8 +39,9 @@ services:
             - ./:/var/www
         networks:
             - app-network
+        entrypoint: ['npm']
     db:
-        image: percona:latest
+        image: percona:8
         platform: linux/amd64
         restart: unless-stopped
         volumes:

@@ -13,6 +13,7 @@
 @use "components/buttons";
 @use "components/messages";
 @use "components/lists";
+@use "components/side-panels";
 
 // Layouts
 @use "layouts/header";
@@ -21,6 +22,7 @@
 @use "layouts/pages";
 @use "layouts/footer";
 @use "layouts/ck-content";
+@use "layouts/navigation";
 
 body {
     background: url("../images/bg.png");

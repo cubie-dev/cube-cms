@@ -22,7 +22,8 @@ export const Button: FC<ButtonProps> = ({
     fw,
     className,
     iconLeft,
-    href
+    href,
+    onClick
 }) => {
 
     return createElement(href ? Link : 'button',
@@ -36,7 +37,8 @@ export const Button: FC<ButtonProps> = ({
                 fw && 'btn-fw',
                 className
             ),
-            href: href || ''
+            href: href || '',
+            onClick: (onClick as any)
         },
         <>
             {!!iconLeft && (
@@ -47,11 +49,4 @@ export const Button: FC<ButtonProps> = ({
             <span>{children}</span>
         </>
     );
-    // return (
-    //     <button
-
-    //     >
-
-    //     </button>
-    // );
 }

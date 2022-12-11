@@ -7,7 +7,7 @@ use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
 Breadcrumbs::for('home', static function (BreadcrumbTrail $trail) {
     $trail->push(
         'Home',
-        auth()->user() ? route('user.home') : route('auth.login'),
+        auth()->user() ? route('user.me') : route('auth.login'),
         ['home' => true]
     );
 });
@@ -40,4 +40,9 @@ Breadcrumbs::for('community.news', static function (BreadcrumbTrail $trail) {
 Breadcrumbs::for('community.news.article', static function (BreadcrumbTrail $trail, Article $article) {
     $trail->parent('community.news');
     $trail->push($article->getSlug(), route('community.news.article', $article->getSlug()));
+});
+
+Breadcrumbs::for('user.me', static function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push(auth()->user()->getUsername(), route('user.me'));
 });

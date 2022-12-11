@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Http\Resources\UserResource;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 use Symfony\Component\HttpFoundation\Response;
@@ -33,6 +34,11 @@ class HandleInertiaRequests extends Middleware
         return $request->session()->get('messages', []);
     }
 
+    private function getUser(Request $request): ?UserResource
+    {
+        return ($user = $request->user()) ? new UserResource($user) : null;
+    }
+
     /**
      * Defines the props that are shared by default.
      *
@@ -47,7 +53,8 @@ class HandleInertiaRequests extends Middleware
             'localeMessages' => fn () => translations(locale: app()->getLocale()),
             'flash' => [
                 'messages' => fn () => $this->getSharedMessages(request: $request),
-            ]
+            ],
+            'user' => $this->getUser(request: $request),
         ]);
     }
 
