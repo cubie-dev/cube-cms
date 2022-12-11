@@ -12,10 +12,5 @@ export default defineConfig({
     ],
     build: {
         target: 'es2019'
-    },
-    resolve: {
-        alias: {
-            'ziggy-js' : path.resolve(__dirname, 'vendor/tightenco/ziggy/src/js/index.js'),
-        },
     }
 })

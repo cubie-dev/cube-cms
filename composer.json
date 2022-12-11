@@ -6,11 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
-        "ext-exif": "*",
         "ext-mbstring": "*",
-        "ext-pcntl": "*",
-        "ext-sockets": "*",
-        "ext-swoole": "*",
         "coderan/laravel-data-migrations": "^1.1",
         "diglactic/laravel-breadcrumbs": "^7.2",
         "ezyang/htmlpurifier": "^4.14",
@@ -19,8 +15,7 @@
         "laravel/framework": "^9.11",
         "laravel/sanctum": "^2.14.1",
         "laravel/telescope": "^4.9",
-        "laravel/tinker": "^2.7",
-        "tightenco/ziggy": "^1.5"
+        "laravel/tinker": "^2.7"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.12",
