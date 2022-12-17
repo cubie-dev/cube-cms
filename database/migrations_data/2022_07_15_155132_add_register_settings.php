@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Setting;
+use App\Domains\Core\Models\Setting;
 use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration

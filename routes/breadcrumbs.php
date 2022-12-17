@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Article;
+use App\Domains\Community\Models\Article;
 use Diglactic\Breadcrumbs\Breadcrumbs;
 use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
 

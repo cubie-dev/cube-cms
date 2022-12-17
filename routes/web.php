@@ -24,17 +24,17 @@ if (!auth()->user()) {
 }
 
 $router->middleware('guest')->group(function (RouteRegistrar | Router $guestRouter) {
-    $guestRouter->get('login', [\App\Http\Controllers\AuthController::class, 'showLogin'])->name('auth.login');
-    $guestRouter->put('login', [\App\Http\Controllers\AuthController::class, 'postLogin']);
-    $guestRouter->get('register', [\App\Http\Controllers\AuthController::class, 'showRegister'])->name('auth.register');
-    $guestRouter->post('register', [\App\Http\Controllers\AuthController::class, 'postRegister'])->name('auth.register');
+    $guestRouter->get('login', [\App\Domains\Auth\Http\Controllers\AuthController::class, 'showLogin'])->name('auth.login');
+    $guestRouter->put('login', [\App\Domains\Auth\Http\Controllers\AuthController::class, 'postLogin']);
+    $guestRouter->get('register', [\App\Domains\Auth\Http\Controllers\AuthController::class, 'showRegister'])->name('auth.register');
+    $guestRouter->post('register', [\App\Domains\Auth\Http\Controllers\AuthController::class, 'postRegister'])->name('auth.register');
 });
 
 $router->middleware('auth:web')->group(function (RouteRegistrar | Router $router) {
-    $router->get('me', [\App\Http\Controllers\UserController::class, 'showMe'])->name('user.me');
+    $router->get('me', [\App\Domains\User\Http\Controllers\UserController::class, 'showMe'])->name('user.me');
 
     $router->prefix('community')->group(function (RouteRegistrar | Router $community) {
-        $community->get('news/recent/{limit?}', [\App\Http\Controllers\NewsController::class, 'getRecentArticles'])->name('community.news.recent');
-        $community->get('news/{slug}', [\App\Http\Controllers\NewsController::class, 'showArticle'])->name('community.news.article');
+        $community->get('news/recent/{limit?}', [\App\Domains\Community\Http\Controllers\NewsController::class, 'getRecentArticles'])->name('community.news.recent');
+        $community->get('news/{slug}', [\App\Domains\Community\Http\Controllers\NewsController::class, 'showArticle'])->name('community.news.article');
     });
 });

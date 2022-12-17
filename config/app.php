@@ -190,12 +190,12 @@ return [
          * Application Service Providers...
          */
         App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
+        \App\Domains\Auth\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\TelescopeServiceProvider::class,
-        \App\Providers\SecurityServiceProvider::class,
+        \App\Domains\Core\Providers\SecurityServiceProvider::class,
         \App\Providers\TelescopeServiceProvider::class
 
     ],
