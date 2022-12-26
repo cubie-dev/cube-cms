@@ -46,7 +46,7 @@ export const Button: FC<ButtonProps> = ({
                     {iconLeft}
                 </div>
             )}
-            <span>{children}</span>
+            {children}
         </>
     );
 }

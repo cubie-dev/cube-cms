@@ -22,6 +22,15 @@ return new class extends Migration
         $sql = file_get_contents($path);
 
         DB::unprepared($sql);
+
+        $tables = array_map(function ($table) {
+            return $table->{'Tables_in_' . env('DB_DATABASE')};
+        }, Schema::getAllTables());
+
+        foreach ($tables as $table) {
+            DB::statement('ALTER TABLE ' . $table . ' ROW_FORMAT = DEFAULT');
+            DB::statement('ALTER TABLE ' . $table . ' ENGINE = InnoDB');
+        }
     }
 
     /**
@@ -31,6 +40,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('failed_jobs');
+        Schema::dropAllTables();
     }
 };

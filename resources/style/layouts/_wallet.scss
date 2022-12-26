@@ -1,0 +1,30 @@
+@use "../utilities/colors";
+
+.user__wallet {
+    display: flex;
+    align-items: center;
+
+    .user__wallet-item {
+        display: flex;
+        margin-right: 1rem;
+        font-weight: 500;
+    }
+
+    .user__wallet-item-icon {
+        margin-right: 0.5rem;
+        image-rendering: pixelated;
+        object-fit: none;
+    }
+
+    .user__wallet-item--credits {
+        color: colors.get('yellow', 900);
+    }
+
+    .user__wallet-item--diamonds {
+        color: colors.get('light-blue', 800);
+    }
+
+    .user__wallet-item--duckets {
+        color: colors.get('purple', 500);
+    }
+}

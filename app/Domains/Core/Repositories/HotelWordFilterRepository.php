@@ -3,7 +3,6 @@
 namespace App\Domains\Core\Repositories;
 
 use App\Domains\Core\Models\BadWord;
-use App\Repositories\Repository;
 use Illuminate\Database\Eloquent\Builder;
 
 /**

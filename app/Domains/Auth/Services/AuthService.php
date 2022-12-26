@@ -16,7 +16,7 @@ readonly class AuthService
 {
     public function __construct(
         private SettingsRepository $settingsRepository,
-        private UserRepository     $userRepository
+        private UserRepository $userRepository
     ) {
     }
 
@@ -26,9 +26,11 @@ readonly class AuthService
     }
 
     /**
-     * @throws BannedException|CanNotLoginException|IncorrectCredentialsException
+     * @throws BannedException
+     * @throws CanNotLoginException
+     * @throws IncorrectCredentialsException
      */
-    public function login(LoginDto $loginDto): bool
+    public function login(LoginDto $loginDto): User
     {
         if (!$this->isEligibleForLogin(loginDto: $loginDto)) {
             throw new CanNotLoginException();
@@ -47,15 +49,15 @@ readonly class AuthService
                 throw new BannedException(ban: $user->ban);
             }
 
-            auth()->login($user);
-
             $user->setLastLogin(now()->timestamp)
                 ->setUserAgentCurrent($loginDto->getUserAgent())
                 ->setIpCurrent($loginDto->getIp());
 
+            $this->authenticateAndPrepareUser(user: $user);
+
             $this->userRepository->push($user);
 
-            return true;
+            return $user;
         }
 
         throw new IncorrectCredentialsException();
@@ -71,7 +73,7 @@ readonly class AuthService
 
         $user = $this->createFreshUser(newUserDto: $newUser);
 
-        $this->afterRegistration(user: $user);
+        $this->authenticateAndPrepareUser(user: $user);
 
         return $user;
     }
@@ -107,9 +109,11 @@ readonly class AuthService
         return $user;
     }
 
-    private function afterRegistration(User $user): void
+    private function authenticateAndPrepareUser(User $user): void
     {
         auth()->login($user);
+
+        $user->load('activeCurrencies');
     }
 
     public function canRegisterMoreAccountsOnIp(string $ip): bool

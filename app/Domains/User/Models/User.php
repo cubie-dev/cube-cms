@@ -3,6 +3,8 @@
 namespace App\Domains\User\Models;
 
 use App\Domains\Auth\Models\Ban;
+use App\Domains\Hotel\Models\Currency;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -25,8 +27,6 @@ use Illuminate\Notifications\Notifiable;
  * @property string $gender
  * @property int $rank
  * @property int $credits
- * @property int $pixels
- * @property int $points
  * @property string $online
  * @property string|null $auth_ticket
  * @property string $ip_register
@@ -39,6 +39,8 @@ use Illuminate\Notifications\Notifiable;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property-read \App\Domains\Auth\Models\Ban $ban
+ * @property-read Currency[] $currencies
+ * @property-read Currency[] $activeCurrencies
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
@@ -67,8 +69,6 @@ class User extends Authenticatable
         'gender',
         'rank',
         'credits',
-        'pixels',
-        'points',
         'online',
         'auth_ticket',
         'ip_register',
@@ -91,9 +91,29 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * @return HasOne<Ban>
+     */
     public function ban(): HasOne
     {
         return $this->hasOne(Ban::class, 'user_id', 'id');
+    }
+
+    /**
+     * @return HasMany<Currency>
+     */
+    public function currencies(): HasMany
+    {
+        return $this->hasMany(Currency::class, 'user_id', 'id');
+    }
+
+    public function activeCurrencies(): HasMany
+    {
+        return $this
+            ->currencies()
+            ->withWhereHas('type', function ($query) {
+                $query->where('active', true);
+            });
     }
 
     public function isBanned(): bool
@@ -145,5 +165,10 @@ class User extends Authenticatable
         $this->ip_current = $ip;
 
         return $this;
+    }
+
+    public function getCredits(): int
+    {
+        return $this->credits;
     }
 }

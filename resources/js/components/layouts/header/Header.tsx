@@ -14,6 +14,8 @@ import { NavigationContext } from '../navigation/NavigationContext';
 import { Navigation } from '../navigation/Navigation';
 import { MobileNavigation } from '../navigation/MobileNavigation';
 import { Button } from '../../shared/button';
+import { Wallet } from './Wallet';
+import { Bars3Icon } from '@heroicons/react/24/outline'
 
 const Header: FC = () => {
     const { user } = useAuth();
@@ -80,10 +82,13 @@ const Header: FC = () => {
                     </div>
                     <div className="sm:hidden">
                         <Button variant="light" onClick={() => setMobileNavigationOpen(true)}>
-                            Mobile menu
+                            <Bars3Icon />
                         </Button>
                     </div>
                     <div className="user-info">
+                        {user && (
+                            <Wallet />
+                        )}
                         <div className="platform">
                             <Avatar
                                 figure={user ? user.data.look : 'hr-831-36.sh-3275-1328.lg-3058-82.ch-3185-110.he-3274-94.hd-190-2'}

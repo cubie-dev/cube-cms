@@ -43,6 +43,13 @@ return [
             'visibility' => 'public',
             'throw' => false,
         ],
+        'currencies' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/currencies'),
+            'url' => env('APP_URL').'/storage/currencies',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
 
         's3' => [
             'driver' => 's3',

@@ -3,30 +3,30 @@
 namespace App\Domains\Auth\Http\Controllers;
 
 use App\Domains\Auth\Dtos\LoginDto;
-use App\Domains\Auth\Exceptions\BannedException;
 use App\Domains\Auth\Http\Requests\LoginRequest;
 use App\Domains\Auth\Http\Requests\RegisterRequest;
 use App\Domains\Auth\Services\AuthService;
 use App\Domains\User\Dtos\NewUserDto;
+use App\Domains\User\Http\Resources\LoggedInUserResource;
 use App\Domains\User\Http\Resources\UserResource;
 use App\Domains\User\Repositories\UserRepository;
+use App\Exceptions\FlashableException;
 use App\Http\Controllers\Controller;
 use Diglactic\Breadcrumbs\Breadcrumbs;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Redirect;
 use Inertia\Response;
 
 class AuthController extends Controller
 {
     public function __construct(
         private readonly AuthService $authService,
-        private readonly UserRepository $userRepository,
+        private readonly UserRepository $userRepository
     ) {
     }
 
     public function showLogin(): Response
     {
-        return inertia(
+        return inertia()->render(
             component: 'auth/Login',
             props: [
                 'breadcrumbs' => fn () => Breadcrumbs::generate('auth.login'),
@@ -39,7 +39,7 @@ class AuthController extends Controller
     {
         try {
             if (
-                $this->authService->login(
+                $user = $this->authService->login(
                     loginDto: new LoginDto(
                         username: $request->get('username'),
                         password: $request->get('password'),
@@ -48,18 +48,18 @@ class AuthController extends Controller
                     )
                 )
             ) {
-                return Redirect::route('user.me');
+                return redirect()->route('user.me');
             }
-        } catch (BannedException $e) {
+        } catch (FlashableException $e) {
             $e->flash();
         }
 
-        return Redirect::route('auth.login');
+        return redirect()->route('auth.login');
     }
 
     public function showRegister(): Response
     {
-        return inertia(
+        return inertia()->render(
             component: 'auth/Register',
             props: [
                 'breadcrumbs' => fn () => Breadcrumbs::generate('auth.register'),
@@ -69,7 +69,7 @@ class AuthController extends Controller
 
     public function postRegister(RegisterRequest $request): RedirectResponse
     {
-        if ($this->authService->register(
+        if ($user = $this->authService->register(
             newUser: new NewUserDto(
                 username: $request->get('username'),
                 email: $request->get('email'),
@@ -78,9 +78,11 @@ class AuthController extends Controller
                 userAgent: $request->userAgent(),
             ))
         ) {
-            return Redirect::route('user.me');
+            inertia()->share('user', new LoggedInUserResource($user));
+
+            return redirect()->route('user.me');
         }
 
-        return Redirect::route('auth.register');
+        return redirect()->route('auth.register');
     }
 }

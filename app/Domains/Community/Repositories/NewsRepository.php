@@ -3,7 +3,7 @@
 namespace App\Domains\Community\Repositories;
 
 use App\Domains\Community\Models\Article;
-use App\Repositories\Repository;
+use App\Domains\Core\Repositories\Repository;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 

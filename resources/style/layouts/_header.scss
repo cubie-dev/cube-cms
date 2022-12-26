@@ -63,6 +63,12 @@
             margin-top: -100px;
         }
     }
+
+    .header-toolbar__item {
+        &:not(:last-child) {
+            margin-right: 1rem;
+        }
+    }
 }
 
 @screen md {

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Domains\Core\Http\Middleware;
+namespace App\Http\Middleware;
 
+use App\Domains\User\Http\Resources\LoggedInUserResource;
 use App\Domains\User\Http\Resources\UserResource;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
@@ -34,9 +35,11 @@ class HandleInertiaRequests extends Middleware
         return $request->session()->get('messages', []);
     }
 
-    private function getUser(Request $request): ?UserResource
+    private function getUser(Request $request): ?LoggedInUserResource
     {
-        return ($user = $request->user()) ? new UserResource($user) : null;
+        return ($user = $request->user())
+            ? new LoggedInUserResource($user->load('activeCurrencies'))
+            : null;
     }
 
     /**
@@ -54,7 +57,7 @@ class HandleInertiaRequests extends Middleware
             'flash' => [
                 'messages' => fn () => $this->getSharedMessages(request: $request),
             ],
-            'user' => $this->getUser(request: $request),
+            'user' => fn () => $this->getUser(request: $request),
         ]);
     }
 
