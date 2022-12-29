@@ -8,7 +8,7 @@
         "php": "^8.2",
         "ext-mbstring": "*",
         "coderan/laravel-data-migrations": "^1.1",
-        "diglactic/laravel-breadcrumbs": "^7.2",
+        "diglactic/laravel-breadcrumbs": "^8.0",
         "ezyang/htmlpurifier": "^4.14",
         "guzzlehttp/guzzle": "^7.2",
         "inertiajs/inertia-laravel": "^0.6.2",
