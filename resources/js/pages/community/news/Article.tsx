@@ -1,4 +1,4 @@
-import { IArticle } from './IArticle';
+import { IArticle } from '../../../interfaces/community/IArticle';
 import { usePage } from '@inertiajs/inertia-react';
 import { Page as InertiaPage } from '@inertiajs/inertia';
 import { SharedProps } from '../../../SharedProps';
@@ -22,7 +22,7 @@ export default function Article() {
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <Card className="col-span-3">
                     <CardImage
-                        className="discussion-image"
+                        className="card-image--article"
                         url={article.data.image_path}
                         backgroundColor={article.data.color || undefined}
                         textColor={article.data.text_color || undefined}
@@ -51,7 +51,7 @@ export default function Article() {
                         {article.data.content}
                     </CardContent>
                 </Card>
-                <Card>
+                <Card className="self-baseline">
                     <CardHeader
                         title={<FormattedMessage id="community.news.recent_news_title" />}
                     />

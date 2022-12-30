@@ -41,7 +41,7 @@ export const CardHeader: FC<CardHeaderProps> = ({
                     <div className="card-header-titles">
                         <h2 className="card-header-title">{ title }</h2>
                         {subTitle && (
-                            <span className="card-header-subtitle">{ subTitle }</span>
+                            <p className="card-header-subtitle">{ subTitle }</p>
                         )}
                     </div>
                 )}

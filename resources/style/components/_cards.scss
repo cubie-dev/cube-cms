@@ -1,9 +1,24 @@
 @use "../layouts/shadows";
 
+.card-link {
+    text-decoration: none;
+}
+
 .card {
     background: #fff;
     border-radius: var(--border-radius);
+    position: relative;
     @extend .shadow-1;
+
+    .card-badge {
+        position: absolute;
+        right: 1rem;
+        top: 1rem;
+        background: rgba(0, 0, 0, .8);
+        padding: 0.2rem 0.3rem;
+        color: #fff;
+        border-radius: var(--border-radius);
+    }
 
     .card-header {
         display: flex;
@@ -19,27 +34,19 @@
             image-rendering: pixelated;
         }
 
-        .card-header-image {
-            height: 75px;
-            border-top-left-radius: var(--border-radius);
-            border-top-right-radius: var(--border-radius);
-            background-position: center center;
-            display: flex;
-            align-items: center;
-            padding: 1rem;
-            color: #fff;
-        }
-
         .card-header-title-container {
             padding: 1.5rem;
             display: flex;
             align-items: center;
 
             .card-header-titles {
+                max-width: 100%;
+
                 .card-header-title {
                     font-weight: 600;
                     font-size: 1.1rem;
                     color: var(--card-title-color);
+                    margin-bottom: 0.5rem;
                 }
 
                 .card-header-subtitle {
@@ -68,17 +75,17 @@
         align-items: center;
         padding: 1.5rem;
         height: 100px;
+        image-rendering: pixelated;
 
         &.card-image-top {
             border-top-left-radius: var(--border-radius);
             border-top-right-radius: var(--border-radius);
         }
 
-        &.discussion-image {
+        &--article {
             height: 125px;
             background-repeat: no-repeat;
             background-position: right;
-            image-rendering: pixelated;
         }
     }
 
@@ -95,6 +102,26 @@
             padding: 4rem 1rem;
             display: flex;
             justify-content: center;
+        }
+    }
+
+    &.article-card {
+        transition: box-shadow 0.2s ease-in-out;
+
+        .card-image {
+            background-position: right;
+            background-repeat: no-repeat;
+        }
+
+        .card-header-subtitle {
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+
+        &:hover {
+            transition: box-shadow 0.2s ease-in-out;
+            @extend .shadow-2;
         }
     }
 }

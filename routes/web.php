@@ -32,9 +32,4 @@ $router->middleware('guest')->group(function (RouteRegistrar | Router $guestRout
 
 $router->middleware('auth:web')->group(function (RouteRegistrar | Router $router) {
     $router->get('me', [\App\Domains\User\Http\Controllers\UserController::class, 'showMe'])->name('user.me');
-
-    $router->prefix('community')->group(function (RouteRegistrar | Router $community) {
-        $community->get('news/recent/{limit?}', [\App\Domains\Community\Http\Controllers\NewsController::class, 'getRecentArticles'])->name('community.news.recent');
-        $community->get('news/{slug}', [\App\Domains\Community\Http\Controllers\NewsController::class, 'showArticle'])->name('community.news.article');
-    });
 });

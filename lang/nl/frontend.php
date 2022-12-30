@@ -5,7 +5,7 @@ return [
     'header_welcome_speech_bubble' => 'Registreer of log in. We wachten op je!',
     'header_online' => 'gasten online',
     'global.date_time_format' => 'dd-mm-yyyy \'om\' HH:MM:ss',
-    'global.short_date_format' => 'dd MMM',
+    'global.short_date_format' => 'dd MMM \'\'yy',
     'login.title' => 'Inloggen',
     'login.form_card_header_title' => 'Inloggen in Habme',
     'login.form_card_header_subtitle' => 'Vul je gegevens in om verder te gaan',

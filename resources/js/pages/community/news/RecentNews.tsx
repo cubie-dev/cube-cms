@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
-import { IArticle } from './IArticle';
+import { IArticle } from '../../../interfaces/community/IArticle';
 import axios, { AxiosResponse } from 'axios';
 import { IResponse } from '../../../interfaces/IResponse';
 import { List, ListItem } from '../../../components/shared/list';
 import { useIntl } from 'react-intl';
 import { localeFormat } from '../../../support/localeFormat';
+import Skeleton from 'react-loading-skeleton';
 
 export const RecentNews = () => {
     // null is not loaded yet
@@ -24,15 +25,19 @@ export const RecentNews = () => {
             });
         }, []);
 
+    const renderSkeleton = () => (
+        <Skeleton count={5} />
+    )
+
     return (
         <>
-            {processing ? 'Loading...' : (
+            {processing ? renderSkeleton() : (
                 <List>
                     {!processing && articles?.map((article: IArticle) => (
                         <ListItem>
                             <a
                                 className="list-item-link"
-                                href={`community/news/${article.slug}`}
+                                href={`/community/news/${article.slug}`}
                             >
                                 <span className="list-item-link__timestamp">
                                     {localeFormat(new Date(article.created_at), intl.formatMessage({

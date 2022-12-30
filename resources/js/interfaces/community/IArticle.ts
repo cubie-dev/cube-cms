@@ -1,4 +1,4 @@
-import { IUser } from '../../../interfaces/IUser';
+import { IUser } from '../IUser';
 
 export interface IArticle {
     id: number;

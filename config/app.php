@@ -196,7 +196,12 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\TelescopeServiceProvider::class,
         \App\Domains\Core\Providers\SecurityServiceProvider::class,
-        \App\Providers\TelescopeServiceProvider::class
+        \App\Providers\TelescopeServiceProvider::class,
+
+        /**
+         * Domain Service Providers
+         */
+        \App\Domains\Community\CommunityServiceProvider::class,
 
     ],
 

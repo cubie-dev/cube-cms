@@ -24,11 +24,15 @@ class NewsRepository extends Repository
             ->first();
     }
 
-    public function getRecentArticles(int $limit): ?Collection
+    /**
+     * @param array<string> $relations
+     */
+    public function getRecentArticles(int $limit, array $relations = []): Collection
     {
         return $this->getModel()
             ->orderBy('created_at', 'desc')
             ->limit($limit)
+            ->with($relations)
             ->get();
     }
 }

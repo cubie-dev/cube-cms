@@ -1,7 +1,12 @@
 import { FC, HTMLAttributes, PropsWithChildren } from 'react';
 import clsx from 'clsx';
 
-export const Card: FC<PropsWithChildren<HTMLAttributes<HTMLDivElement>>> = ({
+export interface CardProps extends PropsWithChildren<HTMLAttributes<HTMLDivElement>> {
+    badge?: string;
+}
+
+export const Card: FC<CardProps> = ({
+    badge,
     children,
     className
 }) => {
@@ -12,6 +17,11 @@ export const Card: FC<PropsWithChildren<HTMLAttributes<HTMLDivElement>>> = ({
                 className
             )}
         >
+            {badge && (
+                <div className="card-badge">
+                    {badge}
+                </div>
+            )}
             {children}
         </div>
     );

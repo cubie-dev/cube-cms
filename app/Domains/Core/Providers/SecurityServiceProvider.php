@@ -14,9 +14,9 @@ class SecurityServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
-        $this->app->singleton('html.purifier.config', function () {
+        $this->app->singleton(HTMLPurifier_Config::class, function () {
             $config = HTMLPurifier_Config::createDefault();
             $config->set('HTML.AllowedElements', config('filtering.discussion.allowed_elements'));
             $config->set('HTML.AllowedAttributes', config('filtering.discussion.allowed_attributes'));
@@ -29,8 +29,8 @@ class SecurityServiceProvider extends ServiceProvider
             return $this->addElements($config);
         });
 
-        $this->app->bind('html.purifier', function (Application $app) {
-            return new HTMLPurifier($app['html.purifier.config']);
+        $this->app->bind(HTMLPurifier::class, function (Application $app) {
+            return new HTMLPurifier($app->make(HTMLPurifier_Config::class));
         });
     }
 

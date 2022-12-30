@@ -11,7 +11,7 @@ export const Grid: FC<GridProps> = ({
     children,
     cols,
     smCols,
-    gap = 4
+    gap = 8
 }) => {
     return (
         <div

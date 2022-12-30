@@ -4,7 +4,7 @@ import clsx from 'clsx';
 export interface CardImageProps extends PropsWithChildren<HTMLAttributes<HTMLDivElement>> {
     top?: boolean;
     url?: string;
-    backgroundColor?: string;
+    backgroundColor?: string | null;
     textColor?: string;
 }
 

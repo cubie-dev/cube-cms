@@ -2,24 +2,14 @@
 
 namespace App\Domains\Community\Http\Resources\News;
 
-use App\Domains\Community\Models\Article;
-use HTMLPurifier;
+use App\Domains\Community\Dtos\ArticleData;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
- * @property Article $resource
+ * @property ArticleData $resource
  */
 class ArticleResource extends JsonResource
 {
-    private HTMLPurifier $purifier;
-
-    public function __construct($resource)
-    {
-        parent::__construct($resource);
-
-        $this->purifier = app('html.purifier');
-    }
-
     public function toArray($request): array
     {
         return [
@@ -27,14 +17,14 @@ class ArticleResource extends JsonResource
             'slug' => $this->resource->getSlug(),
             'title' => $this->resource->getTitle(),
             'description' => $this->resource->getDescription(),
-            'content' => $this->purifier->purify($this->resource->getContent()),
+            'content' => $this->resource->getContent(),
             'image' => $this->resource->getImage(),
-            'image_path' => sprintf('/assets/community/promos/%s', $this->resource->getImage()),
+            'image_path' => $this->resource->getImagePath(),
             'color' => $this->resource->getColor(),
             'text_color' => $this->resource->getTextColor(),
-            'user' => new AuthorResource($this->resource->user),
-            'updated_at' => $this->resource->getUpdatedAt(),
-            'created_at' => $this->resource->getCreatedAt(),
+            'user' => new AuthorResource($this->resource->getUser()),
+            'updated_at' => $this->resource->getUpdatedAt()->toIso8601String(),
+            'created_at' => $this->resource->getCreatedAt()->toIso8601String(),
         ];
     }
 }

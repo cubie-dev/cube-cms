@@ -2,7 +2,7 @@
     "private": true,
     "scripts": {
         "dev": "npm run development",
-        "development": "vite --host 0.0.0.0",
+        "development": "vite --host 0.0.0.0 --port 3000",
         "prod": "npm run production",
         "production": "vite build"
     },
@@ -33,6 +33,7 @@
         "framer-motion": "^8.0.2",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "react-intl": "^6.2.5"
+        "react-intl": "^6.2.5",
+        "react-loading-skeleton": "^3.1.0"
     }
 }
