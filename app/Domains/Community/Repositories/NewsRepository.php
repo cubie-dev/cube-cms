@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Domains\Community\Repositories;
 
 use App\Domains\Community\Models\Article;
@@ -25,7 +27,9 @@ class NewsRepository extends Repository
     }
 
     /**
+     * @param int $limit
      * @param array<string> $relations
+     * @return Collection<int, Article>
      */
     public function getRecentArticles(int $limit, array $relations = []): Collection
     {

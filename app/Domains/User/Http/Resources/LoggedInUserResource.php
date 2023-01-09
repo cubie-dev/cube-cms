@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Domains\User\Http\Resources;
 
 use App\Domains\Hotel\Http\Resources\CurrencyResource;
@@ -11,6 +13,10 @@ use Illuminate\Http\Resources\Json\JsonResource;
  */
 class LoggedInUserResource extends JsonResource
 {
+    /**
+     * @param $request
+     * @return array<string, mixed>
+     */
     public function toArray($request): array
     {
         return [

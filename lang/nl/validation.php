@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'required' => 'Dit veld is verplicht.',
     'forbidden_word' => 'Het woord ":word" kan je niet gebruiken.',

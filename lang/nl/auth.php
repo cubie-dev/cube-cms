@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'incorrect_credentials' => 'Het ingevulde e-mailadres of wachtwoord is onjuist',
     'too_many_accounts_on_ip' => 'Het maximum aantal accounts op dit IP-adres is bereikt',

@@ -24,9 +24,12 @@
         "laravel/sail": "^v1.16.6",
         "mockery/mockery": "^1.5.1",
         "nunomaduro/collision": "^v6.3.2",
-        "phpstan/phpstan": "^1.9.4",
+        "nunomaduro/larastan": "^2.3",
+        "phpro/grumphp-shim": "^1.15",
         "phpunit/phpunit": "^9.5.27",
-        "spatie/laravel-ignition": "^1.6.3"
+        "spatie/laravel-ignition": "^1.6.3",
+        "squizlabs/php_codesniffer": "^3.7",
+        "symplify/easy-coding-standard": "11.1.33.72"
     },
     "autoload": {
         "psr-4": {
@@ -64,7 +67,10 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "phpro/grumphp-shim": true
+        }
     },
     "minimum-stability": "dev",
     "prefer-stable": true

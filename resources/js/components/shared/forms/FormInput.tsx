@@ -1,7 +1,15 @@
-import { FC, InputHTMLAttributes, useId, useState } from 'react';
+import {
+    ChangeEvent,
+    FC,
+    InputHTMLAttributes,
+    useId,
+    useState
+} from 'react';
 import clsx from 'clsx';
 
 export interface FormInputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
+    // @TODO
+    // eslint-disable-next-line no-unused-vars
     onChange: (value: string) => void;
 }
 
@@ -12,7 +20,7 @@ export const FormInput: FC<FormInputProps> = ({
 }) => {
     const [focus, setFocus] = useState(false);
 
-    id = id || useId();
+    const idAttr = id || useId();
 
     return (
         <label
@@ -20,17 +28,16 @@ export const FormInput: FC<FormInputProps> = ({
                 'form-control-container',
                 focus && 'has-focus'
             )}
-            htmlFor={id}
+            htmlFor={idAttr}
         >
             <input
                 className="form-control"
                 onFocus={() => setFocus(true)}
                 onBlur={() => setFocus(false)}
-                id={id}
+                id={idAttr}
                 type={type}
-                onChange={(event: React.ChangeEvent<HTMLInputElement>) => onChange(event.target.value)}
+                onChange={(event: ChangeEvent<HTMLInputElement>) => onChange(event.target.value)}
             />
         </label>
     );
-}
-
+};

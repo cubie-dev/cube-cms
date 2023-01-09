@@ -9,16 +9,14 @@ export const CardContent: FC<CardContentProps> = ({
     children,
     className,
     spacing = true
-}) => {
-    return (
-        <div
-            className={clsx(
-                'card-content',
-                !spacing && 'no-spacing',
-                className
-            )}
-        >
-            {children}
-        </div>
-    );
-}
+}) => (
+    <div
+        className={clsx(
+            'card-content',
+            !spacing && 'no-spacing',
+            className
+        )}
+    >
+        {children}
+    </div>
+);

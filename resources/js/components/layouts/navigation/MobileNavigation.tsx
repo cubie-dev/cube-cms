@@ -18,7 +18,11 @@ export const MobileNavigation: FC = () => {
                     <div className="mobile-nav">
                         <ul className="nav__list">
                             {routes.map((route) => (
-                                <NavigationItem route={route} showChildrenOnClick={true}/>
+                                <NavigationItem
+                                    key={route.path + route.text}
+                                    route={route}
+                                    showChildrenOnClick
+                                />
                             ))}
                         </ul>
                     </div>
@@ -26,4 +30,4 @@ export const MobileNavigation: FC = () => {
             )}
         </NavigationContext.Consumer>
     );
-}
+};

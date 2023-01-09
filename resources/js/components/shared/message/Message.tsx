@@ -1,15 +1,20 @@
 import { FC, useMemo } from 'react';
-import { Variant } from '../../../interfaces/Variant';
 import clsx from 'clsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheckCircle, faXmarkCircle, faExclamationCircle, faInfoCircle } from '@fortawesome/pro-regular-svg-icons';
+import {
+    faCheckCircle,
+    faXmarkCircle,
+    faExclamationCircle,
+    faInfoCircle
+} from '@fortawesome/pro-regular-svg-icons';
+import { Variant } from '../../../interfaces/Variant';
 
 export interface MessageProps {
     content: string;
     type: Variant;
 }
 
-const Message: FC<MessageProps> = ({
+export const Message: FC<MessageProps> = ({
     content,
     type
 }) => {
@@ -23,9 +28,9 @@ const Message: FC<MessageProps> = ({
                 return <FontAwesomeIcon icon={faExclamationCircle} />;
             case 'info':
             default:
-                return <FontAwesomeIcon icon={faInfoCircle} />
+                return <FontAwesomeIcon icon={faInfoCircle} />;
         }
-    }, [type])
+    }, [type]);
 
     return (
         <div
@@ -44,8 +49,4 @@ const Message: FC<MessageProps> = ({
             </div>
         </div>
     );
-}
-
-export {
-    Message
-}
+};

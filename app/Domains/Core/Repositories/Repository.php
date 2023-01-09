@@ -1,22 +1,24 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Domains\Core\Repositories;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * @template TModel
+ * @template TEntity of Model
  */
 abstract class Repository
 {
     /**
-     * @return TModel|Builder<TModel>
+     * @return TEntity|Builder<TEntity>
      */
     abstract public function getModel(): Model|Builder;
 
     /**
-     * @param TModel $model
+     * @param TEntity $model
      */
     public function push(Model $model): bool
     {

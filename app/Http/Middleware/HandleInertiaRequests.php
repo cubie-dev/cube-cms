@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Middleware;
 
 use App\Domains\User\Http\Resources\LoggedInUserResource;
 use App\Domains\User\Http\Resources\UserResource;
+use App\Exceptions\MessageTarget;
+use App\Exceptions\MessageType;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 use Symfony\Component\HttpFoundation\Response;
@@ -30,6 +34,10 @@ class HandleInertiaRequests extends Middleware
         return parent::version($request);
     }
 
+    /**
+     * @param Request $request
+     * @return array<int, array{content: string, type: MessageType, action: string|null, target: MessageTarget}>
+     */
     private function getSharedMessages(Request $request): array
     {
         return $request->session()->get('messages', []);
@@ -38,7 +46,7 @@ class HandleInertiaRequests extends Middleware
     private function getUser(Request $request): ?LoggedInUserResource
     {
         return ($user = $request->user())
-            ? new LoggedInUserResource($user->load('activeCurrencies'))
+            ? new LoggedInUserResource($user->loadMissing('activeCurrencies'))
             : null;
     }
 
@@ -47,13 +55,20 @@ class HandleInertiaRequests extends Middleware
      *
      * @see https://inertiajs.com/shared-data
      * @param  \Illuminate\Http\Request  $request
-     * @return array
+     * @return array<int, array{
+     *     locale: string,
+     *     localeMessages: array<string, string>,
+     *     flashMessages: array<int, mixed>,
+     *     user: LoggedInUserResource|null
+     * }>
      */
     public function share(Request $request): array
     {
+        $locale = app()->getLocale();
+
         return array_merge(parent::share($request), [
-            'locale' => fn () => app()->getLocale(),
-            'localeMessages' => fn () => translations(locale: app()->getLocale()),
+            'locale' => fn () => $locale,
+            'localeMessages' => fn () => translations(locale: $locale),
             'flash' => [
                 'messages' => fn () => $this->getSharedMessages(request: $request),
             ],

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Domains\Auth\Http\Controllers;
 
 use App\Domains\Auth\Dtos\LoginDto;
@@ -15,6 +17,7 @@ use App\Http\Controllers\Controller;
 use Diglactic\Breadcrumbs\Breadcrumbs;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Response;
+use Inertia\ResponseFactory;
 
 class AuthController extends Controller
 {
@@ -38,18 +41,16 @@ class AuthController extends Controller
     public function postLogin(LoginRequest $request): RedirectResponse
     {
         try {
-            if (
-                $user = $this->authService->login(
-                    loginDto: new LoginDto(
-                        username: $request->get('username'),
-                        password: $request->get('password'),
-                        ip: $request->getClientIp(),
-                        userAgent: $request->userAgent(),
-                    )
+            $this->authService->login(
+                loginDto: new LoginDto(
+                    username: $request->get('username'),
+                    password: $request->get('password'),
+                    ip: $request->getClientIp(),
+                    userAgent: $request->userAgent(),
                 )
-            ) {
-                return redirect()->route('user.me');
-            }
+            );
+
+            return redirect()->route('user.me');
         } catch (FlashableException $e) {
             $e->flash();
         }
@@ -69,14 +70,16 @@ class AuthController extends Controller
 
     public function postRegister(RegisterRequest $request): RedirectResponse
     {
-        if ($user = $this->authService->register(
-            newUser: new NewUserDto(
-                username: $request->get('username'),
-                email: $request->get('email'),
-                password: $request->get('password'),
-                ip: $request->ip(),
-                userAgent: $request->userAgent(),
-            ))
+        if (
+            $user = $this->authService->register(
+                newUser: new NewUserDto(
+                    username: $request->get('username'),
+                    email: $request->get('email'),
+                    password: $request->get('password'),
+                    ip: $request->ip(),
+                    userAgent: $request->userAgent(),
+                )
+            )
         ) {
             inertia()->share('user', new LoggedInUserResource($user));
 

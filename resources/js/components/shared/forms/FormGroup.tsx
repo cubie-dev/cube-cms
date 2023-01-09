@@ -9,16 +9,14 @@ export const FormGroup: FC<FormGroupProps> = ({
     children,
     className,
     invalid
-}) => {
-    return (
-        <div
-            className={clsx(
-                'form-group',
-                invalid && 'form-group-invalid',
-                className
-            )}
-        >
-            {children}
-        </div>
-    );
-}
+}) => (
+    <div
+        className={clsx(
+            'form-group',
+            invalid && 'form-group-invalid',
+            className
+        )}
+    >
+        {children}
+    </div>
+);

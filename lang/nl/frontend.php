@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'hotel_name' => 'CubeCMS',
     'header_welcome_speech_bubble' => 'Registreer of log in. We wachten op je!',

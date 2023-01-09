@@ -1,17 +1,27 @@
-import { Page as IPage} from '@inertiajs/inertia';
-import { Page } from '../../components/page';
-import { Card, CardContent, CardHeader, CardImage } from '../../components/shared/card';
-import { Grid } from '../../components/shared/grid';
-import { FormGroup, FormLabel, FormInput, FormMessage } from '../../components/shared/forms';
+import { Page as IPage } from '@inertiajs/inertia';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { useForm, usePage } from '@inertiajs/inertia-react';
-import { FormEvent, useCallback } from 'react';
+import { FC, FormEvent, useCallback } from 'react';
+import { Page } from '../../components/page';
+import {
+    Card,
+    CardContent,
+    CardHeader,
+    CardImage
+} from '../../components/shared/card';
+import { Grid } from '../../components/shared/grid';
+import {
+    FormGroup,
+    FormLabel,
+    FormInput,
+    FormMessage
+} from '../../components/shared/forms';
 import { Button } from '../../components/shared/button';
 import { Message, MessageProps } from '../../components/shared/message/Message';
 import { useFlashMessages } from '../../hooks/useFlashMessages';
 import { List, ListItem } from '../../components/shared/list';
 import { Avatar } from '../../components/shared/avatar';
-import '../../../style/layouts/_login.scss'
+import '../../../style/layouts/_login.scss';
 import { SharedProps } from '../../SharedProps';
 import { IUser } from '../../interfaces/IUser';
 import { IDataObject } from '../../interfaces/IDataObject';
@@ -20,9 +30,11 @@ export interface LoginPageProps {
     newestUsers: IDataObject<IUser[]>;
 }
 
-export default function Login() {
+const Login: FC = () => {
     const intl = useIntl();
-    const { data, setData, put, errors, clearErrors } = useForm({
+    const {
+        data, setData, put, errors, clearErrors
+    } = useForm({
         username: '',
         password: ''
     });
@@ -39,23 +51,24 @@ export default function Login() {
         });
     }, [data.username, data.password]);
 
-    const flashMessages = useFlashMessages('auth')
+    const flashMessages = useFlashMessages('auth');
 
     return (
         <Page title="login.title">
             <div className="message-container">
-                {flashMessages.map((message: MessageProps, index) => (
+                {flashMessages.map((message: MessageProps) => (
                     <Message
-                        key={index}
-                        {...message}
+                        key={message.content}
+                        content={message.content}
+                        type={message.type}
                     />
                 ))}
             </div>
             <Grid cols={1} gap={8} smCols={3}>
                 <Card>
                     <CardHeader
-                        title={intl.formatMessage({ id: 'login.form_card_header_title'})}
-                        subTitle={intl.formatMessage({ id: 'login.form_card_header_subtitle'})}
+                        title={intl.formatMessage({ id: 'login.form_card_header_title' })}
+                        subTitle={intl.formatMessage({ id: 'login.form_card_header_subtitle' })}
                     />
                     <CardContent>
                         <form onSubmit={onSubmit}>
@@ -69,7 +82,7 @@ export default function Login() {
                                     onChange={(value: string) => setData('username', value)}
                                 />
                                 {errors.username && (
-                                    <FormMessage invalid={true}>{errors.username}</FormMessage>
+                                    <FormMessage invalid>{errors.username}</FormMessage>
                                 )}
                             </FormGroup>
                             <FormGroup invalid={!!errors.password}>
@@ -83,7 +96,7 @@ export default function Login() {
                                     onChange={(value: string) => setData('password', value)}
                                 />
                                 {errors.password && (
-                                    <FormMessage invalid={true}>{errors.password}</FormMessage>
+                                    <FormMessage invalid>{errors.password}</FormMessage>
                                 )}
                             </FormGroup>
                             <div className="flex">
@@ -99,22 +112,18 @@ export default function Login() {
                         className="image-forum3"
                     />
                     <CardHeader
-                        title={intl.formatMessage({ id: 'login.info_card_title'})}
-                        subTitle={intl.formatMessage({ id: 'login.info_card_subtitle'})}
-                    >
-
-                    </CardHeader>
+                        title={intl.formatMessage({ id: 'login.info_card_title' })}
+                        subTitle={intl.formatMessage({ id: 'login.info_card_subtitle' })}
+                    />
                     <CardContent>
                         <FormattedMessage id="login.info_card_content" />
                     </CardContent>
                 </Card>
                 <Card className="newest-users-card">
                     <CardHeader
-                        title={intl.formatMessage({ id: 'login.new_users_card_title'})}
-                        subTitle={intl.formatMessage({ id: 'login.new_users_card_subtitle'})}
-                    >
-
-                    </CardHeader>
+                        title={intl.formatMessage({ id: 'login.new_users_card_title' })}
+                        subTitle={intl.formatMessage({ id: 'login.new_users_card_subtitle' })}
+                    />
                     <CardContent spacing={false}>
                         <List rowed>
                             {newestUsers.data.map((user: IUser) => (
@@ -138,5 +147,7 @@ export default function Login() {
                 </Card>
             </Grid>
         </Page>
-    )
-}
+    );
+};
+
+export default Login;

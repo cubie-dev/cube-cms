@@ -9,20 +9,18 @@ export const Card: FC<CardProps> = ({
     badge,
     children,
     className
-}) => {
-    return (
-        <div
-            className={clsx(
-                'card',
-                className
-            )}
-        >
-            {badge && (
-                <div className="card-badge">
-                    {badge}
-                </div>
-            )}
-            {children}
-        </div>
-    );
-}
+}) => (
+    <div
+        className={clsx(
+            'card',
+            className
+        )}
+    >
+        {badge && (
+            <div className="card-badge">
+                {badge}
+            </div>
+        )}
+        {children}
+    </div>
+);

@@ -1,21 +1,29 @@
 import { FormattedMessage, useIntl } from 'react-intl';
 import { useForm } from '@inertiajs/inertia-react';
-import { FormEvent, useCallback, useMemo } from 'react';
+import {
+    FC,
+    FormEvent,
+    useCallback,
+} from 'react';
+import { faChevronLeft } from '@fortawesome/pro-regular-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Grid } from '../../components/shared/grid';
 import { Page } from '../../components/page';
 import { Card, CardContent, CardHeader } from '../../components/shared/card';
-import { FormGroup, FormInput, FormLabel, FormMessage, FormSelect } from '../../components/shared/forms';
+import {
+    FormGroup, FormInput, FormLabel, FormMessage, FormSelect
+} from '../../components/shared/forms';
 import { Button } from '../../components/shared/button';
 
-import '../../../style/layouts/_register.scss'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronLeft } from '@fortawesome/pro-regular-svg-icons';
+import '../../../style/layouts/_register.scss';
 import { useFlashMessages } from '../../hooks/useFlashMessages';
 import { Message, MessageProps } from '../../components/shared/message/Message';
 
-export default function Register() {
+const Register: FC = () => {
     const intl = useIntl();
-    const { data, setData, post, errors, clearErrors } = useForm({
+    const {
+        data, setData, post, errors, clearErrors
+    } = useForm({
         username: '',
         email: '',
         password: '',
@@ -23,7 +31,7 @@ export default function Register() {
         gender: 'M'
     });
 
-    const flashMessages = useFlashMessages('auth')
+    const flashMessages = useFlashMessages('auth');
 
     const onSubmit = useCallback((event: FormEvent) => {
         event.preventDefault();
@@ -38,10 +46,11 @@ export default function Register() {
     return (
         <Page title="register.title">
             <div className="message-container">
-                {flashMessages.map((message: MessageProps, index) => (
+                {flashMessages.map((message: MessageProps) => (
                     <Message
-                        key={index}
-                        {...message}
+                        key={message.content}
+                        content={message.content}
+                        type={message.type}
                     />
                 ))}
             </div>
@@ -50,7 +59,7 @@ export default function Register() {
                     iconClass="icon-newuser"
                     color="gray-200"
                     title={intl.formatMessage({ id: 'register.title' })}
-                    subTitle={intl.formatMessage({ id: 'register.subtitle'})}
+                    subTitle={intl.formatMessage({ id: 'register.subtitle' })}
                     className="card-header-right-image moving"
                 />
             </Card>
@@ -58,8 +67,8 @@ export default function Register() {
                 href="/login"
                 variant="light"
                 className="mb-4"
-                iconLeft={<FontAwesomeIcon icon={faChevronLeft} />
-            }>
+                iconLeft={<FontAwesomeIcon icon={faChevronLeft} />}
+            >
                 <FormattedMessage id="register.back_button" />
             </Button>
             <form onSubmit={onSubmit} method="post">
@@ -82,7 +91,7 @@ export default function Register() {
                                     onChange={(value: string) => setData('username', value)}
                                 />
                                 {errors.username && (
-                                    <FormMessage invalid={true}>{errors.username}</FormMessage>
+                                    <FormMessage invalid>{errors.username}</FormMessage>
                                 )}
                             </FormGroup>
                             <FormGroup invalid={!!errors.email}>
@@ -95,7 +104,7 @@ export default function Register() {
                                     onChange={(value: string) => setData('email', value)}
                                 />
                                 {errors.email && (
-                                    <FormMessage invalid={true}>{errors.email}</FormMessage>
+                                    <FormMessage invalid>{errors.email}</FormMessage>
                                 )}
                             </FormGroup>
                         </CardContent>
@@ -109,7 +118,7 @@ export default function Register() {
                         />
                         <CardContent>
                             <FormGroup invalid={!!errors.password}>
-                                <FormLabel htmlFor="password" >
+                                <FormLabel htmlFor="password">
                                     <FormattedMessage id="register.password_label" />
                                 </FormLabel>
                                 <FormInput
@@ -119,7 +128,7 @@ export default function Register() {
                                     onChange={(value: string) => setData('password', value)}
                                 />
                                 {errors.password && (
-                                    <FormMessage invalid={true}>{errors.password}</FormMessage>
+                                    <FormMessage invalid>{errors.password}</FormMessage>
                                 )}
                             </FormGroup>
                             <FormGroup invalid={!!errors.password_confirmation}>
@@ -133,7 +142,9 @@ export default function Register() {
                                     onChange={(value: string) => setData('password_confirmation', value)}
                                 />
                                 {errors.password_confirmation && (
-                                    <FormMessage invalid={true}>{errors.password_confirmation}</FormMessage>
+                                    <FormMessage invalid>
+                                        {errors.password_confirmation}
+                                    </FormMessage>
                                 )}
                             </FormGroup>
                         </CardContent>
@@ -151,11 +162,15 @@ export default function Register() {
                                 <FormSelect
                                     onChange={(value: string) => setData('gender', value)}
                                 >
-                                    <option value="M"><FormattedMessage id="register.gender_m_label" /></option>
-                                    <option value="F"><FormattedMessage id="register.gender_f_label" /></option>
+                                    <option value="M">
+                                        <FormattedMessage id="register.gender_m_label" />
+                                    </option>
+                                    <option value="F">
+                                        <FormattedMessage id="register.gender_f_label" />
+                                    </option>
                                 </FormSelect>
                             </FormGroup>
-                            <Button type="submit" fw={true}>
+                            <Button type="submit" fw>
                                 <FormattedMessage id="register.submit_button" />
                             </Button>
                         </CardContent>
@@ -164,4 +179,6 @@ export default function Register() {
             </form>
         </Page>
     );
-}
+};
+
+export default Register;

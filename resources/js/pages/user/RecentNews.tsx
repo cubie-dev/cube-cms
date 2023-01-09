@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import axios, { AxiosResponse } from 'axios';
 import { useIntl } from 'react-intl';
+import Skeleton from 'react-loading-skeleton';
 import { IArticle } from '../../interfaces/community/IArticle';
 import { IResponse } from '../../interfaces/IResponse';
 import { localeFormat } from '../../support/localeFormat';
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
-import { Card, CardContent, CardHeader, CardImage } from '../../components/shared/card';
+import {
+    Card,
+    CardContent,
+    CardHeader,
+    CardImage
+} from '../../components/shared/card';
 import { Grid } from '../../components/shared/grid';
 
 export const RecentNews = () => {
@@ -42,6 +47,7 @@ export const RecentNews = () => {
             {processing ? renderSkeleton() : (
                 articles?.map((article: IArticle) => (
                     <a
+                        key={article.id}
                         className="card-link"
                         href={`community/news/${article.slug}`}
                     >
@@ -54,7 +60,7 @@ export const RecentNews = () => {
                             <CardImage
                                 backgroundColor={article.color}
                                 url={article.image_path}
-                            ></CardImage>
+                            />
                             <CardHeader
                                 title={article.title}
                                 subTitle={article.description}
@@ -65,4 +71,4 @@ export const RecentNews = () => {
             )}
         </Grid>
     );
-}
+};

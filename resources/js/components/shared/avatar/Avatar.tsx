@@ -4,7 +4,7 @@ export interface AvatarProps extends PropsWithChildren{
     figure: string;
     action?: 'sit';
     direction?: 1 | 2 | 3 | 4 | 5 | 6;
-    headDirection?:  1 | 2 | 3 | 4 | 5 | 6;
+    headDirection?: 1 | 2 | 3 | 4 | 5 | 6;
     imgFormat?: 'png';
     headOnly?: boolean;
     size?: 's' | 'm' | 'l';
@@ -22,11 +22,12 @@ export const Avatar: FC<AvatarProps> = ({
     gesture = 'sml'
 }) => {
     // @TODO avatar url from backend
-    const makeUrl = useCallback(() => {
-        return `https://www.habbo.nl/habbo-imaging/avatarimage?figure=${figure}&action=${action}&direction=${direction}&head_direction=${headDirection}&img_format=${imgFormat}&gesture=${gesture}&headonly=${headOnly ? 1 : 0}&size=${size})`;
-    }, [figure]);
+    const makeUrl = useCallback(
+        () => `https://www.habbo.nl/habbo-imaging/avatarimage?figure=${figure}&action=${action}&direction=${direction}&head_direction=${headDirection}&img_format=${imgFormat}&gesture=${gesture}&headonly=${headOnly ? 1 : 0}&size=${size})`,
+        [figure]
+    );
 
     return (
         <img className="avatar" src={makeUrl()} alt="Avatar" />
     );
-}
+};

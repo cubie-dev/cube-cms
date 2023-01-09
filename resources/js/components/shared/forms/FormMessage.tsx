@@ -8,15 +8,13 @@ export interface FormMessageProps extends PropsWithChildren<HTMLAttributes<HTMLD
 export const FormMessage: FC<FormMessageProps> = ({
     children,
     invalid
-}) => {
-    return (
-        <div
-            className={clsx(
-                'form-message',
-                invalid && 'form-message-invalid'
-            )}
-        >
-            {children}
-        </div>
-    );
-}
+}) => (
+    <div
+        className={clsx(
+            'form-message',
+            invalid && 'form-message-invalid'
+        )}
+    >
+        {children}
+    </div>
+);

@@ -1,8 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Domains\Community\Http\Resources\News;
 
 use App\Domains\Community\Dtos\ArticleData;
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
@@ -10,6 +13,10 @@ use Illuminate\Http\Resources\Json\JsonResource;
  */
 class ArticleResource extends JsonResource
 {
+    /**
+     * @param Request $request
+     * @return array<string, mixed>
+     */
     public function toArray($request): array
     {
         return [

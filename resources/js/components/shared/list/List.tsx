@@ -9,14 +9,14 @@ export const List: FC<ListProps> = ({
     children,
     className,
     rowed = false
-}) => {
-    return (
-        <ul className={clsx(
+}) => (
+    <ul
+        className={clsx(
             'list',
             rowed && 'list--rowed',
             className
-        )}>
-            {children}
-        </ul>
-    );
-}
+        )}
+    >
+        {children}
+    </ul>
+);

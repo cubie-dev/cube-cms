@@ -1,9 +1,13 @@
 <?php
 
-use App\Exceptions\MessageTarget;
+declare(strict_types=1);
 
 if (!function_exists('translations')) {
-    function translations(string $locale): array {
+    /**
+     * @return array<string, string>
+     */
+    function translations(string $locale): array
+    {
         $path = implode(DIRECTORY_SEPARATOR, [
             app()->langPath(),
             $locale,

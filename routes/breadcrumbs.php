@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Domains\Community\Models\Article;
 use Diglactic\Breadcrumbs\Breadcrumbs;
 use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
@@ -44,5 +46,5 @@ Breadcrumbs::for('community.news.article', static function (BreadcrumbTrail $tra
 
 Breadcrumbs::for('user.me', static function (BreadcrumbTrail $trail) {
     $trail->parent('home');
-    $trail->push(auth()->user()->getUsername(), route('user.me'));
+    $trail->push(auth()->user()?->getUsername() ?? '', route('user.me'));
 });

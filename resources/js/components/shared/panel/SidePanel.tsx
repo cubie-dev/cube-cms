@@ -1,7 +1,8 @@
-import React, { FC, PropsWithChildren, useMemo } from 'react';
+import React, { FC, PropsWithChildren } from 'react';
 import { createPortal } from 'react-dom';
 import clsx from 'clsx';
 import { AnimatePresence, motion } from 'framer-motion';
+
 export interface SidePanelProps {
     open: boolean;
     position?: 'left' | 'right';
@@ -60,4 +61,4 @@ export const SidePanel: FC<PropsWithChildren<SidePanelProps>> = ({
         </AnimatePresence>,
         document.querySelector('.panel-root') as Element
     );
-}
+};

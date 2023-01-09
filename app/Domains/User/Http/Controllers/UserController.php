@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Domains\User\Http\Controllers;
 
 use App\Http\Controllers\Controller;
@@ -15,6 +17,7 @@ class UserController extends Controller
             component: 'user/Me',
             props: [
                 'breadcrumbs' => fn () => Breadcrumbs::generate('user.me')
-            ]);
+            ]
+        );
     }
 }

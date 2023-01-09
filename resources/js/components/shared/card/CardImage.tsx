@@ -1,4 +1,10 @@
-import { CSSProperties, FC, HTMLAttributes, PropsWithChildren, useMemo } from 'react';
+import {
+    CSSProperties,
+    FC,
+    HTMLAttributes,
+    PropsWithChildren,
+    useMemo
+} from 'react';
 import clsx from 'clsx';
 
 export interface CardImageProps extends PropsWithChildren<HTMLAttributes<HTMLDivElement>> {
@@ -8,7 +14,7 @@ export interface CardImageProps extends PropsWithChildren<HTMLAttributes<HTMLDiv
     textColor?: string;
 }
 
-const CardImage: FC<CardImageProps> = ({
+export const CardImage: FC<CardImageProps> = ({
     children,
     top = true,
     url,
@@ -46,8 +52,4 @@ const CardImage: FC<CardImageProps> = ({
             {children}
         </div>
     );
-}
-
-export {
-    CardImage
-}
+};

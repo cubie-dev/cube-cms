@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Domains\Hotel\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -7,7 +9,11 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\Storage;
 
 /**
- * @property-read CurrencyType $type
+ * @property-read int $id
+ * @property-read int $user_id
+ * @property-read int $amount
+ * @property-read int $type
+ * @property-read CurrencyType $currencyType
  */
 class Currency extends Model
 {
@@ -34,7 +40,7 @@ class Currency extends Model
         return $this->type;
     }
 
-    public function getAmount(): string
+    public function getAmount(): int
     {
         return $this->amount;
     }
@@ -42,7 +48,7 @@ class Currency extends Model
     /**
      * @return HasOne<CurrencyType>
      */
-    public function type(): HasOne
+    public function currencyType(): HasOne
     {
         return $this->hasOne(CurrencyType::class, 'id', 'type');
     }

@@ -6,15 +6,13 @@ export type ListItemProps = PropsWithChildren<HTMLAttributes<HTMLDivElement>>;
 export const ListItem: FC<ListItemProps> = ({
     children,
     className,
-}) => {
-    return (
-        <li
-            className={clsx(
-                'list-item',
-                className
-            )}
-        >
-            {children}
-        </li>
-    );
-}
+}) => (
+    <li
+        className={clsx(
+            'list-item',
+            className
+        )}
+    >
+        {children}
+    </li>
+);

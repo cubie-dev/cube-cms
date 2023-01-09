@@ -1,4 +1,10 @@
-import { ChangeEvent, FC, InputHTMLAttributes, SelectHTMLAttributes, useId, useState } from 'react';
+import {
+    ChangeEvent,
+    FC,
+    SelectHTMLAttributes,
+    useId,
+    useState
+} from 'react';
 import clsx from 'clsx';
 
 export interface FormSelectProps extends Omit<SelectHTMLAttributes<HTMLSelectElement>, 'onChange'> {
@@ -12,7 +18,7 @@ export const FormSelect: FC<FormSelectProps> = ({
 }) => {
     const [focus, setFocus] = useState(false);
 
-    id = id || useId();
+    const groupId = id || useId();
 
     return (
         <label
@@ -20,18 +26,17 @@ export const FormSelect: FC<FormSelectProps> = ({
                 'form-control-container',
                 focus && 'has-focus'
             )}
-            htmlFor={id}
+            htmlFor={groupId}
         >
             <select
                 className="form-control"
                 onFocus={() => setFocus(true)}
                 onBlur={() => setFocus(false)}
-                id={id}
+                id={groupId}
                 onChange={(event: ChangeEvent<HTMLSelectElement>) => onChange(event.target.value)}
             >
                 {children}
             </select>
         </label>
     );
-}
-
+};

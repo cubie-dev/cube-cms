@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
@@ -21,15 +23,17 @@ return new class extends Migration
         $path = database_path('migrations/arcturus.sql');
         $sql = file_get_contents($path);
 
-        DB::unprepared($sql);
+        if ($sql) {
+            DB::unprepared($sql);
 
-        $tables = array_map(function ($table) {
-            return $table->{'Tables_in_' . env('DB_DATABASE')};
-        }, Schema::getAllTables());
+            $tables = array_map(function ($table) {
+                return $table->{'Tables_in_' . env('DB_DATABASE')};
+            }, Schema::getAllTables());
 
-        foreach ($tables as $table) {
-            DB::statement('ALTER TABLE ' . $table . ' ROW_FORMAT = DEFAULT');
-            DB::statement('ALTER TABLE ' . $table . ' ENGINE = InnoDB');
+            foreach ($tables as $table) {
+                DB::statement('ALTER TABLE ' . $table . ' ROW_FORMAT = DEFAULT');
+                DB::statement('ALTER TABLE ' . $table . ' ENGINE = InnoDB');
+            }
         }
     }
 

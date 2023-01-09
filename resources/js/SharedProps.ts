@@ -1,6 +1,5 @@
-import { IUser } from './interfaces/IUser';
-import { IBreadcrumbs } from './interfaces/IBreadcrumbs';
 import { ResolvedIntlConfig } from 'react-intl';
+import { IBreadcrumbs } from './interfaces/IBreadcrumbs';
 import { MessageProps } from './components/shared/message/Message';
 import { IDataObject } from './interfaces/IDataObject';
 import { ILoggedInUser } from './interfaces/ILoggedInUser';

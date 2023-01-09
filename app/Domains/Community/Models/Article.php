@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Domains\Community\Models;
 
 use App\Domains\User\Models\User;
@@ -33,6 +35,9 @@ class Article extends Model
         'text_color'
     ];
 
+    /**
+     * @return BelongsTo<User, Article>
+     */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'author_id', 'id');

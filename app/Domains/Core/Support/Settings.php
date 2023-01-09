@@ -1,14 +1,19 @@
-<?php
+<?php // phpcs:disable PSR1.Files.SideEffects
+
+declare(strict_types=1);
 
 namespace App\Domains\Core\Support;
 
 use App\Domains\Core\Models\Setting;
 use Illuminate\Database\Eloquent\Collection;
 
-class Settings
+readonly class Settings
 {
+    /**
+     * @param Collection<Setting> $settingsModels
+     */
     public function __construct(
-        private readonly Collection $settingsModels
+        private Collection $settingsModels
     ) {
     }
 

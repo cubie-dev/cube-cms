@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Domains\Community\Http\Controllers;
 
@@ -9,19 +11,25 @@ use App\Http\Controllers\Controller;
 use Diglactic\Breadcrumbs\Breadcrumbs;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Inertia\Response;
+use Inertia\ResponseFactory;
 
 class NewsController extends Controller
 {
     public function __construct(
         private readonly NewsRepository $newsRepository,
-        private readonly ArticleService $articleService
+        private readonly ArticleService $articleService,
+        private readonly ResponseFactory $responseFactory
     ) {
     }
 
-    public function showArticle(string $slug)
+    /**
+     * @throws ModelNotFoundException
+     */
+    public function showArticle(string $slug): Response
     {
         if ($article = $this->newsRepository->getArticleBySlug($slug)) {
-            return inertia(
+            return $this->responseFactory->render(
                 component: 'community/news/Article',
                 props: [
                     'breadcrumbs' => fn () => Breadcrumbs::generate('community.news.article', $article),

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Domains\Core\Providers;
 
 use HTMLPurifier;
@@ -54,7 +56,10 @@ class SecurityServiceProvider extends ServiceProvider
         return $config;
     }
 
-    public function provides()
+    /**
+     * @return array<string>
+     */
+    public function provides(): array
     {
         return [
             'html.purifier.config',

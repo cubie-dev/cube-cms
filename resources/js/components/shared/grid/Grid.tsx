@@ -12,17 +12,15 @@ export const Grid: FC<GridProps> = ({
     cols,
     smCols,
     gap = 8
-}) => {
-    return (
-        <div
-            className={clsx(
-                'grid',
-                `grid-cols-${cols}`,
-                smCols && `sm:grid-cols-${smCols}`,
-                `gap-${gap}`
-            )}
-        >
-            {children}
-        </div>
-    );
-}
+}) => (
+    <div
+        className={clsx(
+            'grid',
+            `grid-cols-${cols}`,
+            smCols && `sm:grid-cols-${smCols}`,
+            `gap-${gap}`
+        )}
+    >
+        {children}
+    </div>
+);

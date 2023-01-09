@@ -1,7 +1,8 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Routing\Router;
-use Illuminate\Routing\RouteRegistrar;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +15,7 @@ use Illuminate\Routing\RouteRegistrar;
 |
 */
 
-/** @var RouteRegistrar|Router $router */
+/** @var Router $router */
 $router = app(Router::class);
 
 if (!auth()->user()) {
@@ -23,13 +24,16 @@ if (!auth()->user()) {
     $router->redirect('/', '/me');
 }
 
-$router->middleware('guest')->group(function (RouteRegistrar | Router $guestRouter) {
-    $guestRouter->get('login', [\App\Domains\Auth\Http\Controllers\AuthController::class, 'showLogin'])->name('auth.login');
+$router->middleware('guest')->group(function (Router $guestRouter) {
+    $guestRouter->get('login', [\App\Domains\Auth\Http\Controllers\AuthController::class, 'showLogin'])
+        ->name('auth.login');
     $guestRouter->put('login', [\App\Domains\Auth\Http\Controllers\AuthController::class, 'postLogin']);
-    $guestRouter->get('register', [\App\Domains\Auth\Http\Controllers\AuthController::class, 'showRegister'])->name('auth.register');
-    $guestRouter->post('register', [\App\Domains\Auth\Http\Controllers\AuthController::class, 'postRegister'])->name('auth.register');
+    $guestRouter->get('register', [\App\Domains\Auth\Http\Controllers\AuthController::class, 'showRegister'])
+        ->name('auth.register');
+    $guestRouter->post('register', [\App\Domains\Auth\Http\Controllers\AuthController::class, 'postRegister'])
+        ->name('auth.register');
 });
 
-$router->middleware('auth:web')->group(function (RouteRegistrar | Router $router) {
+$router->middleware('auth:web')->group(function (Router $router) {
     $router->get('me', [\App\Domains\User\Http\Controllers\UserController::class, 'showMe'])->name('user.me');
 });

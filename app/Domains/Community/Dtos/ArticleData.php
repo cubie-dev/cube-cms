@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Domains\Community\Dtos;
 
 use App\Domains\User\Models\User;
@@ -16,12 +18,13 @@ class ArticleData extends Data
         private readonly string $content,
         private readonly string $image,
         private readonly string $imagePath,
-        private readonly string $color,
-        private readonly string $textColor,
         private readonly User $user,
         private readonly Carbon $createdAt,
         private readonly Carbon $updatedAt,
-    ) {}
+        private readonly ?string $color = null,
+        private readonly ?string $textColor = null
+    ) {
+    }
 
     public function getId(): int
     {
@@ -58,16 +61,6 @@ class ArticleData extends Data
         return $this->imagePath;
     }
 
-    public function getColor(): string
-    {
-        return $this->color;
-    }
-
-    public function getTextColor(): string
-    {
-        return $this->textColor;
-    }
-
     public function getUser(): User
     {
         return $this->user;
@@ -81,5 +74,15 @@ class ArticleData extends Data
     public function getUpdatedAt(): Carbon
     {
         return $this->updatedAt;
+    }
+
+    public function getColor(): ?string
+    {
+        return $this->color;
+    }
+
+    public function getTextColor(): ?string
+    {
+        return $this->textColor;
     }
 }

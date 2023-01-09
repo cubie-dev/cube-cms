@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
-import { Route } from '../../../config/Route';
 import clsx from 'clsx';
 import { AnimatePresence, motion } from 'framer-motion';
+import { Route } from '../../../config/Route';
 
 export interface NavigationItemProps {
     route: Route;
@@ -10,26 +10,27 @@ export interface NavigationItemProps {
 
 export const NavigationItem: FC<NavigationItemProps> = ({
     route,
-    showChildrenOnClick
+    showChildrenOnClick = false
 }) => {
     const [open, setOpen] = useState(false);
 
     return (
-        <li className={clsx(
-            'nav__list-item',
-            route.color && `nav__list-item--${route.color}`,
-            route.icon && `nav__list-item-icon nav__list-item-icon--${route.icon}`
-        )}>
-            <a
-                href="#"
+        <li
+            className={clsx(
+                'nav__list-item',
+                route.color && `nav__list-item--${route.color}`,
+                route.icon && `nav__list-item-icon nav__list-item-icon--${route.icon}`
+            )}
+        >
+            <button
+                type="button"
                 className="nav__list-item-link"
                 onClick={showChildrenOnClick
                     ? () => setOpen((prevState: boolean) => !prevState)
-                    : undefined
-            }
+                    : undefined}
             >
                 {route.text}
-            </a>
+            </button>
             <AnimatePresence>
                 {(!showChildrenOnClick || open) && route.children?.length && (
                     <motion.ul
@@ -42,7 +43,10 @@ export const NavigationItem: FC<NavigationItemProps> = ({
                         exit={showChildrenOnClick ? { height: 0 } : undefined}
                     >
                         {route.children?.map((childRoute: Route) => (
-                            <li className="nav__dropdown-item">
+                            <li
+                                key={childRoute.path + childRoute.text}
+                                className="nav__dropdown-item"
+                            >
                                 <a href={childRoute.path} className="nav__dropdown-link">
                                     {childRoute.text}
                                 </a>
@@ -53,4 +57,4 @@ export const NavigationItem: FC<NavigationItemProps> = ({
             </AnimatePresence>
         </li>
     );
-}
+};

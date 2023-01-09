@@ -1,0 +1,16 @@
+grumphp:
+  git_hook_variables:
+    EXEC_GRUMPHP_COMMAND: ['docker-compose', 'run', '--entrypoint', 'php', '-T', '--rm', '--no-deps', 'app']
+  tasks:
+    composer:
+      file: ./composer.json
+    ecs: ~
+    phpcs:
+        whitelist_patterns: [
+            '/^app\/(.*)/',
+            '/^config\/(.*)/',
+            '/^database\/(.*)/'
+        ]
+        ignore_patterns: ['/^tests\/(.*)/']
+        standard: PSR12
+        triggered_by: [php]

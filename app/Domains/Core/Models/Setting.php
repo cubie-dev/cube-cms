@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Domains\Core\Models;
 
 use Carbon\Carbon;
@@ -27,6 +29,9 @@ class Setting extends Model
         return (int) $this->value;
     }
 
+    /**
+     * @return array<string>
+     */
     public function getArrayValue(): array
     {
         return explode(',', $this->value);

@@ -14,4 +14,4 @@ export const useAuth = (): IAuth => {
         user: page.props.user,
         loggedIn: !!page.props.user
     };
-}
+};

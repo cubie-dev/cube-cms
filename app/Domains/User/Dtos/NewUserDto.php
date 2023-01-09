@@ -1,4 +1,6 @@
-<?php
+<?php // phpcs:disable PSR1.Files.SideEffects
+
+declare(strict_types=1);
 
 namespace App\Domains\User\Dtos;
 
@@ -10,7 +12,8 @@ readonly class NewUserDto
         private string $password,
         private string $ip,
         private string $userAgent,
-    ) {}
+    ) {
+    }
 
     public function getUsername(): string
     {

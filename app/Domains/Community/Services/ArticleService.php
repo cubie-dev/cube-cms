@@ -1,4 +1,6 @@
-<?php
+<?php // phpcs:disable PSR1.Files.SideEffects
+
+declare(strict_types=1);
 
 namespace App\Domains\Community\Services;
 
@@ -45,14 +47,18 @@ readonly class ArticleService
             content: $this->getCachedArticleContent($article),
             image: $article->getImage(),
             imagePath: sprintf('%s/%s', $this->getPromosPath(), $article->getImage()),
-            color: $article->getColor(),
-            textColor: $article->getTextColor(),
             user: $article->user,
             createdAt: $article->getCreatedAt(),
             updatedAt: $article->getUpdatedAt(),
+            color: $article->getColor(),
+            textColor: $article->getTextColor(),
         );
     }
 
+    /**
+     * @param int $limit
+     * @return Collection<int, ArticleData>
+     */
     public function getRecentArticles(int $limit = 5): Collection
     {
         return $this->newsRepository->getRecentArticles(limit: $limit, relations: ['user'])

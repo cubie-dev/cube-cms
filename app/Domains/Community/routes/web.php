@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /** @var RouteRegistrar|Router $router */
 
 use App\Domains\Community\Http\Controllers\NewsController;

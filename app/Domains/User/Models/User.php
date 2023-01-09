@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Domains\User\Models;
 
 use App\Domains\Auth\Models\Ban;
@@ -8,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\DatabaseNotificationCollection;
 use Illuminate\Notifications\Notifiable;
 
 /**
@@ -41,7 +44,6 @@ use Illuminate\Notifications\Notifiable;
  * @property-read \App\Domains\Auth\Models\Ban $ban
  * @property-read Currency[] $currencies
  * @property-read Currency[] $activeCurrencies
- * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
  * @method static \Illuminate\Database\Query\Builder|User onlyTrashed()
@@ -107,6 +109,9 @@ class User extends Authenticatable
         return $this->hasMany(Currency::class, 'user_id', 'id');
     }
 
+    /**
+     * @return HasMany<Currency>
+     */
     public function activeCurrencies(): HasMany
     {
         return $this
@@ -131,7 +136,7 @@ class User extends Authenticatable
         return $this->username;
     }
 
-    public function getMotto(): string
+    public function getMotto(): ?string
     {
         return $this->motto;
     }
