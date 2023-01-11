@@ -116,7 +116,7 @@ class User extends Authenticatable
     {
         return $this
             ->currencies()
-            ->withWhereHas('type', function ($query) {
+            ->withWhereHas('currencyType', function ($query) {
                 $query->where('active', true);
             });
     }

@@ -8,15 +8,16 @@ use App\Domains\Core\Repositories\Repository;
 use App\Domains\User\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
+use Spatie\QueryBuilder\QueryBuilder;
 
 /**
  * @extends Repository<User>
  */
 class UserRepository extends Repository
 {
-    public function getModel(): User|Builder
+    protected function makeQueryBuilder(): QueryBuilder
     {
-        return User::query();
+        return QueryBuilder::for(User::class);
     }
 
     /**
@@ -25,7 +26,7 @@ class UserRepository extends Repository
      */
     public function getLastUsers(int $limit = 3): Collection
     {
-        return $this->getModel()
+        return $this->getQueryBuilder()
             ->latest()
             ->limit($limit)
             ->get();
@@ -37,7 +38,7 @@ class UserRepository extends Repository
      */
     public function getUsersRegisteredOnIp(string $ip): Collection
     {
-        return $this->getModel()
+        return $this->getQueryBuilder()
             ->where('ip_register', $ip)
             ->get();
     }

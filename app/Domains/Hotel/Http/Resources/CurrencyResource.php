@@ -20,8 +20,8 @@ class CurrencyResource extends JsonResource
     {
         return [
             'amount' => $this->resource->getAmount(),
-            'type' => $this->whenLoaded('type', function () {
-                return new CurrencyTypeResource($this->resource->getTypeId());
+            'type' => $this->whenLoaded('currencyType', function () {
+                return new CurrencyTypeResource($this->resource->currencyType);
             }),
             'icon_url' => $this->resource->getIconUrl(),
         ];

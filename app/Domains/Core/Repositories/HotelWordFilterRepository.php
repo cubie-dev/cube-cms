@@ -6,20 +6,21 @@ namespace App\Domains\Core\Repositories;
 
 use App\Domains\Core\Models\BadWord;
 use Illuminate\Database\Eloquent\Builder;
+use Spatie\QueryBuilder\QueryBuilder;
 
 /**
  * @extends Repository<BadWord>
  */
 class HotelWordFilterRepository extends Repository
 {
-    public function getModel(): BadWord|Builder
+    public function makeQueryBuilder(): QueryBuilder
     {
-        return BadWord::query();
+        return QueryBuilder::for(BadWord::class);
     }
 
     public function containsForbiddenWord(string $text): bool
     {
-        return $this->getModel()
+        return $this->getQueryBuilder()
             ->whereRaw('INSTR(wordfilter.key, ?)', [$text])
             ->exists();
     }

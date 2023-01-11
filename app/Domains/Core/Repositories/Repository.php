@@ -6,20 +6,54 @@ namespace App\Domains\Core\Repositories;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\QueryBuilder\QueryBuilder;
 
 /**
  * @template TEntity of Model
  */
 abstract class Repository
 {
-    /**
-     * @return TEntity|Builder<TEntity>
-     */
-    abstract public function getModel(): Model|Builder;
+    protected QueryBuilder|Model $queryBuilder;
+
+    public function __construct()
+    {
+        $this->queryBuilder = $this->makeQueryBuilder();
+    }
 
     /**
-     * @param TEntity $model
+     * @return TEntity|QueryBuilder<TEntity>
      */
+    protected function getQueryBuilder(): Model|QueryBuilder
+    {
+        return clone $this->queryBuilder;
+    }
+
+    /**
+     * @return QueryBuilder<TEntity>
+     */
+    abstract protected function makeQueryBuilder(): QueryBuilder;
+
+    public function withAllowedIncludes(array $allowedIncludes): Repository
+    {
+        $this->queryBuilder = $this->getQueryBuilder()->allowedIncludes($allowedIncludes);
+
+        return $this;
+    }
+
+    public function withAllowedFilters(array $allowedFilters): Repository
+    {
+        $this->queryBuilder = $this->getQueryBuilder()->allowedFilters($allowedFilters);
+
+        return $this;
+    }
+
+    public function withAllowedSorts(array $allowedSorts): Repository
+    {
+        $this->queryBuilder = $this->getQueryBuilder()->allowedSorts($allowedSorts);
+
+        return $this;
+    }
+
     public function push(Model $model): bool
     {
         $pushed = $model->push();

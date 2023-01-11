@@ -8,20 +8,21 @@ use App\Domains\Core\Models\Setting;
 use App\Domains\Core\Support\Settings;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\QueryBuilder\QueryBuilder;
 
 /**
  * @extends Repository<Setting>
  */
 class SettingsRepository extends Repository
 {
-    public function getModel(): Model|Builder
+    public function makeQueryBuilder(): QueryBuilder
     {
-        return Setting::query();
+        return QueryBuilder::for(Setting::class);
     }
 
     public function getSetting(string $key): ?Setting
     {
-        return $this->getModel()
+        return $this->getQueryBuilder()
             ->where('key', $key)
             ->first();
     }
@@ -32,7 +33,7 @@ class SettingsRepository extends Repository
     public function getSettings(array $settings): Settings
     {
         return new Settings(
-            $this->getModel()
+            $this->getQueryBuilder()
                 ->whereIn('key', $settings)
                 ->get()
         );
