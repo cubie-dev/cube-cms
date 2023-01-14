@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Domains\User\Models;
 
 use App\Domains\Auth\Models\Ban;
+use App\Domains\Auth\Models\Role;
 use App\Domains\Hotel\Models\Currency;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -44,6 +45,7 @@ use Illuminate\Notifications\Notifiable;
  * @property-read \App\Domains\Auth\Models\Ban $ban
  * @property-read Currency[] $currencies
  * @property-read Currency[] $activeCurrencies
+ * @property-read Role $role
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
  * @method static \Illuminate\Database\Query\Builder|User onlyTrashed()
@@ -119,6 +121,11 @@ class User extends Authenticatable
             ->withWhereHas('currencyType', function ($query) {
                 $query->where('active', true);
             });
+    }
+
+    public function role(): HasOne
+    {
+        return $this->hasOne(Role::class, 'id', 'rank');
     }
 
     public function isBanned(): bool

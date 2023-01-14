@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domains\User\Http\Resources;
 
+use App\Domains\Auth\Http\Resources\RoleResource;
 use App\Domains\User\Models\User;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -21,7 +22,8 @@ class UserResource extends JsonResource
         return [
             'id' => $this->resource->getId(),
             'username' => $this->resource->getUsername(),
-            'motto' => $this->resource->getMotto()
+            'motto' => $this->resource->getMotto(),
+            'role' => $this->whenLoaded('role', fn () => new RoleResource($this->resource->role)),
         ];
     }
 }

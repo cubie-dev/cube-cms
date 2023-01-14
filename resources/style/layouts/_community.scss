@@ -1,3 +1,35 @@
-.article-author {
+.article-comments--section, .article-comments--container {
+    margin: 2rem 0;
+}
 
+.comment-card {
+    display: flex;
+    flex-direction: row;
+
+    &__avatar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        background: url("../images/community/avatar-bg.png") center center;
+        width: 25%;
+        border-top-left-radius: var(--border-radius);
+        border-bottom-left-radius: var(--border-radius);
+        color: #fff;
+        padding: 1.5rem 0;
+    }
+
+    &__content {
+        width: 100%;
+    }
+
+    &__content-header {
+        padding: 1.5rem;
+        border-bottom: solid 1px var(--default-border-color);
+        width: 100%;
+    }
+
+    &__content-body {
+        padding: 1.5rem;
+    }
 }

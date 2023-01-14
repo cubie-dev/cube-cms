@@ -1,4 +1,5 @@
 import { ICurrency } from './ICurrency';
+import { IRole } from './auth/IRole';
 
 export interface ILoggedInUser {
     id: number;
@@ -6,7 +7,6 @@ export interface ILoggedInUser {
     look: string;
     motto: string;
     credits: number;
-    pixels: number;
-    duckets: number;
     active_currencies: ICurrency[];
+    role: IRole;
 }

@@ -42,4 +42,21 @@ class UserRepository extends Repository
             ->where('ip_register', $ip)
             ->get();
     }
+
+    public function loadRelationsForAuth(User $user): User
+    {
+        $user->loadMissing([
+            'activeCurrencies',
+            'role'
+        ]);
+
+        return $user;
+    }
+
+    public function refreshRelations(User $user, array $relations): User
+    {
+        $user->load($relations);
+
+        return $user;
+    }
 }

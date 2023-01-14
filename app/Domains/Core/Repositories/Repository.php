@@ -54,6 +54,13 @@ abstract class Repository
         return $this;
     }
 
+    public function withDefaultSorts(array $defaultSorts): Repository
+    {
+        $this->queryBuilder = $this->getQueryBuilder()->defaultSorts($defaultSorts);
+
+        return $this;
+    }
+
     public function push(Model $model): bool
     {
         $pushed = $model->push();

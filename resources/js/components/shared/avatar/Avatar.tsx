@@ -1,4 +1,5 @@
 import { FC, PropsWithChildren, useCallback } from 'react';
+import clsx from 'clsx';
 
 export interface AvatarProps extends PropsWithChildren{
     figure: string;
@@ -9,6 +10,7 @@ export interface AvatarProps extends PropsWithChildren{
     headOnly?: boolean;
     size?: 's' | 'm' | 'l';
     gesture?: 'sml';
+    outline?: 'white';
 }
 
 export const Avatar: FC<AvatarProps> = ({
@@ -19,7 +21,8 @@ export const Avatar: FC<AvatarProps> = ({
     imgFormat = 'png',
     headOnly = false,
     size = 'm',
-    gesture = 'sml'
+    gesture = 'sml',
+    outline
 }) => {
     // @TODO avatar url from backend
     const makeUrl = useCallback(
@@ -28,6 +31,13 @@ export const Avatar: FC<AvatarProps> = ({
     );
 
     return (
-        <img className="avatar" src={makeUrl()} alt="Avatar" />
+        <img
+            className={clsx(
+                'avatar',
+                outline && `avatar--outline-${outline}`
+            )}
+            src={makeUrl()}
+            alt="Avatar"
+        />
     );
 };

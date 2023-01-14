@@ -2,7 +2,7 @@
 
 :root {
     // global
-    --default-border-color: #{colors.get('gray', 200)};
+    --default-border-color: #{colors.get('gray', 300)};
     --border-radius: 5px;
     --font-color: #4d5e77;
 
@@ -40,4 +40,7 @@
 
     // navigation
     --navigation-background: #{colors.get('blue-gray', 900)};
+
+    // roles
+    --default-role-badge-background: #{colors.get('blue-gray', 600)};
 }

@@ -14,7 +14,8 @@ export interface FormSelectProps extends Omit<SelectHTMLAttributes<HTMLSelectEle
 export const FormSelect: FC<FormSelectProps> = ({
     id,
     onChange,
-    children
+    children,
+    ...rest
 }) => {
     const [focus, setFocus] = useState(false);
 
@@ -34,6 +35,7 @@ export const FormSelect: FC<FormSelectProps> = ({
                 onBlur={() => setFocus(false)}
                 id={groupId}
                 onChange={(event: ChangeEvent<HTMLSelectElement>) => onChange(event.target.value)}
+                {...rest}
             >
                 {children}
             </select>

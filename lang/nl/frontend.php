@@ -6,7 +6,7 @@ return [
     'hotel_name' => 'CubeCMS',
     'header_welcome_speech_bubble' => 'Registreer of log in. We wachten op je!',
     'header_online' => 'gasten online',
-    'global.date_time_format' => 'dd-mm-yyyy \'om\' HH:MM:ss',
+    'global.date_time_format' => 'dd-MM-yyyy \'om\' HH:mm:ss',
     'global.short_date_format' => 'dd MMM \'\'yy',
     'login.title' => 'Inloggen',
     'login.form_card_header_title' => 'Inloggen in Habme',
@@ -44,7 +44,13 @@ return [
     'community.news.title' => 'Artikel',
     'community.news.written_on' => 'Geschreven op {date}',
     'community.news.recent_news_title' => 'Wat er verder is gebeurd',
+    'community.news.comment_card_title' => 'Reageren',
+    'community.news.send_comment_button' => 'Reactie plaatsen',
+    'community.news.write_comment_button' => 'Plaats een reactie',
+    'community.news.comment_placeholder' => 'Typ een reactie...',
+    'community.news.oldest_comment_first_label' => 'Oudste reacties bovenaan',
+    'community.news.newest_comment_first_label' => 'Nieuwste reacties bovenaan',
     'footer_copyright' => 'Copyright © 2022 <strong>Habme</strong>. Alle rechten voorbehouden aan de rechtmatige eigena(a)r(en).
           Habme is niet gelieerd aan, onderschreven, gesponsord of specifiek goedgekeurd door Sulake Corporation Oy of haar gelieerde ondernemingen.',
-    'footer_powered' => '<strong>Habme</strong> wordt aangedreven door CubeCMS, ontwikkeld door Eran.'
+    'footer_powered' => '<strong>Habme</strong> wordt aangedreven door CubeCMS, ontwikkeld door Eran.',
 ];

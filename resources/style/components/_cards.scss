@@ -46,11 +46,11 @@
                     font-weight: 600;
                     font-size: 1.1rem;
                     color: var(--card-title-color);
-                    margin-bottom: 0.5rem;
                 }
 
                 .card-header-subtitle {
                     color: var(--card-subtitle-color);
+                    margin-top: 0.5rem;
                 }
             }
 
@@ -124,6 +124,10 @@
             @extend .shadow-2;
         }
     }
+}
+
+.card-spacer {
+    padding: 1rem;
 }
 
 @screen sm {

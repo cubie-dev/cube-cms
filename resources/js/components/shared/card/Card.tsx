@@ -1,16 +1,21 @@
-import { FC, HTMLAttributes, PropsWithChildren } from 'react';
+import {
+    forwardRef,
+    HTMLAttributes,
+    PropsWithChildren
+} from 'react';
 import clsx from 'clsx';
 
 export interface CardProps extends PropsWithChildren<HTMLAttributes<HTMLDivElement>> {
     badge?: string;
 }
 
-export const Card: FC<CardProps> = ({
+const Card = forwardRef<HTMLDivElement, CardProps>(({
     badge,
     children,
     className
-}) => (
+}, ref) => (
     <div
+        ref={ref}
         className={clsx(
             'card',
             className
@@ -23,4 +28,10 @@ export const Card: FC<CardProps> = ({
         )}
         {children}
     </div>
-);
+));
+
+Card.displayName = 'Card';
+
+export {
+    Card
+};

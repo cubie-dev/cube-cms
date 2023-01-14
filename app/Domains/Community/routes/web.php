@@ -10,9 +10,13 @@ use Illuminate\Routing\RouteRegistrar;
 
 $router = app(Router::class);
 
-$router->middleware('web')->prefix('community')->group(function (RouteRegistrar | Router $community) {
+$router->middleware(['web', 'auth'])->prefix('community')->group(function (RouteRegistrar | Router $community) {
     $community->get('news/recent/{limit?}', [NewsController::class, 'getRecentArticles'])
         ->name('community.news.recent');
     $community->get('news/{slug}', [NewsController::class, 'showArticle'])
         ->name('community.news.article');
+    $community->get('news/{slug}/comments', [NewsController::class, 'getComments'])
+        ->name('community.news.article.comments');
+    $community->post('news/{slug}/comments', [NewsController::class, 'createComment'])
+        ->name('community.news.article.comments.post');
 });

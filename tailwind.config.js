@@ -1,8 +1,5 @@
-module.exports = {
-    content: [
-        "./resources/**/*.tsx",
-    ],
-    safelist: [
+const gridSafeList = () => {
+    return [
         'sm:grid-cols-2',
         'sm:grid-cols-3',
         'sm:grid-cols-6',
@@ -12,7 +9,19 @@ module.exports = {
         'grid-cols-6',
         'md:grid-cols-4',
         'gap-8',
-        'col-span-5'
+    ];
+};
+
+module.exports = {
+    content: [
+        './resources/**/*.tsx',
+    ],
+    safelist: [
+        ...gridSafeList(),
+        'col-span-5',
+        'justify-between',
+        'items-end',
+        'justify-end',
     ],
     theme: {
         extend: {
@@ -28,4 +37,4 @@ module.exports = {
         },
     },
     plugins: [],
-}
+};

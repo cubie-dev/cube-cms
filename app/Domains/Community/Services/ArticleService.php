@@ -5,8 +5,13 @@ declare(strict_types=1);
 namespace App\Domains\Community\Services;
 
 use App\Domains\Community\Dtos\ArticleData;
+use App\Domains\Community\Dtos\CommentData;
+use App\Domains\Community\Dtos\CreateCommentData;
 use App\Domains\Community\Models\Article;
+use App\Domains\Community\Models\Comment;
+use App\Domains\Community\Repositories\CommentRepository;
 use App\Domains\Community\Repositories\NewsRepository;
+use App\Domains\User\Repositories\UserRepository;
 use HTMLPurifier;
 use Illuminate\Cache\CacheManager;
 use Illuminate\Support\Collection;
@@ -19,7 +24,9 @@ readonly class ArticleService
     public function __construct(
         private CacheManager $cacheManager,
         private HTMLPurifier $purifier,
-        private NewsRepository $newsRepository
+        private NewsRepository $newsRepository,
+        private CommentRepository $commentRepository,
+        private UserRepository $userRepository
     ) {
     }
 
@@ -63,5 +70,40 @@ readonly class ArticleService
     {
         return $this->newsRepository->getRecentArticles(limit: $limit, relations: ['user'])
             ->map(fn (Article $article) => $this->convertArticleToDto($article));
+    }
+
+    public function createComment(Article $article, CreateCommentData $data): CommentData
+    {
+        $comment = (new Comment())
+            ->setContent($data->getContent())
+            ->setUser($data->getUser())
+            ->setArticle($article);
+
+        $this->commentRepository->push($comment);
+
+        return new CommentData(
+            id: $comment->getId(),
+            content: $comment->getContent(),
+            user: $this->userRepository->refreshRelations($data->getUser(), ['role']),
+            article: $article,
+            createdAt: $comment->getCreatedAt(),
+            updatedAt: $comment->getUpdatedAt(),
+        );
+    }
+
+    public function getComments(Article $article): Collection
+    {
+        return $this->commentRepository
+            ->withAllowedSorts(['created_at'])
+            ->withDefaultSorts(['created_at'])
+            ->getCommentsByArticle($article->getId(), relations: ['user.role'])
+            ->map(fn (Comment $comment) => new CommentData(
+                id: $comment->getId(),
+                content: $comment->getContent(),
+                user: $comment->user,
+                article: $article,
+                createdAt: $comment->getCreatedAt(),
+                updatedAt: $comment->getUpdatedAt(),
+            ));
     }
 }

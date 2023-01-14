@@ -15,6 +15,8 @@
 @use "components/messages";
 @use "components/lists";
 @use "components/side-panels";
+@use "components/utils";
+@use "components/roles";
 
 // Layouts
 @use "layouts/header";
@@ -25,6 +27,7 @@
 @use "layouts/ck-content";
 @use "layouts/navigation";
 @use "layouts/wallet";
+@use "layouts/community";
 
 body {
     background: url("../images/bg.png");

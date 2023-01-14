@@ -23,7 +23,6 @@ export const NavigationItem: FC<NavigationItemProps> = ({
             )}
         >
             <button
-                type="button"
                 className="nav__list-item-link"
                 onClick={showChildrenOnClick
                     ? () => setOpen((prevState: boolean) => !prevState)

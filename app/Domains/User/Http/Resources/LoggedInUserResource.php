@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domains\User\Http\Resources;
 
+use App\Domains\Auth\Http\Resources\RoleResource;
 use App\Domains\Hotel\Http\Resources\CurrencyResource;
 use App\Domains\User\Models\User;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -26,6 +27,7 @@ class LoggedInUserResource extends JsonResource
             'look' => $this->resource->getLook(),
             'online' => $this->resource->isOnline(),
             'credits' => $this->resource->getCredits(),
+            'role' => $this->whenLoaded('role', fn () => new RoleResource($this->resource->role)),
             'active_currencies' => $this->whenLoaded('activeCurrencies', function () {
                 return CurrencyResource::collection($this->resource->activeCurrencies);
             }),

@@ -5,7 +5,8 @@ declare(strict_types=1);
 namespace App\Http\Middleware;
 
 use App\Domains\User\Http\Resources\LoggedInUserResource;
-use App\Domains\User\Http\Resources\UserResource;
+use App\Domains\User\Models\User;
+use App\Domains\User\Repositories\UserRepository;
 use App\Exceptions\MessageTarget;
 use App\Exceptions\MessageType;
 use Illuminate\Http\Request;
@@ -14,6 +15,11 @@ use Symfony\Component\HttpFoundation\Response;
 
 class HandleInertiaRequests extends Middleware
 {
+    public function __construct(
+        private readonly UserRepository $userRepository
+    ) {
+    }
+
     /**
      * The root template that's loaded on the first page visit.
      *
@@ -45,8 +51,9 @@ class HandleInertiaRequests extends Middleware
 
     private function getUser(Request $request): ?LoggedInUserResource
     {
+        /** @var User $user */
         return ($user = $request->user())
-            ? new LoggedInUserResource($user->loadMissing('activeCurrencies'))
+            ? new LoggedInUserResource($this->userRepository->loadRelationsForAuth($user))
             : null;
     }
 
