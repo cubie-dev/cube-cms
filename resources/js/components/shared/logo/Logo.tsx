@@ -7,7 +7,7 @@ export interface LogoProps {
 }
 
 export const Logo: FC<LogoProps> = ({ variant }) => (
-    <Link href="/resources/js/pages">
+    <Link href="/">
         <div className={clsx('logo', `${variant}-logo`)} />
     </Link>
 );
