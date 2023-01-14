@@ -2,23 +2,19 @@
 
 declare(strict_types=1);
 
+use App\Domains\Core\Services\TranslationService;
+
 if (!function_exists('translations')) {
     /**
      * @return array<string, string>
      */
     function translations(string $locale): array
     {
-        $path = implode(DIRECTORY_SEPARATOR, [
-            app()->langPath(),
-            $locale,
-            'frontend.php'
-        ]);
+        return app(TranslationService::class)->getTranslationsForLocale($locale);
+    }
 
-
-        if (file_exists($path)) {
-            return include $path;
-        }
-
-        return [];
+    function web_trans(string $locale, string $key): string
+    {
+        return translations($locale)[$key] ?? $key;
     }
 }

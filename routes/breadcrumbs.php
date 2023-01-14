@@ -16,12 +16,12 @@ Breadcrumbs::for('home', static function (BreadcrumbTrail $trail) {
 
 Breadcrumbs::for('auth.login', static function (BreadcrumbTrail $trail) {
     $trail->parent('home');
-    $trail->push(trans('frontend.login.title'), route('auth.login'));
+    $trail->push(web_trans(app()->getLocale(), 'login.title'), route('auth.login'));
 });
 
 Breadcrumbs::for('auth.register', static function (BreadcrumbTrail $trail) {
     $trail->parent('home');
-    $trail->push(trans('frontend.register.title'), '#');
+    $trail->push(web_trans(app()->getLocale(), 'register.title'), '#');
 });
 
 Breadcrumbs::for('errors.404', static function (BreadcrumbTrail $trail) {
@@ -31,7 +31,7 @@ Breadcrumbs::for('errors.404', static function (BreadcrumbTrail $trail) {
 
 Breadcrumbs::for('community', static function (BreadcrumbTrail $trail) {
     $trail->parent('home');
-    $trail->push(trans('frontend.community.title'), '#');
+    $trail->push(web_trans(app()->getLocale(), 'community.title'), '#');
 });
 
 Breadcrumbs::for('community.news', static function (BreadcrumbTrail $trail) {

@@ -69,7 +69,7 @@ const Header: FC = () => {
                             <SpeechBubble arrowPosition="left">
                                 <strong>0</strong>
                                 {' '}
-                                <FormattedMessage id="header_online" />
+                                <FormattedMessage id="global.header_online" />
                             </SpeechBubble>
                         </div>
                         {!user && window.location.pathname.endsWith('login') && (

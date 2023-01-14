@@ -5,7 +5,7 @@ export const useTitle = (titleKey?: string) => {
     const intl = useIntl();
 
     return useMemo<string>(
-        () => `${intl.formatMessage({ id: 'hotel_name' })}: ${intl.formatMessage({ id: titleKey })}`,
+        () => `${intl.formatMessage({ id: 'global.hotel_name' })}: ${intl.formatMessage({ id: titleKey })}`,
         [titleKey]
     );
 };

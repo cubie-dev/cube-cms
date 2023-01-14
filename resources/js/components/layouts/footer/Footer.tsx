@@ -12,7 +12,7 @@ export const Footer: FC = () => (
                     <Logo variant="winter" />
                     <p className="footer-text">
                         <FormattedMessage
-                            id="footer_copyright"
+                            id="global.footer_copyright"
                             values={{
                                 // @TODO
                                 // eslint-disable-next-line react/no-unstable-nested-components
@@ -22,7 +22,7 @@ export const Footer: FC = () => (
                     </p>
                     <p className="footer-text">
                         <FormattedMessage
-                            id="footer_powered"
+                            id="global.footer_powered"
                             values={{
                                 // @TODO
                                 // eslint-disable-next-line react/no-unstable-nested-components
