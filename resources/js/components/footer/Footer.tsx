@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import { FormattedMessage } from 'react-intl';
-import { Card, CardContent } from '../../shared/card';
-import { Container } from '../../shared/container';
-import { Logo } from '../../shared/logo';
+import { Card, CardContent } from '../card';
+import { Container } from '../container';
+import { Logo } from '../logo';
 
 export const Footer: FC = () => (
     <Container className="footer-container">

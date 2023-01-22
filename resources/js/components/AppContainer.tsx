@@ -1,6 +1,6 @@
 import { FC, Fragment, ReactElement } from 'react';
 import { IntlProvider } from 'react-intl';
-import { SetupOptions } from '@inertiajs/inertia-react';
+import type { SetupOptions } from '@inertiajs/react/types/createInertiaApp';
 import { SharedProps } from '../SharedProps';
 
 export interface AppContainerProps {

@@ -1,11 +1,10 @@
-<?php
+<?php  // phpcs:disable PSR1.Files.SideEffects
 
 namespace App\Domains\Community\Dtos;
 
 use App\Domains\User\Models\User;
-use Spatie\LaravelData\Data;
 
-class CreateCommentData extends Data
+readonly class CreateCommentData
 {
     public function __construct(
         private string $content,

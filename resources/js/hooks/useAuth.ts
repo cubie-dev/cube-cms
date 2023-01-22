@@ -1,5 +1,5 @@
-import { usePage } from '@inertiajs/inertia-react';
-import { Page } from '@inertiajs/inertia';
+import { usePage } from '@inertiajs/react';
+import type { Page } from '@inertiajs/core';
 import { SharedProps } from '../SharedProps';
 
 export interface IAuth {
@@ -8,7 +8,7 @@ export interface IAuth {
 }
 
 export const useAuth = (): IAuth => {
-    const page = usePage<Page<SharedProps>>();
+    const page = usePage() as Page<SharedProps>;
 
     return {
         user: page.props.user,

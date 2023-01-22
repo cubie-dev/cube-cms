@@ -7,7 +7,7 @@ import {
     faExclamationCircle,
     faInfoCircle
 } from '@fortawesome/pro-regular-svg-icons';
-import { Variant } from '../../../interfaces/Variant';
+import { Variant } from '../../interfaces/Variant';
 
 export interface MessageProps {
     content: string;

@@ -3,9 +3,9 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { format } from 'date-fns';
 import Skeleton from 'react-loading-skeleton';
 import { IComment } from '../../../interfaces/community/IComment';
-import { Avatar } from '../../../components/shared/avatar';
-import { Card } from '../../../components/shared/card';
-import { RoleBadge } from '../../../components/shared/role/RoleBadge';
+import { Avatar } from '../../../components/avatar';
+import { Card } from '../../../components/card';
+import { RoleBadge } from '../../../components/role/RoleBadge';
 
 export interface CommentProps {
     comment: IComment;

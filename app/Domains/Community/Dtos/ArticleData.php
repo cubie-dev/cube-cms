@@ -1,4 +1,4 @@
-<?php
+<?php  // phpcs:disable PSR1.Files.SideEffects
 
 declare(strict_types=1);
 
@@ -6,23 +6,22 @@ namespace App\Domains\Community\Dtos;
 
 use App\Domains\User\Models\User;
 use Carbon\Carbon;
-use Spatie\LaravelData\Data;
 
-class ArticleData extends Data
+readonly class ArticleData
 {
     public function __construct(
-        private readonly int $id,
-        private readonly string $slug,
-        private readonly string $title,
-        private readonly string $description,
-        private readonly string $content,
-        private readonly string $image,
-        private readonly string $imagePath,
-        private readonly User $user,
-        private readonly Carbon $createdAt,
-        private readonly Carbon $updatedAt,
-        private readonly ?string $color = null,
-        private readonly ?string $textColor = null
+        private int $id,
+        private string $slug,
+        private string $title,
+        private string $description,
+        private string $content,
+        private string $image,
+        private string $imagePath,
+        private User $user,
+        private Carbon $createdAt,
+        private Carbon $updatedAt,
+        private ?string $color = null,
+        private ?string $textColor = null
     ) {
     }
 

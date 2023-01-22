@@ -5,7 +5,7 @@ import axios, {
     Method
 } from 'axios';
 import { useCallback, useMemo, useState } from 'react';
-import { Inertia } from '@inertiajs/inertia';
+import { router } from '@inertiajs/react';
 
 type Errors<T> = {
     [key in keyof T]: string[];
@@ -43,7 +43,7 @@ export const useAxiosForm = <T>(data: T, axiosConfig?: AxiosRequestConfig) => {
             // try to reload the page without any props, to see whether
             // the user is still logged in or not, so a redirect will
             // happen
-            Inertia.reload({ only: [] });
+            router.reload({ only: [] });
         }
 
         if (error.response?.status === 422) {

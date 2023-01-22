@@ -10,8 +10,8 @@ import {
     CardContent,
     CardHeader,
     CardImage
-} from '../../components/shared/card';
-import { Grid } from '../../components/shared/grid';
+} from '../../components/card';
+import { Grid } from '../../components/grid';
 
 export const RecentNews = () => {
     const [processing, setProcessing] = useState(true);

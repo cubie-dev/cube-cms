@@ -9,17 +9,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencil } from '@fortawesome/pro-regular-svg-icons';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { IArticle } from '../../../interfaces/community/IArticle';
-import { Card, CardContent, CardHeader } from '../../../components/shared/card';
+import { Card, CardContent, CardHeader } from '../../../components/card';
 import {
     FormGroup,
     FormMessage,
     FormSelect,
     FormTextarea
-} from '../../../components/shared/forms';
-import { Spacing } from '../../../components/shared/utils';
+} from '../../../components/forms';
+import { Spacing } from '../../../components/utils';
 import { useAxiosForm } from '../../../support/useAxiosForm';
-import { Button } from '../../../components/shared/button';
-import { Flex } from '../../../components/shared/utils/Flex';
+import { Button } from '../../../components/button';
+import { Flex } from '../../../components/utils/Flex';
 import { IComment } from '../../../interfaces/community/IComment';
 import { IDataObject } from '../../../interfaces/IDataObject';
 import { Comment, CommentSkeleton } from './Comment';

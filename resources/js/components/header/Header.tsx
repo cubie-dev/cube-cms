@@ -4,27 +4,27 @@ import {
     useEffect, useMemo,
     useState
 } from 'react';
-import { Link, usePage } from '@inertiajs/inertia-react';
-import { Page } from '@inertiajs/inertia';
+import { Link, usePage } from '@inertiajs/react';
+import type { Page } from '@inertiajs/core';
 import { FormattedMessage } from 'react-intl';
 import { Bars3Icon } from '@heroicons/react/24/outline';
-import { Container } from '../../shared/container';
-import { Logo } from '../../shared/logo';
+import { Container } from '../container';
+import { Logo } from '../logo';
 import { Breadcrumbs } from '../breadcrumbs';
-import { useAuth } from '../../../hooks/useAuth';
+import { useAuth } from '../../hooks/useAuth';
 import { Toolbar } from './Toolbar';
-import { SharedProps } from '../../../SharedProps';
-import { Avatar } from '../../shared/avatar';
-import { SpeechBubble } from '../../shared/speech-bubble/SpeechBubble';
+import { SharedProps } from '../../SharedProps';
+import { Avatar } from '../avatar';
+import { SpeechBubble } from '../speech-bubble/SpeechBubble';
 import { NavigationContext } from '../navigation/NavigationContext';
 import { Navigation } from '../navigation/Navigation';
 import { MobileNavigation } from '../navigation/MobileNavigation';
-import { Button } from '../../shared/button';
+import { Button } from '../button';
 import { Wallet } from './Wallet';
 
 const Header: FC = () => {
     const { user } = useAuth();
-    const { props: { breadcrumbs } } = usePage<Page<SharedProps>>();
+    const { props: { breadcrumbs } } = usePage() as Page<SharedProps>;
 
     const shouldShowNavigation = useCallback<() => boolean>(() => !!user, [!!user]);
 

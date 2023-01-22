@@ -2,8 +2,8 @@ import { FC, useMemo } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome } from '@fortawesome/pro-regular-svg-icons';
 import clsx from 'clsx';
-import { Link } from '@inertiajs/inertia-react';
-import { IBreadcrumb, IBreadcrumbs } from '../../../interfaces/IBreadcrumbs';
+import { Link } from '@inertiajs/react';
+import { IBreadcrumb, IBreadcrumbs } from '../../interfaces/IBreadcrumbs';
 
 export interface BreadcrumbsProps {
     breadcrumbs: IBreadcrumbs;

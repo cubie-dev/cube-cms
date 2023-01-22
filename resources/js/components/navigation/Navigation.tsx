@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import clsx from 'clsx';
-import { useRoutes } from '../../../config/useRoutes';
+import { useRoutes } from '../../config/useRoutes';
 import { NavigationItem } from './NavigationItem';
-import { Container } from '../../shared/container';
+import { Container } from '../container';
 
 export const Navigation: FC = () => {
     const routes = useRoutes();

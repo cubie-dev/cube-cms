@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import { useIntl } from 'react-intl';
 import clsx from 'clsx';
-import { useAuth } from '../../../hooks/useAuth';
-import { ICurrency } from '../../../interfaces/ICurrency';
+import { useAuth } from '../../hooks/useAuth';
+import { ICurrency } from '../../interfaces/ICurrency';
 
 export const Wallet: FC = () => {
     const { user } = useAuth();

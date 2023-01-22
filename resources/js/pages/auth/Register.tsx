@@ -1,5 +1,5 @@
 import { FormattedMessage, useIntl } from 'react-intl';
-import { useForm } from '@inertiajs/inertia-react';
+import { useForm } from '@inertiajs/react';
 import {
     FC,
     FormEvent,
@@ -7,17 +7,17 @@ import {
 } from 'react';
 import { faChevronLeft } from '@fortawesome/pro-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Grid } from '../../components/shared/grid';
+import { Grid } from '../../components/grid';
 import { Page } from '../../components/page';
-import { Card, CardContent, CardHeader } from '../../components/shared/card';
+import { Card, CardContent, CardHeader } from '../../components/card';
 import {
     FormGroup, FormInput, FormLabel, FormMessage, FormSelect
-} from '../../components/shared/forms';
-import { Button } from '../../components/shared/button';
+} from '../../components/forms';
+import { Button } from '../../components/button';
 
 import '../../../style/layouts/_register.scss';
 import { useFlashMessages } from '../../hooks/useFlashMessages';
-import { Message, MessageProps } from '../../components/shared/message/Message';
+import { Message, MessageProps } from '../../components/message/Message';
 
 const Register: FC = () => {
     const intl = useIntl();

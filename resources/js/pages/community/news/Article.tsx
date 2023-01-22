@@ -1,6 +1,6 @@
 import { FormattedMessage, useIntl } from 'react-intl';
-import { usePage } from '@inertiajs/inertia-react';
-import { Page as InertiaPage } from '@inertiajs/inertia';
+import { usePage } from '@inertiajs/react';
+import type { Page as InertiaPage } from '@inertiajs/core';
 import { format } from 'date-fns';
 import { FC } from 'react';
 import { IArticle } from '../../../interfaces/community/IArticle';
@@ -11,7 +11,7 @@ import {
     CardContent,
     CardHeader,
     CardImage
-} from '../../../components/shared/card';
+} from '../../../components/card';
 import { IDataObject } from '../../../interfaces/IDataObject';
 import { RecentNews } from './RecentNews';
 import { Comments } from './Comments';
@@ -21,7 +21,7 @@ export interface ArticleProps {
 }
 
 const Article: FC = () => {
-    const { props: { article } } = usePage<InertiaPage<SharedProps & ArticleProps>>();
+    const { props: { article } } = usePage() as InertiaPage<SharedProps & ArticleProps>;
     const intl = useIntl();
 
     return (

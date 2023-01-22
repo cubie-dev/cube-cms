@@ -1,8 +1,8 @@
 import { FC, PropsWithChildren } from 'react';
-import { Head } from '@inertiajs/inertia-react';
-import { Header } from '../layouts/header';
-import { Container } from '../shared/container';
-import { Footer } from '../layouts/footer';
+import { Head } from '@inertiajs/react';
+import { Header } from '../header';
+import { Container } from '../container';
+import { Footer } from '../footer';
 import { useTitle } from '../../hooks/useTitle';
 
 export interface PageProps {

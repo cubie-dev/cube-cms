@@ -6,8 +6,8 @@ import {
     ReactNode
 } from 'react';
 import clsx from 'clsx';
-import { Link } from '@inertiajs/inertia-react';
-import { Variant } from '../../../interfaces/Variant';
+import { Link } from '@inertiajs/react';
+import { Variant } from '../../interfaces/Variant';
 
 export interface ButtonProps extends PropsWithChildren<ButtonHTMLAttributes<HTMLButtonElement>> {
     variant?: Variant;

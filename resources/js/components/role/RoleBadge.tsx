@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import clsx from 'clsx';
-import { IRole } from '../../../interfaces/auth/IRole';
+import { IRole } from '../../interfaces/auth/IRole';
 
 export interface RoleBadgeProps {
     role: IRole;

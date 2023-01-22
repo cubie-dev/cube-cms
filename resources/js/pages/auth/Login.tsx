@@ -1,6 +1,6 @@
-import { Page as IPage } from '@inertiajs/inertia';
+import type { Page as PageInterface } from '@inertiajs/core';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { useForm, usePage } from '@inertiajs/inertia-react';
+import { useForm, usePage } from '@inertiajs/react';
 import { FC, FormEvent, useCallback } from 'react';
 import { Page } from '../../components/page';
 import {
@@ -8,19 +8,19 @@ import {
     CardContent,
     CardHeader,
     CardImage
-} from '../../components/shared/card';
-import { Grid } from '../../components/shared/grid';
+} from '../../components/card';
+import { Grid } from '../../components/grid';
 import {
     FormGroup,
     FormLabel,
     FormInput,
     FormMessage
-} from '../../components/shared/forms';
-import { Button } from '../../components/shared/button';
-import { Message, MessageProps } from '../../components/shared/message/Message';
+} from '../../components/forms';
+import { Button } from '../../components/button';
+import { Message, MessageProps } from '../../components/message/Message';
 import { useFlashMessages } from '../../hooks/useFlashMessages';
-import { List, ListItem } from '../../components/shared/list';
-import { Avatar } from '../../components/shared/avatar';
+import { List, ListItem } from '../../components/list';
+import { Avatar } from '../../components/avatar';
 import '../../../style/layouts/_login.scss';
 import { SharedProps } from '../../SharedProps';
 import { IUser } from '../../interfaces/IUser';
@@ -39,7 +39,7 @@ const Login: FC = () => {
         password: ''
     });
 
-    const { props: { newestUsers } } = usePage<IPage<SharedProps & LoginPageProps>>();
+    const { props: { newestUsers } } = usePage() as PageInterface<SharedProps & LoginPageProps>;
 
     const onSubmit = useCallback((event: FormEvent) => {
         event.preventDefault();

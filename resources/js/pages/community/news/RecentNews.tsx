@@ -4,7 +4,7 @@ import { useIntl } from 'react-intl';
 import Skeleton from 'react-loading-skeleton';
 import { IArticle } from '../../../interfaces/community/IArticle';
 import { IResponse } from '../../../interfaces/IResponse';
-import { List, ListItem } from '../../../components/shared/list';
+import { List, ListItem } from '../../../components/list';
 import { localeFormat } from '../../../support/localeFormat';
 
 export const RecentNews = () => {

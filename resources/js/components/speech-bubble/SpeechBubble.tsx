@@ -1,6 +1,6 @@
 import { FC, PropsWithChildren } from 'react';
 import clsx from 'clsx';
-import { Position } from '../../../interfaces/Position';
+import { Position } from '../../interfaces/Position';
 
 export interface SpeechBubbleProps {
     arrowPosition: Position;

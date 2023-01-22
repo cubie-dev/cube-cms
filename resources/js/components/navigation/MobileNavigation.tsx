@@ -1,7 +1,7 @@
 import { FC } from 'react';
-import { SidePanel } from '../../shared/panel/SidePanel';
+import { SidePanel } from '../panel/SidePanel';
 import { NavigationContext } from './NavigationContext';
-import { useRoutes } from '../../../config/useRoutes';
+import { useRoutes } from '../../config/useRoutes';
 import { NavigationItem } from './NavigationItem';
 
 export const MobileNavigation: FC = () => {

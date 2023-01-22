@@ -1,5 +1,5 @@
 import { FC, PropsWithChildren } from 'react';
-import { Container } from '../../shared/container';
+import { Container } from '../container';
 
 export const Toolbar: FC<PropsWithChildren> = ({ children }) => (
     <div className="header-toolbar">

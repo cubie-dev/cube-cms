@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
 import clsx from 'clsx';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Route } from '../../../config/Route';
+import { Route } from '../../config/Route';
 
 export interface NavigationItemProps {
     route: Route;

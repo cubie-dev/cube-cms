@@ -1,9 +1,9 @@
-import { usePage } from '@inertiajs/inertia-react';
-import { Page } from '@inertiajs/inertia';
+import { usePage } from '@inertiajs/react';
+import type { Page } from '@inertiajs/core';
 import { SharedProps } from '../SharedProps';
 
 export const useFlashMessages = (target: string|undefined = undefined) => {
-    const { props: { flash: { messages } } } = usePage<Page<SharedProps>>();
+    const { props: { flash: { messages } } } = usePage() as Page<SharedProps>;
 
     if (!target) {
         return messages;

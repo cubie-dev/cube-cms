@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Page } from '../../components/page';
-import { Grid } from '../../components/shared/grid';
+import { Grid } from '../../components/grid';
 import { RecentNews } from './RecentNews';
 
 const Me: FC = () => (
