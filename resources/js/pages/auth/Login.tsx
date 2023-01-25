@@ -33,7 +33,11 @@ export interface LoginPageProps {
 const Login: FC = () => {
     const intl = useIntl();
     const {
-        data, setData, put, errors, clearErrors
+        data,
+        setData,
+        put,
+        errors,
+        clearErrors
     } = useForm({
         username: '',
         password: ''
@@ -119,7 +123,7 @@ const Login: FC = () => {
                         <FormattedMessage id="login.info_card_content" />
                     </CardContent>
                 </Card>
-                <Card className="newest-users-card">
+                <Card>
                     <CardHeader
                         title={intl.formatMessage({ id: 'login.new_users_card_title' })}
                         subTitle={intl.formatMessage({ id: 'login.new_users_card_subtitle' })}
@@ -127,18 +131,14 @@ const Login: FC = () => {
                     <CardContent spacing={false}>
                         <List rowed>
                             {newestUsers.data.map((user: IUser) => (
-                                <ListItem key={user.id}>
-                                    <div className="new-user-container">
-                                        <div className="avatar">
-                                            <Avatar
-                                                figure={user.look}
-                                                direction={2}
-                                            />
-                                        </div>
-                                        <div>
-                                            <div><strong>{user.username}</strong></div>
-                                            <span className="helper-text">{user.motto}</span>
-                                        </div>
+                                <ListItem className="list-item--user" key={user.id}>
+                                    <Avatar
+                                        figure={user.look}
+                                        direction={2}
+                                    />
+                                    <div>
+                                        <div><strong>{user.username}</strong></div>
+                                        <span className="helper-text">{user.motto}</span>
                                     </div>
                                 </ListItem>
                             ))}

@@ -1,3 +1,5 @@
+@use "../utilities/colors";
+
 .article-comments--section, .article-comments--container {
     margin: 2rem 0;
 }
@@ -31,5 +33,60 @@
 
     &__content-body {
         padding: 1.5rem;
+    }
+}
+
+.card-image.card-image__top-users {
+    height: 150px;
+    padding: 0 1rem;
+    overflow: hidden;
+    justify-content: space-between;
+    background-image: url("../images/headers/clouds.png");
+    background-position: left bottom;
+    background-color: colors.get('teal', 200);
+
+    .olympus {
+        background: url("../images/community/stats/olympus.png");
+        height: 130px;
+        width: 92px;
+        margin-top: 30px;
+        filter: drop-shadow(0 1px 0 #FFF) drop-shadow(0 -1px 0 #FFF) drop-shadow(1px 0 0 #FFF) drop-shadow(-1px 0 0 #FFF) drop-shadow(0 0 10px transparent);
+    }
+
+    .trophy {
+        background: url("../images/community/stats/trophy.png");
+        height: 107px;
+        width: 44px;
+        margin-top: 121px;
+        transform: scaleX(-1);
+        filter: drop-shadow(0 1px 0 #FFF) drop-shadow(0 -1px 0 #FFF) drop-shadow(1px 0 0 #FFF) drop-shadow(-1px 0 0 #FFF) drop-shadow(0 0 10px transparent);
+    }
+
+    .podium {
+        background: url("../images/community/stats/podium.png");
+        height: 95px;
+        width: 124px;
+        margin-top: 90px;
+        position: relative;
+        filter: drop-shadow(0 1px 0 #FFF) drop-shadow(0 -1px 0 #FFF) drop-shadow(1px 0 0 #FFF) drop-shadow(-1px 0 0 #FFF) drop-shadow(0 0 10px transparent);
+
+        .avatar {
+            position: absolute;
+
+            &.stats-avatar--first {
+                top: -85px;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            &.stats-avatar--second {
+                top: -52px;
+                left: -2px;
+            }
+
+            &.stats-avatar--third {
+                right: 0;
+                top: -46px;
+            }
+        }
     }
 }

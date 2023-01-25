@@ -7,6 +7,7 @@ const gridSafeList = () => {
         'grid-cols-2',
         'grid-cols-4',
         'grid-cols-6',
+        'md:grid-cols-3',
         'md:grid-cols-4',
         'gap-8',
     ];

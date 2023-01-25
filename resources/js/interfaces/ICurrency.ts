@@ -1,6 +1,6 @@
 export interface ICurrency {
     amount: number;
-    type: {
+    type: { // @TODO interface
         id: number;
         name: string;
         active: boolean;

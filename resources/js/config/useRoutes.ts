@@ -16,5 +16,14 @@ export const useRoutes = (): Route[] => {
             path: '/logout',
             text: intl.formatMessage({ id: 'navigation.logout' })
         }]
+    }, {
+        path: '/community',
+        text: intl.formatMessage({ id: 'community.title' }),
+        icon: 'newspaper',
+        color: 'orange',
+        children: [{
+            path: '/community/stats',
+            text: intl.formatMessage({ id: 'community.stats.title' })
+        }]
     }], [user?.data.username]);
 };

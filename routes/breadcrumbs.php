@@ -44,6 +44,11 @@ Breadcrumbs::for('community.news.article', static function (BreadcrumbTrail $tra
     $trail->push($article->getSlug(), route('community.news.article', $article->getSlug()));
 });
 
+Breadcrumbs::for('community.stats', static function (BreadcrumbTrail $trail) {
+    $trail->parent('community');
+    $trail->push(web_trans(app()->getLocale(), 'community.stats.title'), route('community.stats'));
+});
+
 Breadcrumbs::for('user.me', static function (BreadcrumbTrail $trail) {
     $trail->parent('home');
     $trail->push(auth()->user()?->getUsername() ?? '', route('user.me'));

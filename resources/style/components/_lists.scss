@@ -7,6 +7,21 @@
         align-items: center;
         justify-content: flex-start;
 
+        &:last-child {
+            border-bottom-left-radius: var(--border-radius);
+            border-bottom-right-radius: var(--border-radius);
+        }
+
+        &--user {
+            height: 80px;
+            overflow-y: hidden;
+            padding: 0 1rem;
+
+            .avatar {
+                align-self: baseline;
+            }
+        }
+
         .list-item-link {
             display: flex;
             width: 100%;
@@ -35,8 +50,8 @@
         }
     }
 
-    &.list--rowed {
-        &.list-item:nth-child(even) {
+    &--rowed {
+        .list-item:nth-child(even) {
             background: var(--light-background);
         }
     }

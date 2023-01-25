@@ -3,6 +3,7 @@ import { useIntl } from 'react-intl';
 import clsx from 'clsx';
 import { useAuth } from '../../hooks/useAuth';
 import { ICurrency } from '../../interfaces/ICurrency';
+import { Currency } from '../currency/Currency';
 
 export const Wallet: FC = () => {
     const { user } = useAuth();
@@ -24,12 +25,12 @@ export const Wallet: FC = () => {
                     )}
                     key={currency.type.name}
                 >
-                    <img
-                        alt={currency.type.name}
-                        src={currency.icon_url}
+                    <Currency
+                        type={currency.type.name}
+                        iconUrl={currency.icon_url}
                         className="user__wallet-item-icon"
+                        amount={currency.amount}
                     />
-                    {intl.formatNumber(currency.amount, { notation: 'compact' })}
                 </div>
             ))}
         </div>
