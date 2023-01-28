@@ -24,4 +24,8 @@ $router->middleware(['web', 'auth'])->prefix('community')->group(function (Route
     // stats
     $community->get('stats', [StatsController::class, 'showStats'])
         ->name('community.stats');
+
+    //staff
+    $community->get('staff', [\App\Domains\Community\Http\Controllers\StaffController::class, 'showStaff'])
+        ->name('community.staff');
 });

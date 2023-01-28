@@ -27,4 +27,6 @@ return [
     'stats.rooms.subtitle' => 'Leden met de meeste kamers',
     'stats.online.title' => 'Meest online',
     'stats.online.subtitle' => 'Leden die het meest online zijn geweest',
+
+    'staff.title' => 'Staff',
 ];
