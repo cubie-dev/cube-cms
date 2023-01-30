@@ -13,53 +13,36 @@ use Spatie\QueryBuilder\QueryBuilder;
  */
 abstract class Repository
 {
-    protected QueryBuilder|Model $queryBuilder;
-
-    public function __construct()
+    /**
+     * @param int $id
+     * @param \Closure<QueryBuilderOptions> $builderOptions
+     */
+    public function find(int $id, \Closure $builderOptions)
     {
-        $this->queryBuilder = $this->makeQueryBuilder();
+        return $this
+            ->getQueryBuilder($builderOptions)
+            ->find($id);
     }
 
     /**
-     * @return TEntity|QueryBuilder<TEntity>
+     * @param \Closure|null $builderOptions
+     * @return QueryBuilder<TEntity>|TEntity
      */
-    protected function getQueryBuilder(): Model|QueryBuilder
+    protected function getQueryBuilder(?\Closure $builderOptions = null): QueryBuilder
     {
-        return clone $this->queryBuilder;
+        $builder = clone $this->makeQueryBuilder();
+
+        if ($builderOptions !== null) {
+            $builderOptions(new QueryBuilderOptions($builder));
+        }
+
+        return $builder;
     }
 
     /**
      * @return QueryBuilder<TEntity>
      */
     abstract protected function makeQueryBuilder(): QueryBuilder;
-
-    public function withAllowedIncludes(array $allowedIncludes): Repository
-    {
-        $this->queryBuilder = $this->getQueryBuilder()->allowedIncludes($allowedIncludes);
-
-        return $this;
-    }
-
-    public function withAllowedFilters(array $allowedFilters): Repository
-    {
-        $this->queryBuilder = $this->getQueryBuilder()->allowedFilters($allowedFilters);
-
-        return $this;
-    }
-
-    public function withAllowedSorts(array $allowedSorts): Repository
-    {
-        $this->queryBuilder = $this->getQueryBuilder()->allowedSorts($allowedSorts);
-
-        return $this;
-    }
-
-    public function withDefaultSorts(array $defaultSorts): Repository
-    {
-        $this->queryBuilder = $this->getQueryBuilder()->defaultSorts($defaultSorts);
-
-        return $this;
-    }
 
     public function push(Model $model): bool
     {

@@ -11,6 +11,7 @@ use App\Domains\Community\Models\Article;
 use App\Domains\Community\Models\Comment;
 use App\Domains\Community\Repositories\CommentRepository;
 use App\Domains\Community\Repositories\NewsRepository;
+use App\Domains\Core\Repositories\QueryBuilderOptions;
 use App\Domains\User\Repositories\UserRepository;
 use HTMLPurifier;
 use Illuminate\Cache\CacheManager;
@@ -35,7 +36,7 @@ readonly class ArticleService
         return $this->cacheManager->remember(
             sprintf(self::ARTICLE_CONTENT_CACHE_KEY, $article->getId()),
             self::ARTICLE_CONTENT_CACHE_TTL,
-            fn () => $this->purifier->purify($article->getContent())
+            fn() => $this->purifier->purify($article->getContent())
         );
     }
 
@@ -69,7 +70,7 @@ readonly class ArticleService
     public function getRecentArticles(int $limit = 5): Collection
     {
         return $this->newsRepository->getRecentArticles(limit: $limit, relations: ['user'])
-            ->map(fn (Article $article) => $this->convertArticleToDto($article));
+            ->map(fn(Article $article) => $this->convertArticleToDto($article));
     }
 
     public function createComment(Article $article, CreateCommentData $data): CommentData
@@ -94,10 +95,13 @@ readonly class ArticleService
     public function getComments(Article $article): Collection
     {
         return $this->commentRepository
-            ->withAllowedSorts(['created_at'])
-            ->withDefaultSorts(['created_at'])
-            ->getCommentsByArticle($article->getId(), relations: ['user.role'])
-            ->map(fn (Comment $comment) => new CommentData(
+            ->getCommentsByArticle($article->getId(), function (QueryBuilderOptions $options) {
+                return $options
+                    ->withRelations(['user.role'])
+                    ->withAllowedSorts(['created_at'])
+                    ->withDefaultSorts(['created_at']);
+            })
+            ->map(fn(Comment $comment) => new CommentData(
                 id: $comment->getId(),
                 content: $comment->getContent(),
                 user: $comment->user,
