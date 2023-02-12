@@ -6,4 +6,5 @@ export interface IUser {
     look: string;
     motto: string;
     role?: IRole;
+    active_badges?:
 }

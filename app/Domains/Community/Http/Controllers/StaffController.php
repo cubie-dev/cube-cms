@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Domains\Community\Http\Controllers;
 
+use App\Domains\Community\Http\Resources\Staff\RoleResource;
+use App\Domains\Community\Http\Resources\Staff\StaffResource;
 use App\Domains\Community\Services\RoleService;
 use App\Http\Controllers\Controller;
 use Diglactic\Breadcrumbs\Breadcrumbs;
@@ -12,7 +14,7 @@ use Inertia\Response;
 class StaffController extends Controller
 {
     public function __construct(
-        private readonly RoleService $staffService
+        private readonly RoleService $roleService
     ) {
     }
 
@@ -21,7 +23,7 @@ class StaffController extends Controller
         return inertia()->render(
             component: 'community/staff/Staff',
             props: [
-                'staff' => $this->staffService->getRoles(),
+                'staff' => RoleResource::collection($this->roleService->getStaffMembers()),
                 'breadcrumbs' => fn () => Breadcrumbs::generate('community.staff'),
             ]
         );

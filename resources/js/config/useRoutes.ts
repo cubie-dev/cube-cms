@@ -24,6 +24,9 @@ export const useRoutes = (): Route[] => {
         children: [{
             path: '/community/stats',
             text: intl.formatMessage({ id: 'community.stats.title' })
+        }, {
+            path: '/community/staff',
+            text: intl.formatMessage({ id: 'community.staff.title' })
         }]
     }], [user?.data.username]);
 };

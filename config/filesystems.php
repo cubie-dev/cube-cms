@@ -52,6 +52,13 @@ return [
             'visibility' => 'public',
             'throw' => false,
         ],
+        'badges' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/badges'),
+            'url' => env('APP_URL') . '/assets/badges',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
 
         's3' => [
             'driver' => 's3',
@@ -80,6 +87,7 @@ return [
 
     'links' => [
         public_path('storage') => storage_path('app/public'),
+        public_path('assets/badges') => env('BADGES_PATH'),
     ],
 
 ];

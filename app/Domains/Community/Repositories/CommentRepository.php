@@ -3,7 +3,6 @@
 namespace App\Domains\Community\Repositories;
 
 use App\Domains\Community\Models\Comment;
-use App\Domains\Core\Repositories\QueryBuilderOptions;
 use App\Domains\Core\Repositories\Repository;
 use Illuminate\Database\Eloquent\Collection;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -20,14 +19,11 @@ class CommentRepository extends Repository
 
     /**
      * @param int $articleId
-     * @param \Closure<QueryBuilderOptions> $builderOptions
      * @return Collection<int, Comment>
      */
-    public function getCommentsByArticle(
-        int $articleId,
-        \Closure $builderOptions,
-    ): Collection {
-        return $this->getQueryBuilder($builderOptions)
+    public function getCommentsByArticle(int $articleId): Collection
+    {
+        return $this->getQueryBuilder()
             ->where('article_id', $articleId)
             ->orderBy('created_at', 'desc')
             ->get();

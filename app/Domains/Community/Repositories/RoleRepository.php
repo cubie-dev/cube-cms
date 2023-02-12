@@ -24,10 +24,11 @@ class RoleRepository extends Repository
      * @param int $level
      * @return Collection<Role>
      */
-    public function getStaffAboveLevel(int $level): Collection
+    public function getRolesAboveLevel(int $level): Collection
     {
         return $this->getQueryBuilder()
             ->where('level', '>=', $level)
+            ->orderByDesc('level')
             ->get();
     }
 }

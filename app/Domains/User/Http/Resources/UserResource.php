@@ -24,6 +24,10 @@ class UserResource extends JsonResource
             'username' => $this->resource->getUsername(),
             'motto' => $this->resource->getMotto(),
             'role' => $this->whenLoaded('role', fn () => new RoleResource($this->resource->role)),
+            'active_badges' => $this->whenLoaded(
+                'activeBadges',
+                fn () => BadgeResource::collection($this->resource->activeBadges)
+            )
         ];
     }
 }

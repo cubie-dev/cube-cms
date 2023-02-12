@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace App\Domains\Community\Services;
 
 use App\Domains\Auth\Models\Role;
-use App\Domains\Community\Dtos\StaffData;
+use App\Domains\Community\Dtos\RoleData;
 use App\Domains\Community\Repositories\RoleRepository;
+use App\Domains\Core\Repositories\QueryBuilderOptions;
+use Illuminate\Database\Eloquent\Collection;
 
 class RoleService
 {
@@ -15,24 +17,15 @@ class RoleService
     ) {
     }
 
-    public function convertModelToDto(Role $role)
-    {
-        return new StaffData(
-            id: $role->getId(),
-            name: $role->getName(),
-            users: $role->users
-        );
-    }
-
     /**
-     * @return StaffData[]
+     * @return Collection<Role>
      */
-    public function getRoles(int $minimumLevel = 1): array
+    public function getStaffMembers(): Collection
     {
-        $roles = $this->roleRepository
-            ->withRelations('users')
-            ->getStaffAboveLevel($minimumLevel);
-
-        return $roles->map(fn (Role $role) => $this->convertModelToDto($role))->toArray();
+        return $this->roleRepository
+            ->withBuilderOptions(function (QueryBuilderOptions $builder) {
+                return $builder->withRelations('users.activeBadges');
+            })
+            ->getRolesAboveLevel(level: 3); // @TODO make this configurable
     }
 }

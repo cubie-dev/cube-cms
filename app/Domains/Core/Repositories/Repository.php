@@ -13,30 +13,46 @@ use Spatie\QueryBuilder\QueryBuilder;
  */
 abstract class Repository
 {
+    private ?QueryBuilder $queryBuilder;
+
+    public function __construct()
+    {
+        $this->queryBuilder = $this->makeQueryBuilder();
+    }
+
+    protected function setQueryBuilder(QueryBuilder $queryBuilder): self
+    {
+        $this->queryBuilder = $queryBuilder;
+
+        return $this;
+    }
+
     /**
      * @param int $id
      * @param \Closure<QueryBuilderOptions> $builderOptions
      */
-    public function find(int $id, \Closure $builderOptions)
+    public function find(int $id)
     {
         return $this
-            ->getQueryBuilder($builderOptions)
+            ->getQueryBuilder()
             ->find($id);
     }
 
-    /**
-     * @param \Closure|null $builderOptions
-     * @return QueryBuilder<TEntity>|TEntity
-     */
-    protected function getQueryBuilder(?\Closure $builderOptions = null): QueryBuilder
+    public function withBuilderOptions(\Closure $builderOptions): static
     {
         $builder = clone $this->makeQueryBuilder();
 
-        if ($builderOptions !== null) {
-            $builderOptions(new QueryBuilderOptions($builder));
-        }
+        $builderOptions(new QueryBuilderOptions($builder));
 
-        return $builder;
+        return (new static())->setQueryBuilder($builder);
+    }
+
+    /**
+     * @return QueryBuilder<TEntity>|TEntity
+     */
+    protected function getQueryBuilder(): QueryBuilder
+    {
+        return clone $this->queryBuilder;
     }
 
     /**

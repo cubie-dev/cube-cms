@@ -69,7 +69,11 @@ readonly class ArticleService
      */
     public function getRecentArticles(int $limit = 5): Collection
     {
-        return $this->newsRepository->getRecentArticles(limit: $limit, relations: ['user'])
+        return $this->newsRepository
+            ->withBuilderOptions(function (QueryBuilderOptions $builderOptions) {
+                return $builderOptions->withRelations(['user']);
+            })
+            ->getRecentArticles(limit: $limit)
             ->map(fn(Article $article) => $this->convertArticleToDto($article));
     }
 
@@ -95,12 +99,13 @@ readonly class ArticleService
     public function getComments(Article $article): Collection
     {
         return $this->commentRepository
-            ->getCommentsByArticle($article->getId(), function (QueryBuilderOptions $options) {
+            ->withBuilderOptions(function (QueryBuilderOptions $options) {
                 return $options
                     ->withRelations(['user.role'])
                     ->withAllowedSorts(['created_at'])
                     ->withDefaultSorts(['created_at']);
             })
+            ->getCommentsByArticle($article->getId())
             ->map(fn(Comment $comment) => new CommentData(
                 id: $comment->getId(),
                 content: $comment->getContent(),

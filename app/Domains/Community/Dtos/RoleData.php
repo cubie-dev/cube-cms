@@ -5,16 +5,19 @@ declare(strict_types=1);
 namespace App\Domains\Community\Dtos;
 
 use App\Domains\User\Models\User;
+use Illuminate\Support\Collection;
 
-readonly class StaffData
+readonly class RoleData
 {
     /**
-     * @param User[] $users
+     * @param int $id
+     * @param string $name
+     * @param Collection<int, User> $users
      */
     public function __construct(
         private int $id,
         private string $name,
-        private array $users
+        private Collection $users
     ) {
     }
 
@@ -29,9 +32,9 @@ readonly class StaffData
     }
 
     /**
-     * @return User[]
+     * @return Collection<User>
      */
-    public function getUser(): array
+    public function getUsers(): Collection
     {
         return $this->users;
     }
