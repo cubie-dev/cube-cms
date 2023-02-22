@@ -38,32 +38,6 @@
         align-items: center;
     }
 
-    .user-info {
-        flex: 1;
-        display: flex;
-        justify-content: right;
-
-        .platform {
-            background-image: url("../images/header/platform.png");
-            background-repeat: no-repeat;
-            background-position: bottom;
-            height: 60px;
-            width: 68px;
-            image-rendering: pixelated;
-            position: relative;
-
-            .avatar {
-                margin-top: -44px;
-                margin-left: 6px;
-            }
-        }
-
-        .speech-bubble {
-            align-self: baseline;
-            margin-top: -100px;
-        }
-    }
-
     .header-toolbar__item {
         &:not(:last-child) {
             margin-right: 1rem;

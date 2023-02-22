@@ -1,7 +1,12 @@
-import { FC, PropsWithChildren, useCallback } from 'react';
-import clsx from 'clsx';
+import {
+    FC,
+    ImgHTMLAttributes,
+    PropsWithChildren,
+    useCallback
+} from 'react';
+import { css } from '@emotion/react';
 
-export interface AvatarProps extends PropsWithChildren {
+export interface AvatarProps extends ImgHTMLAttributes<HTMLImageElement> {
     figure: string;
     action?: 'sit';
     direction?: 1 | 2 | 3 | 4 | 5 | 6;
@@ -14,7 +19,7 @@ export interface AvatarProps extends PropsWithChildren {
     className?: string;
 }
 
-export const Avatar: FC<AvatarProps> = ({
+export const Avatar: FC<PropsWithChildren<AvatarProps>> = ({
     figure,
     action = 'std',
     direction = 3,
@@ -24,7 +29,8 @@ export const Avatar: FC<AvatarProps> = ({
     size = 'm',
     gesture = 'sml',
     outline,
-    className,
+    alt,
+    ...rest
 }) => {
     // @TODO avatar url from backend
     const makeUrl = useCallback(
@@ -34,13 +40,16 @@ export const Avatar: FC<AvatarProps> = ({
 
     return (
         <img
-            className={clsx(
-                'avatar',
-                outline && `avatar--outline-${outline}`,
-                className
-            )}
+            css={() => css`
+                image-rendering: pixelated;
+
+                ${outline === 'white' && css`
+                    filter: drop-shadow(0 1px 0 #FFF) drop-shadow(0 -1px 0 #FFF) drop-shadow(1px 0 0 #FFF) drop-shadow(-1px 0 0 #FFF) drop-shadow(0 0 10px transparent);
+                `}
+            `}
             src={makeUrl()}
-            alt="Avatar"
+            alt={alt || 'Avatar'}
+            {...rest}
         />
     );
 };

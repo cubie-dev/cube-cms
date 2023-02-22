@@ -12,7 +12,7 @@ import { Container } from '../container';
 import { Logo } from '../logo';
 import { Breadcrumbs } from '../breadcrumbs';
 import { useAuth } from '../../hooks/useAuth';
-import { Toolbar } from './Toolbar';
+import { Toolbar } from '../toolbar/Toolbar';
 import { SharedProps } from '../../SharedProps';
 import { Avatar } from '../avatar';
 import { SpeechBubble } from '../speech-bubble/SpeechBubble';
@@ -21,6 +21,7 @@ import { Navigation } from '../navigation/Navigation';
 import { MobileNavigation } from '../navigation/MobileNavigation';
 import { Button } from '../button';
 import { Wallet } from './Wallet';
+import { UserInfo } from './UserInfo';
 
 const Header: FC = () => {
     const { user } = useAuth();
@@ -66,7 +67,9 @@ const Header: FC = () => {
                     <div className="header-inner">
                         <div className="logo-container">
                             <Logo variant="winter" />
-                            <SpeechBubble arrowPosition="left">
+                            <SpeechBubble
+                                arrowPosition="left"
+                            >
                                 <strong>0</strong>
                                 {' '}
                                 <FormattedMessage id="global.header_online" />
@@ -91,19 +94,7 @@ const Header: FC = () => {
                         <Bars3Icon />
                     </Button>
                 </div>
-                <div className="user-info">
-                    {user && (
-                        <Wallet />
-                    )}
-                    <div className="platform">
-                        <Avatar
-                            figure={user ? user.data.look : 'hr-831-36.sh-3275-1328.lg-3058-82.ch-3185-110.he-3274-94.hd-190-2'}
-                            action="sit"
-                            direction={4}
-                            headDirection={3}
-                        />
-                    </div>
-                </div>
+                <UserInfo />
             </Toolbar>
         </NavigationContext.Provider>
     );

@@ -12,6 +12,7 @@
             "es6"
         ],
         "jsx": "react-jsx",
+        "jsxImportSource": "@emotion/react",
         "skipLibCheck": true,
         "isolatedModules": true,
         "strict": true,

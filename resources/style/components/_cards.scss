@@ -1,4 +1,3 @@
-@use "../layouts/shadows";
 
 .card-link {
     text-decoration: none;
@@ -8,7 +7,7 @@
     background: #fff;
     border-radius: var(--border-radius);
     position: relative;
-    @extend .shadow-1;
+    //@extend .shadow-1;
 
     .card-badge {
         position: absolute;
@@ -121,7 +120,7 @@
 
         &:hover {
             transition: box-shadow 0.2s ease-in-out;
-            @extend .shadow-2;
+            //@extend .shadow-2;
         }
     }
 }

@@ -1,7 +1,0 @@
-.avatar {
-    image-rendering: pixelated;
-
-    &--outline-white {
-        filter: drop-shadow(0 1px 0 #FFF) drop-shadow(0 -1px 0 #FFF) drop-shadow(1px 0 0 #FFF) drop-shadow(-1px 0 0 #FFF) drop-shadow(0 0 10px transparent);
-    }
-}

@@ -1,7 +1,9 @@
 import { FC, Fragment, ReactElement } from 'react';
 import { IntlProvider } from 'react-intl';
 import type { SetupOptions } from '@inertiajs/react/types/createInertiaApp';
+import { Global, ThemeProvider } from '@emotion/react';
 import { SharedProps } from '../SharedProps';
+import { theme, Theme } from '../theme';
 
 export interface AppContainerProps {
     appElement: ReactElement;
@@ -17,6 +19,8 @@ export const AppContainer: FC<AppContainerProps> = ({
         messages={appProps.initialPage.props.localeMessages}
         textComponent={Fragment}
     >
-        {appElement}
+        <ThemeProvider theme={theme}>
+            {appElement}
+        </ThemeProvider>
     </IntlProvider>
 );

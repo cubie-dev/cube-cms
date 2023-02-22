@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { useIntl } from 'react-intl';
 import clsx from 'clsx';
+import { css } from '@emotion/react';
 import { useAuth } from '../../hooks/useAuth';
 import { ICurrency } from '../../interfaces/ICurrency';
 import { Currency } from '../currency/Currency';
@@ -11,7 +12,11 @@ export const Wallet: FC = () => {
 
     return user ? (
         <div
-            className="user__wallet header-toolbar__item"
+            css={() => css`
+                display: flex;
+                align-items: center;
+            `}
+            className="header-toolbar__item"
         >
             <div className="user__wallet-item user__wallet-item--credits">
                 <i className="icon-credits user__wallet-item-icon" />

@@ -6,9 +6,7 @@
 @use "utilities/images";
 
 // Components
-@use "components/avatars";
 @use "components/logos";
-@use "components/speech-bubbles";
 @use "components/cards";
 @use "components/forms";
 @use "components/buttons";
@@ -21,7 +19,6 @@
 // Layouts
 @use "layouts/header";
 @use "layouts/breadcrumbs";
-@use "layouts/shadows";
 @use "layouts/pages";
 @use "layouts/footer";
 @use "layouts/ck-content";

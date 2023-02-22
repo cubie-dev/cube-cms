@@ -1,12 +1,26 @@
 import { FC, HTMLAttributes, PropsWithChildren } from 'react';
-import clsx from 'clsx';
+import { css } from '@emotion/react';
+import { Theme, screen } from '../../theme';
 
 export const Container: FC<PropsWithChildren<HTMLAttributes<HTMLElement>>> = ({
     children,
-    className
+    ...rest
 }) => (
     <div
-        className={clsx('container mx-auto md:mx-auto', className)}
+        css={({ screens }: Theme) => css`
+            width: 100%;
+            margin: 0 auto;
+            ${screen('md')} {
+                max-width: ${screens.md};
+            }
+            ${screen('lg')} {
+                max-width: ${screens.lg};
+            }
+            ${screen('xl')} {
+                max-width: ${screens.xl};
+            }
+        `}
+        {...rest}
     >
         {children}
     </div>
