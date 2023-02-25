@@ -1,9 +1,9 @@
 import clsx from 'clsx';
-import { FC } from 'react';
+import { FC, HTMLAttributes } from 'react';
 import { useIntl } from 'react-intl';
 import { ICurrency } from '../../interfaces/ICurrency';
 
-export interface CurrencyProps {
+export interface CurrencyProps extends HTMLAttributes<HTMLElement> {
     type: ICurrency['type']['name'];
     iconUrl?: ICurrency['icon_url'];
     className?: string;
@@ -13,17 +13,14 @@ export interface CurrencyProps {
 export const Currency: FC<CurrencyProps> = ({
     type,
     iconUrl,
-    className,
-    amount
+    amount,
+    ...rest
 }) => {
     const intl = useIntl();
 
     return (
         <div
-            className={clsx(
-                'currency',
-                className
-            )}
+            {...rest}
         >
             {iconUrl ? (
                 <img

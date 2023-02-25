@@ -1,32 +1,4 @@
 $icons: (
-    ('name': 'credits', 'extension': 'png'),
-    ('name': 'duckets', 'extension': 'png'),
-    ('name': 'diamonds', 'extension': 'png'),
-    ('name': 'online', 'width': 40px, 'height': 16px, 'extension': 'png'),
-    ('name': 'offline', 'width': 40px, 'height': 16px, 'extension': 'png'),
-    ('name': 'success', 'extension': 'png'),
-    ('name': 'warning', 'extension': 'png'),
-    ('name': 'info', 'extension': 'png'),
-    ('name': 'settings', 'extension': 'png'),
-    ('name': 'frank', 'width': 19px, 'height': 16px, 'extension': 'png'),
-    ('name': 'room', 'width': 18px, 'height': 18px, 'extension': 'png'),
-    ('name': 'clock', 'width': 20px, 'height': 18px, 'extension': 'gif'),
-    ('name': 'danger', 'extension': 'png'),
-    ('name': 'glasses', 'extension': 'png'),
-    ('name': 'pencil','width': 12px, 'height': 12px, 'extension': 'png'),
-    ('name': 'lock', 'extension': 'png'),
-    ('name': 'gift', 'width': 20px, 'extension': 'png'),
-    ('name': 'small-gift', 'width': 18px, 'height': 20px, 'extension': 'png'),
-    ('name': 'envelope', 'height': 10px, 'extension': 'png'),
-    ('name': 'admin', 'extension': 'png'),
-    ('name': 'respect', 'extension': 'png'),
-    ('name': 'dog', 'width': 17px, 'extension': 'png'),
-    ('name': 'logout', 'extension': 'png'),
-    ('name': 'comment', 'extension': 'png'),
-    ('name': 'people', 'extension': 'png'),
-    ('name': 'category', 'width': 16px, 'height': 17px, 'extension': 'png'),
-    ('name': 'referral', 'width': 18px, 'height': 18px, 'extension': 'png'),
-    ('name': 'tablet', 'width': 22px, 'height': 18px, 'extension': 'png'),
     ('name': 'box-one', 'width': 30px, 'height': 30px, 'extension': 'png'),
     ('name': 'box-two', 'width': 30px, 'height': 30px, 'extension': 'png'),
     ('name': 'box-three', 'width': 30px, 'height': 30px, 'extension': 'png'),
@@ -45,17 +17,15 @@ $icons: (
         vertical-align: middle;
         image-rendering: pixelated;
 
-        @if(map-has-key($icon, 'width')) {
+        @if (map-has-key($icon, 'width')) {
             width: map-get($icon, 'width');
-        }
-        @else {
+        } @else {
             width: 16px;
         }
 
-        @if(map-has-key($icon, 'height')) {
+        @if (map-has-key($icon, 'height')) {
             height: map-get($icon, 'height');
-        }
-        @else {
+        } @else {
             height: 16px;
         }
     }

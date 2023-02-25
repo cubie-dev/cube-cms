@@ -14,13 +14,11 @@ import { Breadcrumbs } from '../breadcrumbs';
 import { useAuth } from '../../hooks/useAuth';
 import { Toolbar } from '../toolbar/Toolbar';
 import { SharedProps } from '../../SharedProps';
-import { Avatar } from '../avatar';
 import { SpeechBubble } from '../speech-bubble/SpeechBubble';
 import { NavigationContext } from '../navigation/NavigationContext';
 import { Navigation } from '../navigation/Navigation';
 import { MobileNavigation } from '../navigation/MobileNavigation';
 import { Button } from '../button';
-import { Wallet } from './Wallet';
 import { UserInfo } from './UserInfo';
 
 const Header: FC = () => {
