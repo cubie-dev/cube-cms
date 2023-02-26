@@ -10,6 +10,7 @@ export const Container: FC<PropsWithChildren<HTMLAttributes<HTMLElement>>> = ({
         css={({ screens }: Theme) => css`
             width: 100%;
             margin: 0 auto;
+            padding: 0 1rem;
             ${screen('md')} {
                 max-width: ${screens.md};
             }

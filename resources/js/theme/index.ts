@@ -3,6 +3,7 @@ import { screens, type Screens } from './screens';
 import { roundings, type Roundings } from './roundings';
 import { boxShadows, BoxShadows } from './boxShadows';
 import { icons, type Icons } from './icons';
+import { images, type Images } from './images';
 
 export interface Theme {
     colors: Colors;
@@ -10,6 +11,7 @@ export interface Theme {
     roundings: Roundings;
     boxShadows: BoxShadows;
     icons: Icons;
+    images: Images;
 }
 
 export const theme: Theme = {
@@ -17,7 +19,8 @@ export const theme: Theme = {
     screens,
     roundings,
     boxShadows,
-    icons
+    icons,
+    images
 };
 
 export { screen } from './screens';

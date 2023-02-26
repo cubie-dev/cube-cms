@@ -9,7 +9,7 @@ export const Footer: FC = () => (
         <Card className="clouds-background">
             <CardContent className="flex flex-col items-center">
                 <div className="footer-content w-3/4">
-                    <Logo variant="winter" />
+                    <Logo variant="winterLogo" />
                     <p className="footer-text">
                         <FormattedMessage
                             id="global.footer_copyright"

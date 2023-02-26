@@ -1,7 +1,7 @@
 import { FC, HTMLAttributes, PropsWithChildren } from 'react';
 import { css } from '@emotion/react';
 import { Position } from '../../interfaces/Position';
-import { Theme } from '../../theme';
+import { type Theme } from '../../theme';
 
 export interface SpeechBubbleProps extends HTMLAttributes<HTMLElement> {
     arrowPosition: Position;

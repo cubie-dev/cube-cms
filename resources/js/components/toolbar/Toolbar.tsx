@@ -1,7 +1,7 @@
 import { FC, PropsWithChildren } from 'react';
 import { css } from '@emotion/react';
 import { ToolbarInner } from './ToolbarInner';
-import { Theme } from '../../theme';
+import { type Theme } from '../../theme';
 
 export const Toolbar: FC<PropsWithChildren> = ({
     children,

@@ -8,6 +8,7 @@ import { Link, usePage } from '@inertiajs/react';
 import type { Page } from '@inertiajs/core';
 import { FormattedMessage } from 'react-intl';
 import { Bars3Icon } from '@heroicons/react/24/outline';
+import { css } from '@emotion/react';
 import { Container } from '../container';
 import { Logo } from '../logo';
 import { Breadcrumbs } from '../breadcrumbs';
@@ -20,6 +21,7 @@ import { Navigation } from '../navigation/Navigation';
 import { MobileNavigation } from '../navigation/MobileNavigation';
 import { Button } from '../button';
 import { UserInfo } from './UserInfo';
+import { screen, type Theme } from '../../theme';
 
 const Header: FC = () => {
     const { user } = useAuth();
@@ -52,18 +54,62 @@ const Header: FC = () => {
         <NavigationContext.Provider value={navigationContextValue}>
             {shouldShowNavigation() && (
                 <>
-                    <div className="hidden sm:block">
+                    <div
+                        css={() => css`
+                            display: none;
+                            ${screen('sm')} {
+                                display: block;
+                            }
+                        `}
+                    >
                         <Navigation />
                     </div>
-                    <div className="sm:hidden">
+                    <div
+                        css={() => css`
+                            display: block;
+                            ${screen('sm')} {
+                                display: none;
+                            }
+                        `}
+                    >
                         <MobileNavigation />
                     </div>
                 </>
             )}
-            <header className="main-header">
+            <header
+                css={({ images }: Theme) => css`
+                    height: 175px;
+                    background-image: url(${images.header.background});
+                    background-size: auto, cover, auto;
+                    image-rendering: pixelated;
+                    display: flex;
+                    align-items: center;
+
+                    ${screen('md')} {
+                        background: url(${images.header.hotel}) calc(50% + 150px) bottom, url(${images.header.background}) 0;
+                    }
+                `}
+            >
                 <Container>
-                    <div className="header-inner">
-                        <div className="logo-container">
+                    <div
+                        css={() => css`
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+
+                            ${screen('md')} {
+                                justify-content: space-between;
+                                align-items: center;
+                                flex-direction: row;
+                            }
+                        `}
+                    >
+                        <div
+                            css={() => css`
+                                display: flex;
+                                align-items: center;
+                            `}
+                        >
                             <Logo variant="winter" />
                             <SpeechBubble
                                 arrowPosition="left"

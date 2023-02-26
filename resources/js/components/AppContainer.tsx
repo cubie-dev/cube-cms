@@ -1,9 +1,9 @@
 import { FC, Fragment, ReactElement } from 'react';
 import { IntlProvider } from 'react-intl';
 import type { SetupOptions } from '@inertiajs/react/types/createInertiaApp';
-import { Global, ThemeProvider } from '@emotion/react';
+import { ThemeProvider } from '@emotion/react';
 import { SharedProps } from '../SharedProps';
-import { theme, Theme } from '../theme';
+import { theme } from '../theme';
 
 export interface AppContainerProps {
     appElement: ReactElement;

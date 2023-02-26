@@ -1,7 +1,7 @@
 import { FC, HTMLAttributes, PropsWithChildren } from 'react';
 import { type Icons } from '../../theme/icons';
 import { css } from '@emotion/react';
-import { Theme } from '../../theme';
+import { type Theme } from '../../theme';
 
 export interface IconProps extends HTMLAttributes<HTMLElement> {
     name: keyof Icons;
