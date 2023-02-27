@@ -18,6 +18,7 @@ import { Button } from '../../components/button';
 import '../../../style/layouts/_register.scss';
 import { useFlashMessages } from '../../hooks/useFlashMessages';
 import { Message, MessageProps } from '../../components/message/Message';
+import { theme } from '../../theme';
 
 const Register: FC = () => {
     const intl = useIntl();
@@ -56,8 +57,8 @@ const Register: FC = () => {
             </div>
             <Card className="mb-8">
                 <CardHeader
-                    iconClass="icon-newuser"
-                    color="gray-200"
+                    icon="icon-newuser"
+                    color={theme.colors.grey[200]}
                     title={intl.formatMessage({ id: 'register.title' })}
                     subTitle={intl.formatMessage({ id: 'register.subtitle' })}
                     className="card-header-right-image moving"
@@ -75,8 +76,8 @@ const Register: FC = () => {
                 <Grid cols={1} gap={8} smCols={3}>
                     <Card>
                         <CardHeader
-                            iconClass="icon-box-one"
-                            color="gray-200"
+                            icon="icon-box-one"
+                            color={theme.colors.grey[200]}
                             title={<FormattedMessage id="register.step_one_card_title" />}
                             subTitle={<FormattedMessage id="register.step_one_card_subtitle" />}
                         />
@@ -111,8 +112,8 @@ const Register: FC = () => {
                     </Card>
                     <Card>
                         <CardHeader
-                            iconClass="icon-box-two"
-                            color="gray-200"
+                            icon="icon-box-two"
+                            color={theme.colors.grey[200]}
                             title={<FormattedMessage id="register.step_two_card_title" />}
                             subTitle={<FormattedMessage id="register.step_two_card_subtitle" />}
                         />
@@ -151,8 +152,8 @@ const Register: FC = () => {
                     </Card>
                     <Card>
                         <CardHeader
-                            iconClass="icon-box-three"
-                            color="gray-200"
+                            icon="icon-box-three"
+                            color={theme.colors.grey[200]}
                             title={<FormattedMessage id="register.step_three_card_title" />}
                             subTitle={<FormattedMessage id="register.step_three_card_subtitle" />}
                         />

@@ -1,9 +1,11 @@
 import {
+    ForwardedRef,
     forwardRef,
     HTMLAttributes,
     PropsWithChildren
 } from 'react';
-import clsx from 'clsx';
+import { css } from '@emotion/react';
+import { type Theme } from '../../theme';
 
 export interface CardProps extends PropsWithChildren<HTMLAttributes<HTMLDivElement>> {
     badge?: string;
@@ -12,17 +14,29 @@ export interface CardProps extends PropsWithChildren<HTMLAttributes<HTMLDivEleme
 const Card = forwardRef<HTMLDivElement, CardProps>(({
     badge,
     children,
-    className
-}, ref) => (
+    ...rest
+}, ref: ForwardedRef<HTMLDivElement>) => (
     <div
+        css={({ roundings }: Theme) => css`
+            background: #fff;
+            border-radius: ${roundings.default};
+            position: relative;
+        `}
         ref={ref}
-        className={clsx(
-            'card',
-            className
-        )}
+        {...rest}
     >
         {badge && (
-            <div className="card-badge">
+            <div
+                css={({ roundings }: Theme) => css`
+                    position: absolute;
+                    right: 1rem;
+                    top: 1rem;
+                    background: rgba(0, 0, 0, .8);
+                    padding: 0.2rem 0.3rem;
+                    color: #fff;
+                    border-radius: ${roundings.default};
+                `}
+            >
                 {badge}
             </div>
         )}

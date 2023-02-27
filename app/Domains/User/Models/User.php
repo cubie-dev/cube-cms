@@ -7,6 +7,7 @@ namespace App\Domains\User\Models;
 use App\Domains\Auth\Models\Ban;
 use App\Domains\Auth\Models\Role;
 use App\Domains\Hotel\Models\Currency;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -58,6 +59,7 @@ class User extends Authenticatable
 {
     use Notifiable;
     use SoftDeletes;
+    use HasUuids;
 
     protected $fillable = [
         'username',

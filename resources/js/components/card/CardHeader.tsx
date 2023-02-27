@@ -4,48 +4,73 @@ import {
     PropsWithChildren,
     ReactNode
 } from 'react';
-import clsx from 'clsx';
+import { css } from '@emotion/react';
+import { Theme } from '../../theme';
+import { type Icon as IconType } from '../../theme/icons';
+import { Icon } from '../icon';
 
 export interface CardHeaderProps extends PropsWithChildren<Omit<HTMLAttributes<HTMLDivElement>, 'title'>> {
     title?: ReactNode;
     subTitle?: ReactNode;
-    color?: any; // @TODO
-    iconClass?: string;
+    color?: string;
+    icon?: IconType;
 }
 
 export const CardHeader: FC<CardHeaderProps> = ({
     children,
-    className,
     color,
-    iconClass,
+    icon,
     title,
-    subTitle
+    subTitle,
+    ...rest
 }) => (
     <div
-        className={clsx(
-            'card-header',
-            className
-        )}
+        css={({ roundings }: Theme) => css`
+            display: flex;
+            flex-direction: column;
+            border-top-left-radius: ${roundings.default};
+            border-top-right-radius: ${roundings.default};
+            border-bottom: solid 1px ${roundings.default};
+            overflow: hidden;
+        `}
+        {...rest}
     >
-        <div className="card-header-title-container">
-            {iconClass && (
+        <div
+            css={() => css`
+                padding: 1.5rem;
+                display: flex;
+                align-items: center;
+            `}
+        >
+            {icon && (
                 <div
-                    className={clsx(
-                        'card-header-icon-container',
-                        color && `bg-${color}`
-                    )}
+                    css={({ roundings }: Theme) => css`
+                        width: 50px;
+                        height: 50px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        margin-right: 1rem;
+                        border-radius: ${roundings.default};
+                        ${color && css` background-color: ${color}; `}
+                    `}
                 >
-                    <div
-                        className={clsx(
-                            'header-icon',
-                            iconClass
-                        )}
-                    />
+                    <Icon name={icon} />
                 </div>
             )}
             {title && (
-                <div className="card-header-titles">
-                    <h2 className="card-header-title">{ title }</h2>
+                <div
+                    css={() => css`
+                        max-width: 100%;
+                    `}
+                >
+                    <h2
+                        css={({ colors }: Theme) => css`
+                            font-weight: 600;
+                            font-size: 1.1rem;
+                            color: var(--card-title-color);
+                        `}
+                    >{ title }</h2>
                     {subTitle && (
                         <p className="card-header-subtitle">{ subTitle }</p>
                     )}

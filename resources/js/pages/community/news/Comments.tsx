@@ -123,7 +123,7 @@ export const Comments: FC<CommentsProps> = ({
             <Card ref={commentCardRef}>
                 <CardHeader
                     title={intl.formatMessage({ id: 'community.news.comment_card_title' })}
-                    iconClass="icon-pencil"
+                    icon="icon-pencil"
                     color="green-600"
                 />
                 <CardContent spacing={false}>
