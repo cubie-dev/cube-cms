@@ -68,16 +68,29 @@ export const CardHeader: FC<CardHeaderProps> = ({
                         css={({ colors }: Theme) => css`
                             font-weight: 600;
                             font-size: 1.1rem;
-                            color: var(--card-title-color);
+                            color: ${colors.grey[700]};
                         `}
-                    >{ title }</h2>
+                    >
+                        { title }
+                    </h2>
                     {subTitle && (
-                        <p className="card-header-subtitle">{ subTitle }</p>
+                        <p
+                            css={({ colors }: Theme) => css`
+                                color: ${colors.grey[500]};
+                                margin-top: 0.5rem;
+                            `}
+                        >
+                            { subTitle }
+                        </p>
                     )}
                 </div>
             )}
         </div>
-        <div className="card-header-actions">
+        <div
+            css={css`
+              margin-left: auto;
+            `}
+        >
             {children}
         </div>
     </div>

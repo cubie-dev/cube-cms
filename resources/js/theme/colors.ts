@@ -1,6 +1,7 @@
 export type Color = 'red' | 'pink' | 'purple' | 'deepPurple' | 'indigo' | 'blue' | 'lightBlue' | 'cyan' | 'teal' | 'green' | 'lightGreen' | 'lime' | 'yellow' | 'amber' | 'orange' | 'deepOrange' | 'brown' | 'grey' | 'blueGrey' | 'white' | 'black';
 
 export type Colors = Record<Color, Record<number, string> | string>;
+
 export const colors: Colors = {
     red: {
         50: 'hsl(351, 100%, 96%)',

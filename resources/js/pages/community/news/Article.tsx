@@ -15,6 +15,8 @@ import {
 import { IDataObject } from '../../../interfaces/IDataObject';
 import { RecentNews } from './RecentNews';
 import { Comments } from './Comments';
+import { css } from '@emotion/react';
+import { Theme } from '../../../theme';
 
 export interface ArticleProps {
     article: IDataObject<IArticle>;
@@ -58,7 +60,11 @@ const Article: FC = () => {
                                 </span>
                             </div>
                         </CardContent>
-                        <CardContent className="border-top ck-content">
+                        <CardContent
+                            css={({ colors }: Theme) => css`
+                                border-top: 1px solid ${colors.grey[300]};
+                            `}
+                        >
                             {article.data.content}
                         </CardContent>
                     </Card>

@@ -5,6 +5,9 @@ import platform from '../../images/header/platform.png';
 
 import winterLogo from '../../images/logos/winter-logo.png';
 
+import moving from '../../images/global/moving.png';
+import background from '../../images/global/background.png';
+
 export type Images = Record<string, Record<string, any>>;
 
 export const images: Images = {
@@ -16,5 +19,9 @@ export const images: Images = {
     },
     logos: {
         winter: winterLogo
+    },
+    global: {
+        moving,
+        background
     }
 };

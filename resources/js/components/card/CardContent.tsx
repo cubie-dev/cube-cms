@@ -1,5 +1,5 @@
 import { FC, HTMLAttributes, PropsWithChildren } from 'react';
-import clsx from 'clsx';
+import { css } from '@emotion/react';
 
 export interface CardContentProps extends PropsWithChildren<HTMLAttributes<HTMLDivElement>> {
     spacing?: boolean;
@@ -7,15 +7,14 @@ export interface CardContentProps extends PropsWithChildren<HTMLAttributes<HTMLD
 
 export const CardContent: FC<CardContentProps> = ({
     children,
-    className,
-    spacing = true
+    spacing = true,
+    ...rest
 }) => (
     <div
-        className={clsx(
-            'card-content',
-            !spacing && 'no-spacing',
-            className
-        )}
+        css={() => css`
+            ${spacing && css` padding: 1.5rem; `}
+        `}
+        {...rest}
     >
         {children}
     </div>

@@ -77,22 +77,6 @@
         }
     }
 
-    .card-content {
-        &:not(.no-spacing) {
-            padding: 1.5rem;
-        }
-
-        &.border-top {
-            border-top: 1px solid var(--default-border-color);
-        }
-
-        &.footer {
-            padding: 4rem 1rem;
-            display: flex;
-            justify-content: center;
-        }
-    }
-
     &.article-card {
         transition: box-shadow 0.2s ease-in-out;
 

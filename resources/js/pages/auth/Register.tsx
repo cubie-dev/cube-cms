@@ -7,9 +7,14 @@ import {
 } from 'react';
 import { faChevronLeft } from '@fortawesome/pro-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { css } from '@emotion/react';
 import { Grid } from '../../components/grid';
 import { Page } from '../../components/page';
-import { Card, CardContent, CardHeader } from '../../components/card';
+import {
+    Card,
+    CardContent,
+    CardHeader
+} from '../../components/card';
 import {
     FormGroup, FormInput, FormLabel, FormMessage, FormSelect
 } from '../../components/forms';
@@ -18,7 +23,8 @@ import { Button } from '../../components/button';
 import '../../../style/layouts/_register.scss';
 import { useFlashMessages } from '../../hooks/useFlashMessages';
 import { Message, MessageProps } from '../../components/message/Message';
-import { theme } from '../../theme';
+import { screen, theme } from '../../theme';
+import { images } from '../../theme/images';
 
 const Register: FC = () => {
     const intl = useIntl();
@@ -55,13 +61,26 @@ const Register: FC = () => {
                     />
                 ))}
             </div>
-            <Card className="mb-8">
+            <Card
+                css={css`
+                    margin-bottom: 10rem;
+                `}
+            >
                 <CardHeader
-                    icon="icon-newuser"
+                    icon="newuser"
                     color={theme.colors.grey[200]}
                     title={intl.formatMessage({ id: 'register.title' })}
                     subTitle={intl.formatMessage({ id: 'register.subtitle' })}
-                    className="card-header-right-image moving"
+                    css={css`
+                        // @TODO make available to others?
+                        background-position: center right;
+                        background-repeat: no-repeat;
+                        image-rendering: pixelated;
+
+                        ${screen('sm')} {
+                            background-image: url(${images.global.moving});
+                        }
+                    `}
                 />
             </Card>
             <Button
@@ -76,7 +95,7 @@ const Register: FC = () => {
                 <Grid cols={1} gap={8} smCols={3}>
                     <Card>
                         <CardHeader
-                            icon="icon-box-one"
+                            icon="boxOne"
                             color={theme.colors.grey[200]}
                             title={<FormattedMessage id="register.step_one_card_title" />}
                             subTitle={<FormattedMessage id="register.step_one_card_subtitle" />}
@@ -112,7 +131,7 @@ const Register: FC = () => {
                     </Card>
                     <Card>
                         <CardHeader
-                            icon="icon-box-two"
+                            icon="boxTwo"
                             color={theme.colors.grey[200]}
                             title={<FormattedMessage id="register.step_two_card_title" />}
                             subTitle={<FormattedMessage id="register.step_two_card_subtitle" />}
@@ -152,7 +171,7 @@ const Register: FC = () => {
                     </Card>
                     <Card>
                         <CardHeader
-                            icon="icon-box-three"
+                            icon="boxThree"
                             color={theme.colors.grey[200]}
                             title={<FormattedMessage id="register.step_three_card_title" />}
                             subTitle={<FormattedMessage id="register.step_three_card_subtitle" />}
